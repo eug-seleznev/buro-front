@@ -4,7 +4,7 @@ import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED} from '../types'
 
 
 const initialState = {
-    isAuthenticated: null,
+    isAuthenticated: false,
     error: '',
     userLoaded: false
     
@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
     
             case USER_LOADED:
                 return {
-                    ...state,
+                    
                     isAuthenticated: true,
                     userLoaded: true
                 }
