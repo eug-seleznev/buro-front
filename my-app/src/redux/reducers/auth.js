@@ -1,11 +1,12 @@
 
-import {GET_TOKEN} from '../type'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED} from '../types'
 
 
 
 const initialState = {
-    token: '',
     isAuthenticated: null,
+    error: '',
+    userLoaded: false
     
 }
 
@@ -15,12 +16,28 @@ export default function(state = initialState, action) {
     } = action;
 
     switch(type){
-        case GET_TOKEN:
+        case REGISTER:
+        case LOGIN:
+             localStorage.setItem('token', payload.token);
             return {
                 ...state,
                 isAuthenticated: true,
-                token: payload,
+                
             }
+    
+            case USER_LOADED:
+                return {
+                    ...state,
+                    isAuthenticated: true,
+                    userLoaded: true
+                }
+
+            case AUTH_ERROR:
+                return {
+                    ...state,
+                    isAuthenticated: false,
+                    error: payload
+                }
             
             default: 
                 return state;

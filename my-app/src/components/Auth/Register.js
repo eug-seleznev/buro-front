@@ -1,8 +1,10 @@
 import  {useState } from 'react'
-import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/actions/auth';
 
 
 const Auth = () => {
+const dispatch = useDispatch();
 
     const [formData, setFormData ] = useState({
         
@@ -12,16 +14,13 @@ const Auth = () => {
         position: ''
       
       });
+      
 
       const { name, email, password, position } = formData;
 
-      const Post = (formData) => {
-          console.log(formData)
-          axios.post('http://195.2.71.115:7070/users', formData).then(res => console.log(res.data)).catch(() => console.log('hui'))
-      }
-     
+  
     const onChange = e => {
-        e.preventDefault();
+        e.preventDefault(); 
 
         setFormData({ ...formData, [e.target.name]: e.target.value });
      }
@@ -30,7 +29,8 @@ const Auth = () => {
 
      const onSubmit = async e => {
         e.preventDefault();
-        Post(formData);
+        dispatch(register(formData))
+    
             // register({ name, email, password});
     
            

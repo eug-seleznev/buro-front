@@ -1,6 +1,6 @@
 
 import './App.css';
-import Auth from './components/Auth'
+import Auth from './components/Auth/index'
 function App() {
   return (
     <div className="App">
