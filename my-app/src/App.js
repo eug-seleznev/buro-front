@@ -20,6 +20,8 @@ import Projects from './components/Projects';
 import Office from './components/Office';
 import Users from './components/User';
 import Dashboard from './components/Adminka/dashboard';
+import MyProfile from './components/User/me';
+import Employe from './components/User/Employe';
 
 
 
@@ -34,6 +36,7 @@ const App = () => {
   //chek auth token on render
   useEffect(() => {
     dispatch(loadUser());
+    console.log(localStorage.token)
   }, [])
 
 
@@ -57,8 +60,8 @@ const App = () => {
 
           {/* users */}
           <Route exact path="/users" component={ Users } /> 
-          <Route exact path="/users/me" component={ null } />
-          <Route exact path="/users/:id" component={ null } />
+          <Route exact path="/users/me" component={ MyProfile } />
+          <Route exact path="/users/:id" component={ Employe } />
 
 
 

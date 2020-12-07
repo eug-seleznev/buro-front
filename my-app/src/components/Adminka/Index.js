@@ -1,6 +1,6 @@
 import  {useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/actions/auth';
+import { newTicket } from '../../redux/actions/tikets';
 
 
 const Admin = () => {
@@ -31,7 +31,7 @@ const Admin = () => {
 
      const onSubmit = async e => {
         e.preventDefault();
-        dispatch(login(formData))
+        dispatch(newTicket(formData))
     
             // register({ name, email, password});
     

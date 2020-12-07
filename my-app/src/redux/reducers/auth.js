@@ -4,9 +4,9 @@ import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED} from '../types'
 
 
 const initialState = {
+    user: null,
     isAuthenticated: false,
     error: '',
-    user: null
     
 }
 
@@ -22,15 +22,17 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
+                error: ''
                 
             }
-    
             case USER_LOADED:
                 return {
                     
                     isAuthenticated: true,
                     user: payload
                 }
+    
+            
 
             case AUTH_ERROR:
                 return {
