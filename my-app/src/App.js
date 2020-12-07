@@ -32,18 +32,18 @@ import Employe from './components/User/Employe';
 const App = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.auth.isAuthenticated)
+  const auth = useSelector(state => state.auth.isAuthenticated)
   //chek auth token on render
   useEffect(() => {
     dispatch(loadUser());
-    console.log(localStorage.token)
+    console.log(localStorage.token) //for postman tests
   }, [])
 
 
 
   return (
     <div className="App">
-      {!user ? <Auth /> : (
+      {!auth ? <Auth /> : (
       <Router> 
         <Layout /> 
         <Switch>
