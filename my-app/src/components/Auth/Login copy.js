@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/auth';
 
 
-const Admin = () => {
+const Login = () => {
     const dispatch = useDispatch();
 
     const [formData, setFormData ] = useState({
@@ -40,7 +40,7 @@ const Admin = () => {
 
     return (
         <div>
-            <h1> Если у вас есть проблема с компом - вы создать заявку тут //wip</h1>
+            <h1> Если у вас есть проблема с компом - вы создать заявку тут</h1>
             <form onSubmit={onSubmit}>
             <input 
                 type='text'
@@ -89,4 +89,4 @@ const Admin = () => {
 }
 
 
-export default Admin
+export default Login

@@ -16,6 +16,9 @@ const Sidebar = () => {
          <NavLink
               to='/admin'
               className="nav-link" >Сисадминошная </NavLink>
+              <NavLink
+              to='/admin/all'
+              className="nav-link" >Страница сисадмина </NavLink>
 
 
          <NavLink
