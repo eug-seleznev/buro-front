@@ -21,8 +21,7 @@ export const setAuthToken = (token) => {
 
 
 
-export const innerBackend = () => {
-    return axios.create ({
+export const innerBackend = axios.create ({
         baseURL: url,
         headers: {
             accept: 'application/json',
@@ -31,7 +30,7 @@ export const innerBackend = () => {
         }
        
     })
-} 
+
 
 
 

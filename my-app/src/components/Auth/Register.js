@@ -21,18 +21,13 @@ const dispatch = useDispatch();
   
     const onChange = e => {
         e.preventDefault(); 
-
         setFormData({ ...formData, [e.target.name]: e.target.value });
      }
      
 
-
      const onSubmit = async e => {
         e.preventDefault();
         dispatch(register(formData))
-    
-            // register({ name, email, password});
-    
            
         }
 

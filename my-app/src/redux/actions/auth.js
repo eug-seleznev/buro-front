@@ -1,19 +1,22 @@
 import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED} from '../types'
-import {instance, setAuthToken} from '../../components/utils/axios'
+import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 
 
 // LOAD USER 
-// export const loadUser = () => async dispatch => {
-//     if (localStorage.token) {
-//       innerBackend(localStorage.token);
-//     }
-  
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+      innerBackend(localStorage.token);
+    }
+
+    const res = await innerBackend.get('/users/me')
+
    
-//       dispatch({
-//         type: USER_LOADED,
-//       });
-//   };
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      });
+  };
     
 
 

@@ -10,9 +10,15 @@ import {
   Link
 } from "react-router-dom";
 import Layout from './components/Layout';
+import { useEffect } from 'react';
+import { loadUser } from './redux/actions/auth';
 
 const App = () => {
 const dispatch = useDispatch();
+useEffect(() => {
+  dispatch(loadUser());
+  console.log(localStorage.token, 'my token')
+}, [])
 const user = useSelector(state => state.auth.isAuthenticated)
   return (
     <div className="App">
