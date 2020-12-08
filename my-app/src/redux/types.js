@@ -16,9 +16,11 @@ export const USER_ERR = 'get_all_users_error'
 
 //PROJECTS
 export const ALL_PROJECTS = 'all_projects';
-export const GET_PROJECT = 'project_id';
+export const GET_PROJECT = 'create_project';
 export const CREATE_SPRINT = 'create_sprint';
 export const UPDATE_PROJECT = 'project_updated';
+export const PROJECT_ID = 'project_updated';
+
 //projects errors
 export const CREATE_FAIL= 'error_on_project_create';
 

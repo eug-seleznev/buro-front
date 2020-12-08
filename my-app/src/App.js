@@ -24,6 +24,7 @@ import MyProfile from './components/User/me';
 import Employe from './components/User/Employe';
 import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
+import Project from './components/Projects/Project';
 
 
 
@@ -60,6 +61,8 @@ const App = () => {
           <Route exact path="/office" component={ Office } />
           {/* projects */}
           <Route exact path="/projects" component={ Projects } />
+          <Route exact path="/projects/:id" component={ Project } />
+
           <Route exact path="/new" component={ ProjectNew } /> 
 
           {/* users */}

@@ -6,6 +6,7 @@ import { ALL_PROJECTS, CREATE_FAIL, GET_PROJECT, UPDATE_PROJECT } from '../types
 const initialState = {
     projects: null,
     project: null,
+    loadProject: false,
     loaded: false,
     error: ''
     
@@ -24,14 +25,15 @@ export default function(state = initialState, action) {
                     ...state,
                     loaded: true,
                     projects: payload,
+                    loadProject: false,
                     error: ''
                 }
 
             case GET_PROJECT:
                 return {
                     ...state,
-                    loaded: true,
                     project: payload,
+                    loadProject: true,
                     error: ''
                 }
             case UPDATE_PROJECT:
@@ -44,7 +46,9 @@ export default function(state = initialState, action) {
             case CREATE_FAIL:
                 return {
                     ...state,
-                    error: payload
+                    error: payload,
+                    loadProject: false,
+                    loaded: false
                 }
 
 
