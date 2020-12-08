@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 
-const url = 'http://195.2.71.115:7070'
+export const url = 'http://195.2.71.115:7070'
 
 
 

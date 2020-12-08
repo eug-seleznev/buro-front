@@ -1,12 +1,12 @@
 todo
 ------------------
 
-- [ ] create new tickets
-- [ ] show all tickets
+- [x] create new tickets
+- [x] show all tickets
 - [ ] chek when ticket is complete
+- [x] form data for img
 
-
-- [ ] show all useres in table
+- [x] show all useres in table
 - [ ] select user and show his profile
 
 - [ ] show all projects

@@ -11,16 +11,20 @@ const Admin = () => {
         problemname: '',   //title
         text: '',     //about problem
         emergency: '', 
-        pcpass: '', // password 
-        screenshot: null
+        pcpass: '', // password,
 
       
       });
       
 
-      const { problemname, text, emergency, pcpass, screenshot} = formData;
+      const { problemname, text, emergency, pcpass} = formData;
 
-  
+      const  [file, setFile] = useState(null) 
+
+
+      const handleFile = e => {
+        setFile(e.target.files[0])
+    }
     const onChange = e => {
         e.preventDefault(); 
 
@@ -31,7 +35,8 @@ const Admin = () => {
 
      const onSubmit = async e => {
         e.preventDefault();
-        dispatch(newTicket(formData))
+
+        dispatch(newTicket({formData, file}))
     
             // register({ name, email, password});
     
@@ -74,14 +79,12 @@ const Admin = () => {
             <input 
                 type='file'
                 placeholder='скриншот проблемы (опционально)'
-                name='screenshot'
-                value={screenshot}
-                onChange={e => onChange(e)}/>
+                onChange={handleFile}/>
 
 
 
 
-            <button  type="submit"> Отправить проблему</button>
+            <button  type="submit" value="Submit"> Отправить проблему</button>
 
             </form>
         </div>

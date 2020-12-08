@@ -35,7 +35,7 @@ const Sidebar = () => {
               to='/office'
               className="nav-link" >Про офис </NavLink>
               <NavLink
-              to='/useres'
+              to='/users'
               className="nav-link" >Все сотрудники </NavLink>
               <NavLink
               to='/users/me'

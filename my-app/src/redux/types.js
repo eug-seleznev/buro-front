@@ -12,7 +12,7 @@ export const AUTH_ERROR ='auth_error';
 export const ALL_USERS = 'users';
 export const GET_EMPLOYE = 'get_users';
 //user errors
-
+export const USER_ERR = 'get_all_users_error'
 
 //PROJECTS
 export const ALL_PROJECTS = 'all_projects';
@@ -26,9 +26,12 @@ export const CREATE_FAIL= 'error_on_project_create';
 
 /////SYSTEM ADMIN
 export const NEW_TICKET = 'new_ticket';
-export const ALL_TICKETS = 'all_tickets'
+export const ALL_TICKETS = 'all_tickets';
+export const GET_TICKET = 'get_ticket'
 
-///ERRORS
+
+///ERRORS with tickets
+export const NEW_ERROR = 'server_error'
 
 
 
@@ -36,4 +39,3 @@ export const ALL_TICKETS = 'all_tickets'
 
 //error handler
 
-export const NEW_ERROR = 'server_error'

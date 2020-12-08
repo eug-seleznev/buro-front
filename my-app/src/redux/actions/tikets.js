@@ -1,12 +1,43 @@
+import Axios from "axios";
 import { innerBackend } from "../../components/utils/axios";
-import { ALL_TICKETS, NEW_ERROR, NEW_TICKET } from "../types";
+import { ALL_TICKETS, NEW_ERROR, NEW_TICKET, GET_TICKET } from "../types";
+import {url} from '../../components/utils/axios'
 
 
+export const newTicket = ({formData, file}) => async dispatch  => {
 
-export const newTicket = (formData) => async dispatch  => {
+     
+    // formData.append('userName', 'Fred');
+
+
     try {
+        // console.log(formData, 'data')
+    const form = new FormData()
+    if(file){
+        form.append(
+            'file',
+            file
+          )
+    }
+    
 
-        const res = await innerBackend.post('/tickets', formData)
+    Object.keys(formData).map((el, index) => {
+        form.append(
+            `${el}`, formData[el]
+        )
+    })
+
+        console.log(form.get('file'), 'file HERE')
+        console.log(form.get('text'), 'text HERE')
+
+
+        const res = await Axios.post('/tickets', form, {
+            baseURL: url,
+            headers: {
+                'content-type': 'multipart/form-data', // do not forget this 
+                'auth-token': localStorage.token
+               }})
+
         dispatch({
             type: NEW_TICKET,
             payload: res.data
@@ -28,15 +59,42 @@ export const newTicket = (formData) => async dispatch  => {
 }
 
 
-export const allTickets = (formData) => async dispatch  => {
+export const allTickets = () => async dispatch  => {
     try {
 
-        const res = await innerBackend.get('/tickets/all', formData)
+        const res = await innerBackend.get('/tickets/all')
         dispatch({
             type: ALL_TICKETS,
             payload: res.data
         })
         console.log(res.data, 'respond')
+
+        }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: NEW_ERROR,
+            payload: error.msg
+        })
+        })            
+      
+    }
+
+}
+
+
+
+
+
+export const getTicket = (id) => async dispatch  => {
+    try {
+        console.log(id, 'my id ticket')
+        const res = await innerBackend.get(`/tickets/${id}`)
+        dispatch({
+            type: GET_TICKET,
+            payload: res.data
+        })
 
         }
       catch (err) {

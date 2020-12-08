@@ -4,7 +4,7 @@ import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS} from '../types'
 
 
 const initialState = {
-    users: [],
+    users: null,
     loaded: false
     
 }

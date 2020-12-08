@@ -1,10 +1,12 @@
-import { ALL_TICKETS, NEW_ERROR, NEW_TICKET } from "../types";
+import { ALL_TICKETS, GET_TICKET, NEW_ERROR, NEW_TICKET } from "../types";
 
 
 
 
 const initialState = {
-    tikets: [],
+    tickets: [],
+    ticket: null,
+    ticketLoad: false,
     error: '',
     loaded: false
     
@@ -26,8 +28,19 @@ export default function(state = initialState, action) {
         case ALL_TICKETS:
             return {
                 ...state,
+                loaded: true,
                 error: '',
                 tickets: payload
+                
+                
+            }
+
+        case GET_TICKET:
+            return {
+                ...state,
+                ticketLoad: true,
+                error: '',
+                ticket: payload
                 
                 
             }

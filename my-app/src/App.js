@@ -22,6 +22,8 @@ import Users from './components/User';
 import Dashboard from './components/Adminka/dashboard';
 import MyProfile from './components/User/me';
 import Employe from './components/User/Employe';
+import Ticket from './components/Adminka/Ticket';
+import ProjectNew from './components/Projects/newProject';
 
 
 
@@ -50,13 +52,15 @@ const App = () => {
           {/* сисадминошная */}
           <Route exact path="/admin" component={ Admin } />
           <Route exact path="/admin/all" component={ Dashboard } />
+          <Route exact path="/admin/:id" component={Ticket} />
+
 
 
           <Route exact path="/db" component={ DataBase } />
           <Route exact path="/office" component={ Office } />
           {/* projects */}
           <Route exact path="/projects" component={ Projects } />
-          <Route exact path="/new" component={ null } /> 
+          <Route exact path="/new" component={ ProjectNew } /> 
 
           {/* users */}
           <Route exact path="/users" component={ Users } /> 
