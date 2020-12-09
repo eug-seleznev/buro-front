@@ -25,6 +25,7 @@ import Employe from './components/User/Employe';
 import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
+import Sprint from './components/Projects/Sprint';
 
 
 
@@ -62,6 +63,8 @@ const App = () => {
           {/* projects */}
           <Route exact path="/projects" component={ Projects } />
           <Route exact path="/projects/:id" component={ Project } />
+          <Route exact path="/projects/:id/:id" component={ Sprint } />
+
 
           <Route exact path="/new" component={ ProjectNew } /> 
 

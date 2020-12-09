@@ -1,5 +1,5 @@
 
-import { ALL_PROJECTS, CREATE_FAIL, GET_PROJECT, UPDATE_PROJECT } from '../types'
+import { ADD_SPRINT, ALL_PROJECTS, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT } from '../types'
 
 
 
@@ -8,6 +8,9 @@ const initialState = {
     project: null,
     loadProject: false,
     loaded: false,
+    sprints: [],
+    loadSprints: false,
+    sprint: [],
     error: ''
     
 }
@@ -26,6 +29,7 @@ export default function(state = initialState, action) {
                     loaded: true,
                     projects: payload,
                     loadProject: false,
+                    sprint_load: false,
                     error: ''
                 }
 
@@ -34,6 +38,28 @@ export default function(state = initialState, action) {
                     ...state,
                     project: payload,
                     loadProject: true,
+                    sprint_load: false,
+
+                    error: ''
+                }
+            case ADD_SPRINT:
+                return {
+                    ...state,
+                    sprint: payload,
+                    error: ''
+                }
+            case ALL_SPRINT:
+                return {
+                    ...state,
+                    sprints: payload,
+                    loadSprints: true,
+                    error: ''
+                }
+            case GET_SPRINT:
+                return {
+                    ...state,
+                    sprints: payload,
+                    loadSprints: true,
                     error: ''
                 }
             case UPDATE_PROJECT:
@@ -44,6 +70,13 @@ export default function(state = initialState, action) {
                     error: ''
                 }
             case CREATE_FAIL:
+                return {
+                    ...state,
+                    error: payload,
+                    loadProject: false,
+                    loaded: false
+                }
+            case SPRINT_ERROR:
                 return {
                     ...state,
                     error: payload,
