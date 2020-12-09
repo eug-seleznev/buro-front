@@ -11,7 +11,8 @@ const initialState = {
     sprints: [],
     loadSprints: false,
     sprint: [],
-    error: ''
+    error: '',
+    reload: false
     
 }
 
@@ -46,6 +47,8 @@ export default function(state = initialState, action) {
                 return {
                     ...state,
                     sprint: payload,
+                    sprint_load: true,
+                    reload: true,
                     error: ''
                 }
             case ALL_SPRINT:
@@ -53,12 +56,14 @@ export default function(state = initialState, action) {
                     ...state,
                     sprints: payload,
                     loadSprints: true,
+
                     error: ''
                 }
             case GET_SPRINT:
                 return {
                     ...state,
-                    sprints: payload,
+                    sprint: payload,
+                    reload: false,
                     loadSprints: true,
                     error: ''
                 }

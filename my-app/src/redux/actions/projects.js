@@ -133,13 +133,36 @@ export const allSprints = (id) => async dispatch  => {
 
 export const getSprint = (id) => async dispatch  => {
     try {
-
-        const res = await innerBackend.get(`/projects/sprints/${id}`)
+        console.log('hello')
+        const res = await innerBackend.get(`/projects/getspring/${id}`)
         dispatch({
             type: GET_SPRINT,
             payload: res.data
         })
-        console.log(res.data, id, 'hello')
+
+        }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: SPRINT_ERROR,
+            payload: error.msg
+        })
+        })            
+      
+    }
+
+}
+
+
+
+export const addTasks = ({tasks, id}) => async dispatch  => {
+    try {
+        const res = await innerBackend.post(`/projects/sprints/addtask/${id}`)
+        dispatch({
+            type: GET_SPRINT,
+            payload: res.data
+        })
 
         }
       catch (err) {

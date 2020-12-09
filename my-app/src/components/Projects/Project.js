@@ -17,6 +17,8 @@ const Project = ({match, history}) => {
     const sprintsLoad = useSelector(state => state.projects.loadSprints)
 
     const sprintLoad = useSelector(state => state.projects.sprint_load)
+    const reload = useSelector(state => state.projects.reload)
+
     const sprint = useSelector(state => state.projects.sprint)
 
     const project = useSelector(state => state.projects.project)
@@ -35,10 +37,10 @@ const Project = ({match, history}) => {
     }, [loaded])
 
     useEffect(() => {
-        if(sprintLoad){
+        if(reload){
             return history.push(`${id}/${sprint.id}`)
         }
-    }, [sprintLoad])
+    }, [reload])
 
     const createSprint = () => {
         dispatch(addSprint(project.crypt))

@@ -9,14 +9,19 @@ const Sprint = ({match}) => {
     let {id} = match.params;
 
     const dispatch = useDispatch();
-    const [task, addTask] = useState(['test'])
+    const [task, addTask] = useState([{
+        taskTitle: '',
+        workVolume: 0,
+        taskState: false
+    }])
+
     const sprint = useSelector(state => state.projects.sprint)
 
     useEffect(() => {
         console.log(id)
-        if(!sprint){
+        
             dispatch(getSprint(id));
-        }
+        
     }, [])
     return (
         <div>
@@ -32,7 +37,19 @@ const Sprint = ({match}) => {
                                 type='text'
                                 placeholder='task'
                                 name='dateFinish'
-                                value='lol'
+                                value={el}
+                                />
+                                <input 
+                                type='text'
+                                placeholder='task'
+                                name='dateFinish'
+                                value={el}
+                                />
+                                <input 
+                                type='text'
+                                placeholder='task'
+                                name='dateFinish'
+                                value={el}
                                 />
                         </div>
                     )
