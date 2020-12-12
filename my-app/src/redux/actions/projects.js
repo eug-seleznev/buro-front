@@ -1,5 +1,5 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT, CREATE_FAIL, DELETE_PROJECT, FINISH_TASK, GET_PROJECT, GET_SPRINT, PROJECT_ID, SPRINT_ERROR } from "../types";
+import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT, CREATE_FAIL, DELETE_PROJECT, FINISH_SPRINT, FINISH_TASK, GET_PROJECT, GET_SPRINT, PROJECT_ID, SPRINT_ERROR } from "../types";
 
 
 
@@ -132,6 +132,7 @@ export const allSprints = (id) => async dispatch  => {
 
 
 export const getSprint = (id) => async dispatch  => {
+    console.log(id, 'айдишека')
     try {
         const res = await innerBackend.get(`/projects/getsprint/${id}`)
         dispatch({
@@ -183,10 +184,12 @@ export const addTasks = ({tasks, id}) => async dispatch  => {
 
 
 export const finishTask = ({taskid, id}) => async dispatch  => {
-
+    let body = {
+        taskid: taskid 
+    }
     try {
         // console.log(tasks, 'tasks', id, 'id')
-        const res = await innerBackend.put(`projects/sprints/DAtask/${id}`, taskid)
+        const res = await innerBackend.put(`projects/sprints/DAtask/${id}`, body)
         dispatch({
             type: FINISH_TASK,
             payload: res.data
@@ -206,6 +209,27 @@ export const finishTask = ({taskid, id}) => async dispatch  => {
 
 }
 
+
+export const finishSprint = (id) => async dispatch  => {
+    try {
+        const res = await innerBackend.put(`projects/sprints/${id}`)
+        dispatch({
+            type: FINISH_SPRINT,
+            payload: res.data
+        })
+        }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: SPRINT_ERROR,
+            payload: error.msg
+        })
+        })            
+      
+    }
+
+}
 
 
 

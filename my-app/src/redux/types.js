@@ -29,6 +29,7 @@ export const ADD_TASKS = 'add_tasks_to_sprint';
 export const FINISH_TASK = 'finish_task'
 export const SPRINT_ERROR = 'sprint_error';
 export const ALL_SPRINT = 'get_project_sprints'
+export const FINISH_SPRINT = 'finish_sprint' 
 //projects errors
 export const CREATE_FAIL= 'error_on_project_create';
 

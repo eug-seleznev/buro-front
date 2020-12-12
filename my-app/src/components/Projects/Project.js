@@ -73,7 +73,7 @@ const Project = ({match, history}) => {
 
                         
                             return (
-                                <div onClick={() => history.push(`${id}/${sprint._id}`)}>
+                                <div onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
                             <p>
                                 id: {sprint._id} / tasks: /  
                                 {sprint.tasks.length}

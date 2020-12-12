@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addTasks, finishTask, getSprint } from "../../redux/actions/projects";
+import { addTasks, finishSprint, finishTask, getSprint } from "../../redux/actions/projects";
 import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from "react-hook-form";
 
 
 
 
-const Sprint = ({match}) => {
+const Sprint = ({match, history}) => {
     let {id} = match.params;
     const taskArr = useSelector(state => state.projects.sprint.tasks)
 
@@ -48,6 +48,11 @@ const Sprint = ({match}) => {
         dispatch(finishTask({taskid, id}))        
     }
 
+
+   const handleSprint = (e) => {
+    dispatch(finishSprint(id));
+    return history.goBack();
+   }
 //     const onSubmit = async e => {
 //         e.preventDefault();
 
@@ -112,47 +117,7 @@ const Sprint = ({match}) => {
     </form>
             <br>
             </br>
-            {/* <form onSubmit={onSubmit}>
-
-                <div className="task">
-
-
-                {task.map(el => {
-                    return (
-                        <div>
-                            <input 
-                                type='text'
-                                placeholder='task'
-                                name='taskTitle'
-                                value={el.taskTitle}
-                                onChange={e => onChange(e)}/>
-                                
-                                <input 
-                                type='text'
-                                placeholder='task'
-                                name='workVolume'
-                                value={el.workVolume}
-                                onChange={e => onChange(e)}/>
-                                
-                                <input 
-                                type='text'
-                                placeholder='task'
-                                name='taskState'
-                                value={el.taskState}
-                                onChange={e => onChange(e)}/>
-                                
-                        </div>
-                    )
-                })}
-                    
-            </div>
-
-            <button onClick={() => addTask(state => [...state, 'value'])}>add task</button>
-            <br>
-            </br>
-            <button type="submit" >Создать новый спринт</button>
-            </form> */}
-
+            <button onClick={handleSprint}> Завершить спринт</button>
 
         </div>
     )
