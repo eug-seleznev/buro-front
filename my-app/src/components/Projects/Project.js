@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 import { useLocation} from "react-router";
-import { addSprint, getProject, allSprints } from "../../redux/actions/projects";
+import { addSprint, getProject, allSprints, deleteProject } from "../../redux/actions/projects";
 import { getTicket } from "../../redux/actions/tikets";
 
 import {  Redirect } from 'react-router-dom';
@@ -46,6 +46,12 @@ const Project = ({match, history}) => {
         dispatch(addSprint(project.crypt))
     }
 
+    const handleDelete = () => {
+        dispatch(deleteProject(id))
+        return history.push(`./`)
+
+    }
+
 
     return (
         <div>
@@ -59,16 +65,46 @@ const Project = ({match, history}) => {
                     
                     {!sprintsLoad ? <p> loading..</p> : (
                         <div>
-                        <p>спринты: {sprints.length} </p>
+                            
+                            
+                        <h3> Текущий спринт: </h3>
 
-                        {sprints.map(sprint => {
-                            console.log(sprint.status)
+                        {sprints.filter(sprint => !sprint.status).map(sprint => {
+
+                        
                             return (
+                                <div onClick={() => history.push(`${id}/${sprint._id}`)}>
                             <p>
-                                {sprint._id}
+                                id: {sprint._id} / tasks: /  
+                                {sprint.tasks.length}
+                                {sprint.status ? ' complete' : ' ongoing'}
                             </p>
+                        </div>
                             )
                         })}
+
+                            <br />
+                            <h3> Завершенные спринты</h3>
+
+                        {sprints.filter(sprint => sprint.status).map(sprint => {
+
+        
+                        return (
+                            <div onClick={() => history.push(`${id}/${sprint._id}`)}>
+                        <p>
+                            {sprint._id} / tasks: 
+                            {sprint.tasks.length}
+                            {sprint.status ? 'complete' : 'ongoing'} : status
+                        </p>
+                        </div>
+                        )
+                        })}
+
+                        <br />
+                        <button onClick={handleDelete}> Удалить проект</button> 
+
+
+
                         </div>
                     )}
                     

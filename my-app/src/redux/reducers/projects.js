@@ -1,5 +1,5 @@
 
-import { ADD_SPRINT, ALL_PROJECTS, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT } from '../types'
+import { ADD_SPRINT, ALL_PROJECTS, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT, ADD_TASKS, FINISH_TASK, DELETE_PROJECT } from '../types'
 
 
 
@@ -11,6 +11,8 @@ const initialState = {
     sprints: [],
     loadSprints: false,
     sprint: [],
+    tasks: [],
+    tasksLoad: false,
     error: '',
     reload: false
     
@@ -51,6 +53,13 @@ export default function(state = initialState, action) {
                     reload: true,
                     error: ''
                 }
+
+                case ADD_TASKS:
+                return {
+                    ...state,
+                    tasks: payload,
+                    error: ''
+                }
             case ALL_SPRINT:
                 return {
                     ...state,
@@ -64,6 +73,8 @@ export default function(state = initialState, action) {
                     ...state,
                     sprint: payload,
                     reload: false,
+                    loadProject: true,
+
                     loadSprints: true,
                     error: ''
                 }
@@ -81,12 +92,22 @@ export default function(state = initialState, action) {
                     loadProject: false,
                     loaded: false
                 }
+                case FINISH_TASK:
+                    return {
+                    ...state,
+                    hey: payload
+                }   
             case SPRINT_ERROR:
                 return {
                     ...state,
                     error: payload,
                     loadProject: false,
                     loaded: false
+                }
+            case DELETE_PROJECT: 
+                return {
+                    ...state,
+                    msg: payload
                 }
 
 

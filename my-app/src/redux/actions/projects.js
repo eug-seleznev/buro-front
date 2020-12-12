@@ -1,5 +1,5 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ADD_SPRINT, ALL_PROJECTS, ALL_SPRINT, CREATE_FAIL, GET_PROJECT, GET_SPRINT, PROJECT_ID, SPRINT_ERROR } from "../types";
+import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT, CREATE_FAIL, DELETE_PROJECT, FINISH_TASK, GET_PROJECT, GET_SPRINT, PROJECT_ID, SPRINT_ERROR } from "../types";
 
 
 
@@ -81,8 +81,8 @@ export const getProject = (id) => async dispatch  => {
 
 
 export const addSprint = (id) => async dispatch  => {
-    console.log(id, 'id');
     try {
+        console.log(id, 'id');
 
         const res = await innerBackend.post(`/projects/sprints/new/${id}`)
         dispatch({
@@ -133,8 +133,7 @@ export const allSprints = (id) => async dispatch  => {
 
 export const getSprint = (id) => async dispatch  => {
     try {
-        console.log('hello')
-        const res = await innerBackend.get(`/projects/getspring/${id}`)
+        const res = await innerBackend.get(`/projects/getsprint/${id}`)
         dispatch({
             type: GET_SPRINT,
             payload: res.data
@@ -157,10 +156,67 @@ export const getSprint = (id) => async dispatch  => {
 
 
 export const addTasks = ({tasks, id}) => async dispatch  => {
+    console.log(tasks, 'id')
+
     try {
-        const res = await innerBackend.post(`/projects/sprints/addtask/${id}`)
+        // console.log(tasks, 'tasks', id, 'id')
+        const res = await innerBackend.post(`/projects/sprints/addtask/${id}`, tasks)
         dispatch({
-            type: GET_SPRINT,
+            type: ADD_TASKS,
+            payload: res.data
+        })
+
+        }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: SPRINT_ERROR,
+            payload: error.msg
+        })
+        })            
+      
+    }
+
+}
+
+
+
+export const finishTask = ({taskid, id}) => async dispatch  => {
+
+    try {
+        // console.log(tasks, 'tasks', id, 'id')
+        const res = await innerBackend.put(`projects/sprints/DAtask/${id}`, taskid)
+        dispatch({
+            type: FINISH_TASK,
+            payload: res.data
+        })
+
+        }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: SPRINT_ERROR,
+            payload: error.msg
+        })
+        })            
+      
+    }
+
+}
+
+
+
+
+
+export const deleteProject = (crypt) => async dispatch  => {
+
+    try {
+        // console.log(tasks, 'tasks', id, 'id')
+        const res = await innerBackend.delete(`projects/${crypt}`)
+        dispatch({
+            type: DELETE_PROJECT,
             payload: res.data
         })
 
