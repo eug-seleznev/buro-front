@@ -99,7 +99,12 @@ const Project = ({match, history}) => {
                         </div>
                         )
                         })}
-
+                        <br />
+                        <div>
+                            <h3>Команда проекта:</h3>
+                            <p>{project.team.length} : человек</p>
+                            
+                        </div>
                         <br />
                         <button onClick={handleDelete}> Удалить проект</button> 
 

@@ -31,6 +31,9 @@ const Sprint = ({match, history}) => {
             console.log(data.task)
             let tasks = data;
             dispatch(addTasks({tasks, id }))
+            return history.goBack();
+
+            
 
     }
     // const sprint = useSelector(state => state.projects.sprint)

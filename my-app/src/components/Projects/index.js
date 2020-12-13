@@ -40,7 +40,7 @@ const Projects = ({history}) => {
    <tbody>
        {projects.map((project,index) => {
            return(  
-        <tr onClick={() => history.push(`projects/${project.crypt}`)}>
+        <tr onClick={() => history.replace(`/projects/${project.crypt}`)}>
             <td>{index+1}</td>
             <td>{project.title}</td>
             <td>{project.status ? <p>ongoing</p>:<p>complete</p>}</td>

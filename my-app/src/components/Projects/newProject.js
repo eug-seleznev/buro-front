@@ -1,10 +1,10 @@
 import  {useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { newProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
 
 
-const ProjectNew = () => {
+const ProjectNew = ({history}) => {
     const dispatch = useDispatch();
 
     const [formData, setFormData ] = useState({
@@ -21,6 +21,9 @@ const ProjectNew = () => {
       
       });
       
+      const loaded = useSelector(state => state.projects.loadProject);
+      const project = useSelector(state => state.projects.project);
+
 
       const { title, dateStart, dateFinish, city, type, stage, customer, area} = formData;
 
@@ -32,11 +35,17 @@ const ProjectNew = () => {
      }
      
 
+     const Redirect = () => {
+         if(loaded){
+             return history.replace(`/projects/${project.crypt}`)
+         }
+     }
 
      const onSubmit = async e => {
         e.preventDefault();
         dispatch(newProject(formData))
-    
+        setTimeout(() => Redirect(),100) 
+        
             // register({ name, email, password});
     
            
