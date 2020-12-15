@@ -30,7 +30,7 @@ const Ticket = ({match}) => {
                     <p>Насоклько срочно: {ticket.emergency}</p>
 
                     <p>Пароль от компа {ticket.pcpass}</p>
-                    <img width="100%"src={`${url}/ticketSS/${ticket.screenshot}`} />
+                    <img width="100%"src={`${url}/${ticket.screenshot}`} />
 
                     
                 </div>

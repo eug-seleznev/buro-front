@@ -78,7 +78,7 @@ const Sprint = ({match, history}) => {
                                     <p>#{ind+1} / Название:  {task.taskTitle}</p>
                                 
                                     <label> завершить задачу</label>
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value={task._id} onChange={onChange}/>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
 
                                 </div>
                                     </form>

@@ -30,8 +30,11 @@ export const FINISH_TASK = 'finish_task'
 export const SPRINT_ERROR = 'sprint_error';
 export const ALL_SPRINT = 'get_project_sprints'
 export const FINISH_SPRINT = 'finish_sprint' 
+//teams
+export const JOIN_TEAM = 'join_to_team'
 //projects errors
 export const CREATE_FAIL= 'error_on_project_create';
+
 
 
 

@@ -27,7 +27,8 @@ const dispatch = useDispatch();
 
      const onSubmit = async e => {
         e.preventDefault();
-        dispatch(register(formData))
+        let file = null;
+        dispatch(register({formData}))
            
         }
 

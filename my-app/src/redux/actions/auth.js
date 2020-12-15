@@ -45,7 +45,24 @@ export const login = (formData) => async dispatch  => {
 }
 
 
-export const register = (formData) => async dispatch  => {
+export const register = ({formData}) => async dispatch  => {
+// console.log(formData, 'hey')
+  const form = new FormData()
+  
+      // form.append(
+      //     'avatar',
+      //     file
+      //   )
+  
+  
+
+  Object.keys(formData).map(el => {
+      form.append(
+          `${el}`, formData[el]
+      )
+  })
+
+  // console.log(form.get('email '))
     try {
         const res = await instance.post('/users', formData)
         dispatch({
