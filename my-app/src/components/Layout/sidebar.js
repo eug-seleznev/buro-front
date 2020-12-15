@@ -1,14 +1,14 @@
 
 import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
-
+import './sidebar.css'
 
 
 const Sidebar = () => {
     // const user = useSelector(state => state.auth.isAuthenticated)
 
     return (
-    <div>
+    <div className="main">
          <NavLink
               to='/'
               className="nav-link" >Главная </NavLink>
