@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 import { useLocation} from "react-router";
-import { addSprint, getProject, allSprints, deleteProject } from "../../redux/actions/projects";
+import { addSprint, getProject, allSprints, deleteProject, joinTeam } from "../../redux/actions/projects";
 import { getTicket } from "../../redux/actions/tikets";
 
 import {  Redirect } from 'react-router-dom';
@@ -18,11 +18,12 @@ const Project = ({match, history}) => {
 
     const sprintLoad = useSelector(state => state.projects.sprint_load)
     const reload = useSelector(state => state.projects.reload)
+    const user = useSelector(state => state.auth.user.id)
 
     const sprint = useSelector(state => state.projects.sprint)
 
     const project = useSelector(state => state.projects.project)
-    const sprints = useSelector(state => state.projects.sprints)
+    const    = useSelector(state => state.projects.sprints)
 
 
     useEffect(() => {
@@ -51,7 +52,9 @@ const Project = ({match, history}) => {
         return history.push(`./`)
 
     }
-
+    const hadleTeam = () => {
+        dispatch(joinTeam(id))
+    }
 
     return (
         <div>
@@ -75,9 +78,10 @@ const Project = ({match, history}) => {
                             return (
                                 <div onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
                             <p>
-                                id: {sprint._id} / tasks: /  
-                                {sprint.tasks.length}
-                                {sprint.status ? ' complete' : ' ongoing'}
+                                id: {sprint._id} | tasks:  
+                                {sprint.tasks.filter(task => task.taskStatus).length}/
+                                {sprint.tasks.length} | 
+                                { ' status:  ongoing'}
                             </p>
                         </div>
                             )
@@ -103,7 +107,7 @@ const Project = ({match, history}) => {
                         <div>
                             <h3>Команда проекта:</h3>
                             <p>{project.team.length} : человек</p>
-                            
+                            <button onClick={hadleTeam}>Вступить в команду</button>
                         </div>
                         <br />
                         <button onClick={handleDelete}> Удалить проект</button> 

@@ -36,9 +36,9 @@ const ProjectNew = ({history}) => {
      
 
      const Redirect = () => {
-         if(loaded){
-             return history.replace(`/projects/${project.crypt}`)
-         }
+     
+             return history.push(`/projects`)
+         
      }
 
      const onSubmit = async e => {
