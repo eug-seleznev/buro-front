@@ -2,17 +2,24 @@
 
 	top:0;
 	left:0;
-	width:250px;
+	width:110px;
 	color: white;
-	background-color: black;
+	background-color: white;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	border-right: 2px solid black;
 }
 .nav-link {
 	color: white;
 	text-decoration: none;
 	font-size: 24px;
 	text-align: left;
-	margin-top: 30px
+	margin-top: 30px;
+	
+}
+.nav-link img {
+	height: 50px;
+	width: 50px;
+	padding-left: 30px
 }
