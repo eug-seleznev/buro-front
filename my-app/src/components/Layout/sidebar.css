@@ -1,9 +1,18 @@
 .main {
-
+	position: absolute;
 	top:0;
 	left:0;
 	width:250px;
 	color: white;
 	background-color: black;
 	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.nav-link {
+	color: white;
+	text-decoration: none;
+	font-size: 24px;
+	text-align: left;
+	margin-top: 30px
 }
