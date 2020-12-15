@@ -23,7 +23,7 @@ const Project = ({match, history}) => {
     const sprint = useSelector(state => state.projects.sprint)
 
     const project = useSelector(state => state.projects.project)
-    const    = useSelector(state => state.projects.sprints)
+    const sprints = useSelector(state => state.projects.sprints)
 
 
     useEffect(() => {
