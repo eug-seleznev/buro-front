@@ -1,0 +1,24 @@
+.one__proj__main {
+	width: 50vw;
+	margin-left:150px;
+	text-align: left;
+}
+.team__part {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 0px;
+	margin-top: 30px;
+	text-align: left;
+}
+.team__name {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 0px;
+	margin-top: 30px;
+	text-align: left;
+	font-size: 24px;
+	font-weight: bold;
+}
+.team__desc {
+	margin-left: 30px;
+}

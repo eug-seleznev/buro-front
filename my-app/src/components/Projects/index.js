@@ -46,7 +46,7 @@ const Projects = ({history}) => {
             <td>{index+1}</td>
             <td>{project.title}</td>
             <td>{project.dateStart.slice(0, 10)}</td>
-            <td>{project.dateFinish!=undefined?project.dateFinish.slice(0, 10):'нет'}</td>
+            <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>
             <td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</td>
         </tr>
         )

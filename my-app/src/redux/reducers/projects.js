@@ -50,6 +50,7 @@ export default function(state = initialState, action) {
                     ...state,
                     sprint: payload,
                     sprint_load: true,
+
                     reload: true,
                     error: ''
                 }
@@ -80,7 +81,7 @@ export default function(state = initialState, action) {
                     ...state,
                     sprint: payload,
                     reload: false,
-                    loadProject: true,
+                    loadProject: false,
 
                     loadSprints: true,
                     error: ''

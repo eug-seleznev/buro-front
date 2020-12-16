@@ -1,0 +1,10 @@
+.sprint__main {
+	text-align: left;
+	justify-content: space-around;
+	margin-left:120px;
+	display: flex;
+	width: 100%;
+}
+.sprint__tasks {
+	margin-left: 0;
+}
