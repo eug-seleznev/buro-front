@@ -49,6 +49,7 @@ const App = () => {
     <div className="App">
       {!auth ? <Auth /> : (
       <Router> 
+        
         <Layout /> 
         <Switch>
           {/* сисадминошная */}
@@ -78,7 +79,7 @@ const App = () => {
 
 
         </Switch>
-        
+     
         </Router> )
     }
       
