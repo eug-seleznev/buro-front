@@ -110,7 +110,7 @@ const Sprint = ({match, history}) => {
                         {taskArr.map((task, ind) => {
                             return (
                               
-                                <div  className="sprint__tasks">
+                                <div key={ind} className="sprint__tasks">
                                     <p></p>
                                     <form>
                                     <div>

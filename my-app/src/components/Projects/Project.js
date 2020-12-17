@@ -77,7 +77,7 @@ const Project = ({match, history}) => {
 
                         
                             return (
-                                <div style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                <div key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
                             <p>
                                 Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи:  
                                 {sprint.tasks.filter(task => task.taskStatus).length}/
@@ -91,11 +91,11 @@ const Project = ({match, history}) => {
                             <br />
                             <h3> Завершенные спринты</h3>
 
-                        {sprints.filter(sprint => sprint.status).map(sprint => {
+                        {sprints.filter(sprint => sprint.status).map((sprint, i) => {
 
         
                         return (
-                            <div style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`${id}/${sprint._id}`)}>
+                            <div key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`${id}/${sprint._id}`)}>
                         <p>
                         Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи: 
                             {sprint.tasks.length}

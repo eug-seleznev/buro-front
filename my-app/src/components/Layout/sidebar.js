@@ -8,7 +8,9 @@ const Sidebar = () => {
     // const user = useSelector(state => state.auth.isAuthenticated)
 
     return (
-    <div className="main">
+         <div>
+          <NavLink to='/permissions' className="admin">Страница для избранных</NavLink>
+          <div className="main">
          <NavLink
               to='/'
               className="nav-link" ><img src='/health-data.png' title="Главная"></img> </NavLink>
@@ -42,6 +44,7 @@ const Sidebar = () => {
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
               
         
+         </div>
          </div>
          )
 }

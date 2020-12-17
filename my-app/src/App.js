@@ -26,7 +26,7 @@ import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
 import Sprint from './components/Projects/Sprint';
-
+import Permissions from './components/Permissions/index';
 
 
 
@@ -51,6 +51,7 @@ const App = () => {
       <Router> 
         <Layout /> 
         <Switch>
+          <Route exact path="/permissions" component={ Permissions } />
           {/* сисадминошная */}
           <Route exact path="/admin" component={ Admin } />
           <Route exact path="/admin/all" component={ Dashboard } />
