@@ -77,7 +77,7 @@ const Project = ({match, history}) => {
 
                         
                             return (
-                                <div onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                <div style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
                             <p>
                                 Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи:  
                                 {sprint.tasks.filter(task => task.taskStatus).length}/
@@ -95,9 +95,9 @@ const Project = ({match, history}) => {
 
         
                         return (
-                            <div onClick={() => history.push(`${id}/${sprint._id}`)}>
+                            <div style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`${id}/${sprint._id}`)}>
                         <p>
-                        {sprint.dateOpen.slice(0, 16)} | Задачи: 
+                        Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи: 
                             {sprint.tasks.length}
                             {sprint.status ? ' выполнено' : 'ongoing'}
                         </p>
@@ -121,7 +121,7 @@ return (
 })} </p>
                             <button onClick={hadleTeam}>{project.msg===`Вы были добавлены в команду проекта ${id}`?'Выйти из команды проекта':'Вступить в команду проекта'}</button>
                         </div>
-                        <br />
+                            <br />
                         <button onClick={handleDelete} style={{marginBottom: '30px'}}> Удалить проект</button> 
 
 

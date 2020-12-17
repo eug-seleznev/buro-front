@@ -35,6 +35,7 @@ const Sprint = ({match, history}) => {
             console.log(project)
             let tasks = data;
             dispatch(addTasks({tasks, id }))
+            setLoaded (!loaded)
             setTimeout(() => {
               return history.push(`${fuck.slice(0,14)}`);
           }, 200);
@@ -45,16 +46,22 @@ const Sprint = ({match, history}) => {
   
     useEffect(() => {
         
-        
+
             dispatch(getSprint(id));
+            // setTimeout(() => {
+            //   if(!window.location.hash) {
+            //     window.location = window.location + '##';
+            //     window.location.reload();
+            // }
+            // }, 1);
             setTimeout(() => {
-              if(!window.location.hash) {
-                window.location = window.location + '##';
-                window.location.reload();
-            }
-            }, 1);
-            
+              setLoaded (!loaded)
+            }, 300);
+           
     }, [])
+    useEffect(()=> {
+      console.log (loaded)
+    },[loaded])
     // useEffect (() => {
     //   if(loaded){
     //     dispatch(addSprint(project.crypt))
@@ -71,6 +78,7 @@ const Sprint = ({match, history}) => {
 
 
    const handleSprint = (e) => {
+    setLoaded (!loaded)
     dispatch(finishSprint(id));
     setTimeout(() => {
       return history.replace(`${fuck.slice(0,14)}`);
@@ -79,6 +87,7 @@ const Sprint = ({match, history}) => {
    const handleBack = (e) => {
     // let taskid = inputref.current.value;
     // dispatch(finishTask({taskid, id}))
+    setLoaded (!loaded)
     setTimeout(() => {
       return history.push(`${fuck.slice(0,14)}`);
     }, 200);
@@ -96,10 +105,11 @@ const Sprint = ({match, history}) => {
           <div>
             <h1>{sprint.status?'Выполненные задачи:':'Текущие задачи:'}</h1> 
             
-                {!taskArr ? <p> loading...</p> : (
+                {!loaded ? <p> loading...</p> : (
                     <div >
                         {taskArr.map((task, ind) => {
                             return (
+                              
                                 <div  className="sprint__tasks">
                                     <p></p>
                                     <form>
