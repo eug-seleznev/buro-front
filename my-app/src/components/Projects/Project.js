@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-
+import "./oneproject.css"
 
 
 import { useLocation} from "react-router";
@@ -21,10 +21,10 @@ const Project = ({match, history}) => {
     const user = useSelector(state => state.auth.user.id)
 
     const sprint = useSelector(state => state.projects.sprint)
-
+    const users = useSelector(state => state.users.users)
     const project = useSelector(state => state.projects.project)
     const sprints = useSelector(state => state.projects.sprints)
-
+    // const project = useSelector(state => state.projects.project.team)
 
     useEffect(() => {
         dispatch(getProject(id));
@@ -53,13 +53,14 @@ const Project = ({match, history}) => {
 
     }
     const hadleTeam = () => {
+       console.log  (project.msg)
         dispatch(joinTeam(id))
     }
 
     return (
         <div>
             {!loaded ? <p> loading...</p>: (
-                <div>
+                <div className="one__proj__main">
                     <h1>{project.title}</h1>
 
                     <br>
@@ -70,18 +71,18 @@ const Project = ({match, history}) => {
                         <div>
                             
                             
-                        <h3> Текущий спринт: </h3>
+                        <h3> Текущие спринты: </h3>
 
-                        {sprints.filter(sprint => !sprint.status).map(sprint => {
+                        {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
 
                         
                             return (
-                                <div onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                <div style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
                             <p>
-                                id: {sprint._id} | tasks:  
+                                Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи:  
                                 {sprint.tasks.filter(task => task.taskStatus).length}/
                                 {sprint.tasks.length} | 
-                                { ' status:  ongoing'}
+                                { 'Статус: В работе'}
                             </p>
                         </div>
                             )
@@ -94,11 +95,11 @@ const Project = ({match, history}) => {
 
         
                         return (
-                            <div onClick={() => history.push(`${id}/${sprint._id}`)}>
+                            <div style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`${id}/${sprint._id}`)}>
                         <p>
-                            {sprint._id} / tasks: 
+                        Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи: 
                             {sprint.tasks.length}
-                            {sprint.status ? 'complete' : 'ongoing'} : status
+                            {sprint.status ? ' выполнено' : 'ongoing'}
                         </p>
                         </div>
                         )
@@ -106,11 +107,22 @@ const Project = ({match, history}) => {
                         <br />
                         <div>
                             <h3>Команда проекта:</h3>
-                            <p>{project.team.length} : человек</p>
-                            <button onClick={hadleTeam}>Вступить в команду</button>
+                            <div className="team__name">
+                                <div >Имя</div>
+                                 <div className="team__desc">Должность</div>
+                            </div>
+                            <p> {project.team.map(( el, index) => {
+return (
+    <div className="team__part">
+        <div >{el.name}</div>
+        <div className="team__desc">{el.position}</div>
+    </div>
+)
+})} </p>
+                            <button onClick={hadleTeam}>{project.msg===`Вы были добавлены в команду проекта ${id}`?'Выйти из команды проекта':'Вступить в команду проекта'}</button>
                         </div>
-                        <br />
-                        <button onClick={handleDelete}> Удалить проект</button> 
+                            <br />
+                        <button onClick={handleDelete} style={{marginBottom: '30px'}}> Удалить проект</button> 
 
 
 

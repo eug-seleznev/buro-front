@@ -2,7 +2,7 @@ import  {useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { newProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
-
+import './projects.css'
 
 const ProjectNew = ({history}) => {
     const dispatch = useDispatch();
@@ -52,12 +52,13 @@ const ProjectNew = ({history}) => {
         }
 
     return (
-        <div>
-            <h1> тут можно создать новый проект //wip</h1>
-            <form onSubmit={onSubmit}>
+        <div className='main__newproj' >
+            <h1> Тут можно создать новый проект </h1>
+            <form className='form' onSubmit={onSubmit}>
             <input 
+
                 type='text'
-                placeholder='title'
+                placeholder='Название проекта'
                 name='title'
                 value={title}
                 onChange={e => onChange(e)}/>
@@ -79,7 +80,7 @@ const ProjectNew = ({history}) => {
 
             <input 
                 type='text'
-                placeholder='city'
+                placeholder='Город'
                 name='city'
                 value={city}
                 onChange={e => onChange(e)}/>
@@ -98,7 +99,7 @@ const ProjectNew = ({history}) => {
                 onChange={e => onChange(e)}/>
             <input 
                 type='text'
-                placeholder='заказчик'
+                placeholder='Заказчик'
                 name='customer'
                 value={customer}
                 onChange={e => onChange(e)}/>
