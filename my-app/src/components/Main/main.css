@@ -1,0 +1,26 @@
+.main__container{
+
+    width: 60vw;
+    margin-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-areas: 
+    'profile profile'
+    'projects news'
+    ;
+    column-gap: 50px;
+}
+    .main__profile{
+        grid-area: profile;
+        background-color: azure;
+    }
+    .main__projects{
+        grid-area: projects;
+        background-color: bisque;
+    }
+    .main__news{
+        grid-area: news;
+        background-color: burlywood;
+    }

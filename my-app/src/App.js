@@ -26,7 +26,7 @@ import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
 import Sprint from './components/Projects/Sprint';
-
+import Main from './components/Main/index'
 
 
 
@@ -52,6 +52,11 @@ const App = () => {
         
         <Layout /> 
         <Switch>
+
+          {/* main */}
+          <Route exact path="/" component={ Main } />
+          
+
           {/* сисадминошная */}
           <Route exact path="/admin" component={ Admin } />
           <Route exact path="/admin/all" component={ Dashboard } />
@@ -80,6 +85,9 @@ const App = () => {
 
         </Switch>
      
+
+
+
         </Router> )
     }
       
