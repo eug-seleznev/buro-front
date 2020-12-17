@@ -42,7 +42,7 @@ const Projects = ({history}) => {
    <tbody>
        {projects.map((project,index) => {
            return(  
-        <tr onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
+        <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
             <td>{index+1}</td>
             <td>{project.title}</td>
             <td>{project.dateStart.slice(0, 10)}</td>

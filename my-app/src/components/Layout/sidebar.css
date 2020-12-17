@@ -23,3 +23,9 @@
 	width: 50px;
 	padding-left: 30px
 }
+.admin {
+	position: fixed;
+	left: auto;
+	right: 150px;
+	top:20px;
+}

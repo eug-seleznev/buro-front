@@ -14,7 +14,7 @@ const initialState = {
     tasks: [],
     tasksLoad: false,
     error: '',
-    reload: false
+    reload: false,
     
 }
 

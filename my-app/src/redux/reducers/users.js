@@ -1,10 +1,10 @@
 
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION} from '../types'
 
 
 
 const initialState = {
-    users: null,
+    users: [],
     loaded: false
     
 }
@@ -23,7 +23,12 @@ export default function(state = initialState, action) {
                     loaded: true,
                     users: payload
                 }
-            
+                case CHANGE_PERMISSION:
+                    return {
+                        ...state,
+                        loaded: true,
+                        users: payload
+                    }
             default: 
                 return state;
     }

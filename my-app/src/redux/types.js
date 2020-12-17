@@ -11,6 +11,7 @@ export const AUTH_ERROR ='auth_error';
 //USERES
 export const ALL_USERS = 'users';
 export const GET_EMPLOYE = 'get_users';
+export const CHANGE_PERMISSION = 'change_permission';
 //user errors
 export const USER_ERR = 'get_all_users_error'
 
