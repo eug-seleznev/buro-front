@@ -11,8 +11,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
 // import { allUsers } from "../../redux/actions/user";
-import Me from '../User/me'
 
+
+//////////////////////////////////////// ШО ЭТО
+import Me from '../User/me'
+import { url } from '../utils/axios';
+///////////////
 const Main = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
@@ -66,6 +70,8 @@ const Main = ({history}) => {
 
         e.preventDefault();
         alert(`don't work now`)
+        //PUT news/:id 
+        //в body засовывать все что было в создании новости. 
         // dispatch(updateNews(????????????))
     }
 
@@ -76,7 +82,8 @@ useEffect(()=>{
     return (
 <div className='main__container'>
     <div className='main__profile'>
-        <img className='main__profile__logo' src={user.avatar}/>
+        {/* КАРТИНКИ ХОСТЯТСЯ НА СЕРВАКЕ, ЧТО БЫ ПРАВИЛЬНО УКАЗАТЬ ПУТЬ СПЕРВА ДОПОЛНИ ЕГО АДРЕСОМ СЕРВЕР */}
+        <img className='main__profile__logo' src={`${url}/${user.avatar}`}/>
         <div className='main__profile__name'>{user.name}</div>
         <div className='main__profile__position'>Position: {user.position}</div>
     </div>
