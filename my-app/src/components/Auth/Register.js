@@ -11,12 +11,13 @@ const dispatch = useDispatch();
         email: '',
         password: '',
         name: '',
-        position: ''
+        position: '',
+        permCode: ''
       
       });
       
 
-      const { name, email, password, position } = formData;
+      const { name, email, password, position, permCode } = formData;
 
   
     const onChange = e => {
@@ -52,7 +53,7 @@ const dispatch = useDispatch();
 
             <input 
                 type='name'
-                placeholder='name'
+                placeholder='Имя'
                 name='name'
                 value={name}
                 onChange={e => onChange(e)}/>
@@ -61,11 +62,16 @@ const dispatch = useDispatch();
 
             <input 
                 type='position'
-                placeholder='position'
+                placeholder='Должность'
                 name='position'
                 value={position}
                 onChange={e => onChange(e)}/>
-
+            <input 
+                type='text'
+                placeholder='Код организации'
+                name='permCode'
+                value={permCode}
+                onChange={e => onChange(e)}/>
 
             <button  type="submit"> Зарегаться</button>
 
