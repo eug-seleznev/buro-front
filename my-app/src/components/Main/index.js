@@ -9,7 +9,7 @@ import './main.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
-import { allNews, createNews, deleteNews} from '../../redux/actions/news';
+import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
 // import { allUsers } from "../../redux/actions/user";
 import Me from '../User/me'
 
@@ -19,6 +19,11 @@ const Main = ({history}) => {
     const loaded = useSelector(state => state.news.loaded)
     const listNews = useSelector(state => state.news.news)
     const user = useSelector(state => state.auth.user)
+
+    const [newsOpen, setOpen] = useState({
+        status: false,
+        post: '',
+    })
 
     const [formData, setFormData ] = useState({
         
@@ -53,7 +58,16 @@ const Main = ({history}) => {
 
         dispatch(deleteNews(id))
     }
+    const newsClick = (post) => {
+        console.log('news click',newsOpen,post)
+        setOpen({status: true, post: post})
+    }
+    const onUpdate = async e => {
 
+        e.preventDefault();
+
+        dispatch(updateNews())
+    }
 
 useEffect(()=>{
  dispatch(allNews())
@@ -129,11 +143,12 @@ useEffect(()=>{
                 {listNews.map((el,i)=>{
                     
                     return(
-                        <div className='table__tr'>
+                        <div className='table__tr' onClick={()=>newsClick(el)}>
                             <p className='table_td'>{el.title}</p>
                             <p className='table_td'>{el.subtitle}</p>
                             <p className='td__text'>{el.text}</p>
                             <p className='table_td' onClick={(e)=>onDelete(e, el._id)}>delete</p>
+                            
                         </div>
                     )
                 })}
@@ -142,8 +157,54 @@ useEffect(()=>{
             }
             
 
+           
+
+
     </div>
-    
+
+
+     {!newsOpen.status? <div/> : 
+            <div className='opened__news'>
+                <div className='open__title'>{newsOpen.post.title}</div>
+                <div className='open__subtitle'>{newsOpen.post.subtitle}</div>
+                <div className='open__text'>{newsOpen.post.text}</div>
+                <div className='open__close' onClick={()=>setOpen({post:'', status: false})}>close</div>
+                <div className='update'>
+                    Update news
+                            <form className='form' onSubmit={onUpdate}>
+                                    <input 
+
+                                        type='text'
+                                        placeholder='Заголовок'
+                                        name='title'
+                                        value={newsOpen.post.title}
+                                        onChange={e => onChange(e)}/>
+
+                        
+                                    <input 
+                                        type='text'
+                                        placeholder='Подзаголовок'
+                                        name='subtitle'
+                                        value={newsOpen.post.subtitle}
+                                        onChange={e => onChange(e)}/>
+
+                                    <input 
+                                        type='text'
+                                        placeholder='Текст'
+                                        name='text'
+                                        value={newsOpen.post.text}
+                                        onChange={e => onChange(e)}/>
+                                    
+
+
+
+                                    <button  type="submit">Обновить новость</button>
+
+                            </form>
+                </div>
+            </div>
+            }
+            
 </div>
 
       )

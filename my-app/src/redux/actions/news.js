@@ -101,7 +101,7 @@ export const deleteNews = (id) => async dispatch  => {
 
 }
 
-export const updateProject = (id) => async dispatch  => {
+export const updateNews = (id) => async dispatch  => {
 
     try {
         // console.log(tasks, 'tasks', id, 'id')

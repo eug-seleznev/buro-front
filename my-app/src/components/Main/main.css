@@ -60,3 +60,46 @@
                     text-overflow: ellipsis;
                
                 }
+
+
+.opened__news{
+    position: fixed;
+    width: 60vw;
+    height: 60vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0vh;
+    padding: 50px;
+   
+
+
+    background-color: white;
+    filter: drop-shadow(0 0 10px black);
+
+    display: grid;
+    grid-template-areas: 
+    'title close'
+    'subtitle close'
+    'texts texts'
+    'update update'
+    ;
+    grid-template-columns: 1fr max-content;
+    column-gap: 40px;
+    grid-template-rows: max-content max-content 1fr 1fr;
+    row-gap: 40px;
+}
+        .open__title{
+            grid-area: title;
+        }
+        .open__subtitle{
+            grid-area: subtitle;
+        }
+        .open__text{
+            grid-area: texts;
+        }
+        .open__close{
+            grid-area: close;
+        }
+        .update{
+            grid-area: update;
+        }
