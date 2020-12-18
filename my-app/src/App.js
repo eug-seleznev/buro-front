@@ -27,8 +27,8 @@ import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
 import Sprint from './components/Projects/Sprint';
 import Main from './components/Main/index'
-import Permissions from './components/Permissions/index';
-
+import Permissions from './components/Superadmin/permissions';
+import Superadmin from './components/Superadmin/index.js';
 
 
 
@@ -58,11 +58,11 @@ const App = () => {
           <Route exact path="/" component={ Main } />
           
 
-          <Route exact path="/permissions" component={ Permissions } />
+          
           {/* сисадминошная */}
-          <Route exact path="/admin" component={ Admin } />
-          <Route exact path="/admin/all" component={ Dashboard } />
-          <Route exact path="/admin/:id" component={Ticket} />
+          <Route exact path="/help" component={ Admin } />
+          <Route exact path="/tickets" component={ Dashboard } />
+          <Route exact path="/tickets/:id" component={Ticket} />
 
 
 
@@ -80,8 +80,9 @@ const App = () => {
           <Route exact path="/users" component={ Users } /> 
           <Route exact path="/users/me" component={ MyProfile } />
           <Route exact path="/users/:id" component={ Employe } />
-
-
+          {/*adminka */}
+          <Route exact path="/admin" component={ Superadmin } /> 
+          <Route exact path="/admin/permissions" component={ Permissions } />
 
 
 

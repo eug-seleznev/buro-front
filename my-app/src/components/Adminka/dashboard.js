@@ -10,6 +10,8 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 // import { allUsers } from "../../redux/actions/user";
+import "./tickets.css"
+
 
 const Dashboard = ({history}) => {
     const dispatch = useDispatch();
@@ -24,12 +26,12 @@ const Dashboard = ({history}) => {
 
     const ticketHandle = (id) => {
         console.log(id, 'hey')
-       return  <Redirect push to={`/admin/${id}`}/>
+       return  <Redirect push to={`/tickets/${id}`}/>
 
 
     }
     return (
-        <div> 
+        <div className="main__alltick" style={{textAlign:'center'}}> 
             <h1> Входящие тикеты</h1>
             {!loaded ? <p>loading...</p> : (
                 <div>
@@ -42,10 +44,10 @@ const Dashboard = ({history}) => {
       <th>Статус</th>
     </tr>
    </thead>
-   <tbody>
+   <tbody style={{textAlign:'center'}}>
        {tickets.map((ticket,index) => {
            return(  
-        <tr onClick={() => history.push(`./${ticket._id}`)}>
+        <tr onClick={() => history.push(`/tickets/${ticket._id}`)}>
             <td>{index+1}</td>
             <td>{ticket.problemname}</td>
             <td>{ticket.status ? <p>ongoing</p>:<p>complete</p>}</td>

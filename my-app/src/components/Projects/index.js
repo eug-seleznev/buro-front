@@ -32,22 +32,24 @@ const Projects = ({history}) => {
                     <table className="table__allproj" >
   <thead>
     <tr>
-        <th onClick={console.log(projects)}>Номер</th>
+        
       <th>Название</th>
       <th>Дата начала</th>
       <th>Дедлайн</th>
       <th>Статус</th>
+      <th>Спринты</th>
     </tr>
    </thead>
    <tbody>
        {projects.map((project,index) => {
            return(  
         <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
-            <td>{index+1}</td>
+           
             <td>{project.title}</td>
             <td>{project.dateStart.slice(0, 10)}</td>
             <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>
             <td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</td>
+            <td>{project.sprints.filter(sprint => sprint.status).length}/{project.sprints.length}</td>
         </tr>
         )
        })}

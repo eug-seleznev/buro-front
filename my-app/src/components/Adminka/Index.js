@@ -44,7 +44,7 @@ const Admin = () => {
         }
 
     return (
-        <div>
+        <div className="main__alltick">
             <h1> Если у вас есть проблема с компом - вы создать заявку тут //wip</h1>
             <form onSubmit={onSubmit}>
             <input 

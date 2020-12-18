@@ -2,24 +2,31 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './sidebar.css'
+import { useEffect } from "react";
+
+
+
 
 
 const Sidebar = () => {
     // const user = useSelector(state => state.auth.isAuthenticated)
-
+const user = useSelector(state => state.auth.user)
+useEffect(()=> {
+     console.log (user.permission)
+},[])
     return (
          <div>
-          <NavLink to='/permissions' className="admin">Страница для избранных</NavLink>
+          
           <div className="main">
          <NavLink
               to='/'
               className="nav-link" ><img src='/health-data.png' title="Главная"></img> </NavLink>
 
          <NavLink
-              to='/admin'
+              to='/help'
               className="nav-link" ><img src='/open-end-wrench.png' title="Сисадминочная"></img></NavLink>
               <NavLink
-              to='/admin/all'
+              to='/tickets'
               className="nav-link" ><img src='/invite.png' title="Запрос сисадмину"></img> </NavLink>
 
 
@@ -39,11 +46,11 @@ const Sidebar = () => {
               <NavLink
               to='/users'
               className="nav-link" > <img src='/conference-call.png' title="Команда"></img></NavLink>
-              <NavLink
+          <NavLink
               to='/users/me'
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
-              
-        
+          {user.permission==='admin'?<NavLink to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img></NavLink>: ''}
+         
          </div>
          </div>
          )
