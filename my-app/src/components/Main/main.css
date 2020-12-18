@@ -10,17 +10,53 @@
     'profile profile'
     'projects news'
     ;
-    column-gap: 50px;
+    grid-template-columns:15vw 40vw;
+    column-gap: 5vw;
+    text-align: left;
 }
     .main__profile{
         grid-area: profile;
         background-color: azure;
+        display: grid;
+        grid-template-areas: 
+        'logo name'
+        'logo position'
+        ;
+        grid-template-columns: max-content auto;
     }
+            .main__profile__logo{
+                grid-area: logo;
+                height: 80px;
+                width: 80px;
+                background-color: black;
+            }
+            .main__profile__name{
+                grid-area: name;
+            }
+            .main__profile__position{
+                grid-area: position;
+            }
     .main__projects{
         grid-area: projects;
         background-color: bisque;
     }
+           
     .main__news{
         grid-area: news;
         background-color: burlywood;
     }
+            .table__tr{
+               display: grid;
+               grid-template-columns: max-content max-content auto max-content;     
+               column-gap: 20px;   
+               grid-template-rows: 52px; 
+               border-bottom: .5px solid gray;  
+            }
+            .table_td{
+            }
+                .td__text{
+                    overflow: hidden; 
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+               
+                }

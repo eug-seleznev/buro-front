@@ -22,7 +22,7 @@ const Projects = ({history}) => {
     useEffect(() => {
         dispatch(allProjects())
     }, [])
-
+    
     return (
         <div className="main__allproj"> 
             <h1> Все проекты</h1>
@@ -32,7 +32,7 @@ const Projects = ({history}) => {
                     <table className="table__allproj" >
   <thead>
     <tr>
-        <th>Номер</th>
+        <th onClick={console.log(projects)}>Номер</th>
       <th>Название</th>
       <th>Дата начала</th>
       <th>Дедлайн</th>

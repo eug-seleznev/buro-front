@@ -36,7 +36,13 @@ export const JOIN_TEAM = 'join_to_team'
 //projects errors
 export const CREATE_FAIL= 'error_on_project_create';
 
+//news
 
+export const ALL_NEWS = 'all_news'
+export const GET_NEWS = 'get_news'
+export const DELETE_NEWS = 'delete_news'
+export const UPDATE_NEWS = 'update_news'
+export const NEWS_FAIL = 'fail_on_news'
 
 
 /////SYSTEM ADMIN
