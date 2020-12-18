@@ -9,14 +9,13 @@ import './sprint.css'
 const Sprint = ({match, history}) => {
   const dispatch = useDispatch();
     let {id} = match.params;
-    let fuck = match.url;
+    let back = match.url;
     const sprint = useSelector(state => state.projects.sprint)
     const taskArr = useSelector(state => state.projects.sprint)
-    const project = useSelector(state => state.projects.project)
+    // const project = useSelector(state => state.projects.project)
     const loading = useSelector(state => state.projects.sprintLoad)
 
 
-    const [loaded, setLoaded] = useState (false)
 
     const { register, control, handleSubmit, reset, watch } = useForm({
         defaultValues: {
@@ -37,9 +36,9 @@ const Sprint = ({match, history}) => {
     const onSubmit = (data) =>{
             let tasks = data;
             dispatch(addTasks({tasks, id }))
-            setLoaded (!loaded)
+           
             setTimeout(() => {
-              return history.push(`${fuck.slice(0,14)}`);
+              return history.push(`${back.slice(0,14)}`);
           }, 200);
             
 
@@ -48,9 +47,7 @@ const Sprint = ({match, history}) => {
     useEffect(() => {
         
             dispatch(getSprint(id));
-            setTimeout(() => {
-              setLoaded (!loaded)
-            }, 300);
+            
            
     }, [])
 
@@ -59,7 +56,7 @@ const Sprint = ({match, history}) => {
    
     const onChange = (e) => {
        
-        console.log(fuck)
+    
         let taskid = e.target.value;
         dispatch(finishTask({taskid, id}))
        
@@ -67,21 +64,21 @@ const Sprint = ({match, history}) => {
 
 
    const handleSprint = (e) => {
-        setLoaded (!loaded)
+      
         dispatch(finishSprint(id));
         setTimeout(() => {
-          return history.replace(`${fuck.slice(0,14)}`);
+          return history.replace(`${back.slice(0,14)}`);
   }, 200);
    }
 
 
    const handleBack = (e) => {
 
-    setLoaded (!loaded)
-    //зачем тут таймаут? 
-    setTimeout(() => {
-      return history.push(`${fuck.slice(0,14)}`);
-    }, 200);
+    
+    // //зачем тут таймаут? 
+    // setTimeout(() => {
+      return history.push(`${back.slice(0,14)}`);
+    // }, 200);
     
    }
 
@@ -137,11 +134,10 @@ const Sprint = ({match, history}) => {
             />
           <input
           type="number"
-          min="1" 
-          max="10"
+        
               name={`tasks[${index}].workVolume`}
               ref={register()}
-              style={{width:'75px'}}
+              style={{width:'125px'}}
               placeholder="Объем в часах" 
             />
             
@@ -161,7 +157,7 @@ const Sprint = ({match, history}) => {
 
             <br>
             </br>
-            <button onClick={handleSprint}> Завершить спринт</button>
+            <button onClick={handleSprint}>Завершить спринт</button>
             </div>
             </>
                )}

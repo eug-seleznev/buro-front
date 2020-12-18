@@ -24,7 +24,7 @@ const Dashboard = ({history}) => {
 
     const ticketHandle = (id) => {
         console.log(id, 'hey')
-       return  <Redirect push to={`/admin/${id}`}/>
+       return  <Redirect push to={`/tickets/${id}`}/>
 
 
     }
@@ -45,7 +45,7 @@ const Dashboard = ({history}) => {
    <tbody>
        {tickets.map((ticket,index) => {
            return(  
-        <tr onClick={() => history.push(`./${ticket._id}`)}>
+        <tr onClick={() => history.push(`/tickets/${ticket._id}`)}>
             <td>{index+1}</td>
             <td>{ticket.problemname}</td>
             <td>{ticket.status ? <p>ongoing</p>:<p>complete</p>}</td>

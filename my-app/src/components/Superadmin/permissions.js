@@ -53,9 +53,9 @@ const Permission = ({history}) => {
 				<td>{team.name}</td>
 				<td>{team.position}</td>
 				<td> 
-				<select  defaultValue={team.permission} style={{width: '50%',marginTop:'10px', overflow:'hidden', outline: 'none', border:'none'}} onChange={(e)=>selected(e, team._id)}>
+				<select  defaultValue={team.permission} style={{width: '100px',marginTop:'10px', overflow:'hidden', outline: 'none', border:'none'}} onChange={(e)=>selected(e, team._id)}>
 					<option  value='user'>user</option>
-					<option  value='superadmin'>superadmin</option>
+					<option  value='admin'>admin</option>
 					<option  value='manager'>manager</option>
 				</select></td>
 			</tr>

@@ -1,12 +1,12 @@
 
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION,PERM_RETURN} from '../types'
 
 
 
 const initialState = {
     users: [],
-    loaded: false
-    
+    loaded: false,
+    msg: ''
 }
 
 export default function(state = initialState, action) {
@@ -16,7 +16,12 @@ export default function(state = initialState, action) {
 
     switch(type){
        
-
+        case PERM_RETURN:
+            return {
+                ...state,
+                loaded: false,
+                
+            }
             case ALL_USERS:
                 return {
                     ...state,
@@ -27,7 +32,7 @@ export default function(state = initialState, action) {
                     return {
                         ...state,
                         loaded: true,
-                        users: payload
+                        msg: payload
                     }
             default: 
                 return state;

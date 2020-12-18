@@ -49,7 +49,7 @@ export const NEWS_FAIL = 'fail_on_news'
 export const NEW_TICKET = 'new_ticket';
 export const ALL_TICKETS = 'all_tickets';
 export const GET_TICKET = 'get_ticket'
-
+export const PERM_RETURN = 'permission_return'
 
 ///ERRORS with tickets
 export const NEW_ERROR = 'server_error'

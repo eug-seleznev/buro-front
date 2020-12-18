@@ -16,7 +16,7 @@ const MyProfile = () => {
                     <p>Name: {user.name}</p>
                     <p>email: {user.email}</p>
                     <p>Position: {user.position}</p>
-                    <p>Projects: {user.projects.length === 0? <p>проетков нет </p> : <p> проекты есть </p>}</p>
+                    <p>Projects: {user.projects.length === 0? <p>проектов нет </p> : <p> проекты есть </p>}</p>
                 </div>
             )}
         </div>
