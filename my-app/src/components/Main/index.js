@@ -65,8 +65,8 @@ const Main = ({history}) => {
     const onUpdate = async e => {
 
         e.preventDefault();
-
-        dispatch(updateNews())
+        alert(`don't work now`)
+        // dispatch(updateNews(????????????))
     }
 
 useEffect(()=>{
