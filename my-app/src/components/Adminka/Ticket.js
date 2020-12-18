@@ -21,7 +21,7 @@ const Ticket = ({match}) => {
 
     
     return (
-        <div>
+        <div className="main__alltick">
             {!loaded ? <p> loading...</p>: (
                 <div>
                     <h1>{ticket.problemname}</h1>

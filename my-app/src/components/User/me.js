@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-
+import './user.css'
 
 
 
@@ -9,7 +9,7 @@ const MyProfile = () => {
     const user = useSelector(state => state.auth.user)
 
     return (
-        <div> 
+        <div className="main__users"> 
             <h1> Мой профиль</h1>
             {!loaded ? <p> loading..</p> : (
                 <div>

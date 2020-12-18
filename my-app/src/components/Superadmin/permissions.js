@@ -15,7 +15,8 @@ const Permission = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
     
-    
+       
+	const loaded = useSelector(state => state.users.loaded)
 	const team = useSelector(state => state.users.users)
 
 
@@ -31,7 +32,9 @@ const Permission = ({history}) => {
 			dispatch(userPermissions(e.target.value, id))
 	}
     return (
-        <div className="main__allproj"> 
+		<div>
+		{!loaded? (<div></div>):
+        (<div className="main__allproj"> 
             <h1> Все пользователи</h1>
             
                 <div>
@@ -49,7 +52,7 @@ const Permission = ({history}) => {
        {team.map((team,index) => {
            return(  
 			
-			<tr key={index} title="Открыть проект">
+			<tr key={index} >
 				<td>{team.name}</td>
 				<td>{team.position}</td>
 				<td> 
@@ -68,7 +71,10 @@ const Permission = ({history}) => {
 </table>
                 </div>
             
-        </div>
+		</div>
+		)}
+		
+		</div>
     )
 }
 

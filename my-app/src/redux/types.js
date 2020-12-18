@@ -12,6 +12,7 @@ export const AUTH_ERROR ='auth_error';
 export const ALL_USERS = 'users';
 export const GET_EMPLOYE = 'get_users';
 export const CHANGE_PERMISSION = 'change_permission';
+export const ONE_USER = 'get_one'
 //user errors
 export const USER_ERR = 'get_all_users_error'
 
