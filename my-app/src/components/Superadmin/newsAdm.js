@@ -95,7 +95,6 @@ console.log(deleteConfirm)
 
         let id = newsOpen.post._id
         let data = formData
-        console.log(data,'fffffffffffffffffffffffffff')
         dispatch(updateNews({id, data}))
 
 
@@ -191,7 +190,6 @@ useEffect(()=>{
                                         placeholder='Заголовок'
                                         name='title'
                                         value={title}
-                                        onClick={()=>console.log(newsOpen,'aaaaaaaaaaaaaaaaaaa',formData)}
                                         onChange={e => onChange(e)}/>
 
                             

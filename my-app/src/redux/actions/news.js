@@ -101,11 +101,11 @@ export const deleteNews = (id) => async dispatch  => {
 
 }
 
-export const updateNews = ({id,formData}) => async dispatch  => {
+export const updateNews = ({id,data}) => async dispatch  => {
 
     try {
-        // console.log(tasks, 'tasks', id, 'id')
-        const res = await innerBackend.put(`news/${id}`, formData)
+        console.log(data, 'data', id, 'id')
+        const res = await innerBackend.put(`news/${id}`, data)
         dispatch({
             type: UPDATE_NEWS,
             payload: res.data
