@@ -14,7 +14,8 @@ const initialState = {
     tasks: [],
     tasksLoad: false,
     error: '',
-    reload: false
+    reload: false,
+    sprintLoad: false
     
 }
 
@@ -33,6 +34,8 @@ export default function(state = initialState, action) {
                     projects: payload,
                     loadProject: false,
                     sprint_load: false,
+                    sprintLoad: false,
+
                     error: ''
                 }
 
@@ -42,6 +45,7 @@ export default function(state = initialState, action) {
                     project: payload,
                     loadProject: true,
                     sprint_load: false,
+                    sprintLoad: false,
 
                     error: ''
                 }
@@ -50,6 +54,7 @@ export default function(state = initialState, action) {
                     ...state,
                     sprint: payload,
                     sprint_load: true,
+
                     reload: true,
                     error: ''
                 }
@@ -72,7 +77,8 @@ export default function(state = initialState, action) {
                     ...state,
                     sprints: payload,
                     loadSprints: true,
-
+                    sprintLoad: false,
+                    sprint: null,
                     error: ''
                 }
             case GET_SPRINT:
@@ -80,8 +86,8 @@ export default function(state = initialState, action) {
                     ...state,
                     sprint: payload,
                     reload: false,
-                    loadProject: true,
-
+                    loadProject: false,
+                    sprintLoad: true,
                     loadSprints: true,
                     error: ''
                 }

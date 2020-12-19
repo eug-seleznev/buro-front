@@ -22,12 +22,14 @@ import Users from './components/User';
 import Dashboard from './components/Adminka/dashboard';
 import MyProfile from './components/User/me';
 import Employe from './components/User/Employe';
+import Edit from './components/User/edit';
 import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
 import Sprint from './components/Projects/Sprint';
-
-
+import Main from './components/Main/index'
+import Permissions from './components/Superadmin/permissions';
+import Superadmin from './components/Superadmin/index.js';
 
 
 
@@ -49,12 +51,19 @@ const App = () => {
     <div className="App">
       {!auth ? <Auth /> : (
       <Router> 
+        
         <Layout /> 
         <Switch>
+
+          {/* main */}
+          <Route exact path="/" component={ Main } />
+          
+
+          
           {/* сисадминошная */}
-          <Route exact path="/admin" component={ Admin } />
-          <Route exact path="/admin/all" component={ Dashboard } />
-          <Route exact path="/admin/:id" component={Ticket} />
+          <Route exact path="/help" component={ Admin } />
+          <Route exact path="/tickets" component={ Dashboard } />
+          <Route exact path="/tickets/:id" component={Ticket} />
 
 
 
@@ -72,13 +81,18 @@ const App = () => {
           <Route exact path="/users" component={ Users } /> 
           <Route exact path="/users/me" component={ MyProfile } />
           <Route exact path="/users/:id" component={ Employe } />
-
-
+          <Route exact path="/edit"component={ Edit } />
+          {/*adminka */}
+          <Route exact path="/admin" component={ Superadmin } /> 
+          <Route exact path="/admin/permissions" component={ Permissions } />
 
 
 
         </Switch>
-        
+     
+
+
+
         </Router> )
     }
       

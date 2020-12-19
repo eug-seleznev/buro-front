@@ -1,12 +1,14 @@
 
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION,PERM_RETURN,ONE_USER, CHANGE_USERDATA} from '../types'
 
 
 
 const initialState = {
-    users: null,
-    loaded: false
-    
+    user: null,
+    users: [],
+    loaded: false,
+    msg: '',
+    userLoaded: false
 }
 
 export default function(state = initialState, action) {
@@ -15,15 +17,36 @@ export default function(state = initialState, action) {
     } = action;
 
     switch(type){
-       
-
+        case ONE_USER:
+            return {
+                ...state,
+                user: payload,
+                userLoaded: true
+            }
+        case PERM_RETURN:
+            return {
+                ...state,
+                loaded: false,
+                
+            }
             case ALL_USERS:
                 return {
                     ...state,
                     loaded: true,
                     users: payload
                 }
-            
+                case CHANGE_PERMISSION:
+                    return {
+                        ...state,
+                        loaded: true,
+                        msg: payload
+                    }
+                    case CHANGE_USERDATA:
+                        return {
+                            ...state,
+                            
+                            msg: payload
+                        }
             default: 
                 return state;
     }

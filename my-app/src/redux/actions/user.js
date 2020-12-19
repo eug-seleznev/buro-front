@@ -1,5 +1,6 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ALL_USERS, USER_ERR } from "../types";
+import { ALL_USERS, USER_ERR, CHANGE_PERMISSION, PERM_RETURN, ONE_USER,CHANGE_USERDATA } from "../types";
+
 
 
 
@@ -26,5 +27,92 @@ export const allUsers = () => async dispatch  => {
         })
             
       } 
+
+}
+export const getUser = (id) => async dispatch  => {
+  try {
+      console.log('hello 1 user?')
+      const res = await innerBackend.get(`/users/${id}`)
+      dispatch({
+          type: ONE_USER,
+          payload: res.data
+      })
+      // setAuthToken(localStorage.token);
+
+    }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: USER_ERR,
+          payload: error.msg
+      })
+      })
+          
+    } 
+
+}
+export const permissionReturn = () =>  dispatch => {
+  return dispatch({
+    type: PERM_RETURN,
+    
+  })
+}
+
+export const userPermissions = (perm, id) => async dispatch  => {
+  let body = {
+    permission: perm
+}
+  try {
+      console.log('hello permissions', id, perm) 
+      const res = await innerBackend.put(`/users/permchange/${id}`, body)
+      dispatch({
+          type: CHANGE_PERMISSION,
+          payload: res.data
+      })
+      // setAuthToken(localStorage.token);
+
+    }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: USER_ERR,
+          payload: error.msg
+      })
+      })
+          
+    } 
+
+}
+export const changeData = (formData) => async dispatch  => {
+  /////////////////////////
+  // let body ={
+  //   name: formData.name,
+  //   email: formData.email,
+  //   position: formData.position,
+    
+  // }
+  //////////////////////
+  try {
+      console.log('hello change', formData)
+      const res = await innerBackend.put(`/users/me`, formData)
+      dispatch({
+          type: CHANGE_USERDATA,
+          payload: res.data
+      })
+  
+
+    }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: USER_ERR,
+          payload: error.msg
+      })
+      })
+          
+    } 
 
 }

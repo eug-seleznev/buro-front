@@ -1,127 +1,166 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addTasks, finishSprint, finishTask, getSprint } from "../../redux/actions/projects";
 import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from "react-hook-form";
-
+import './sprint.css'
 
 
 
 const Sprint = ({match, history}) => {
+  const dispatch = useDispatch();
     let {id} = match.params;
-    const taskArr = useSelector(state => state.projects.sprint.tasks)
+    let back = match.url;
+    const sprint = useSelector(state => state.projects.sprint)
+    const taskArr = useSelector(state => state.projects.sprint)
+    // const project = useSelector(state => state.projects.project)
+    const loading = useSelector(state => state.projects.sprintLoad)
+
+
 
     const { register, control, handleSubmit, reset, watch } = useForm({
         defaultValues: {
             tasks: [{ taskTitle: "задача", workVolume: "5", taskState: false }]
           }
     });
+
     const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
       control, // control props comes from useForm (optional: if you are using FormContext)
       name: "tasks", // unique name for your Field Array
-      
-      // keyName: "id", default to "id", you can change the key name
     });
-    const dispatch = useDispatch();
-   
+    
+    
 
 
 
     //submit for new tasks array;
     const onSubmit = (data) =>{
-            console.log(data.task)
             let tasks = data;
             dispatch(addTasks({tasks, id }))
-            return history.goBack();
-
+           
+            setTimeout(() => {
+              return history.push(`${back.slice(0,14)}`);
+          }, 200);
             
 
     }
-    // const sprint = useSelector(state => state.projects.sprint)
-
+  
     useEffect(() => {
-        console.log(id)
         
             dispatch(getSprint(id));
-        
+            
+           
     }, [])
+
+
 
    
     const onChange = (e) => {
+       
+    
         let taskid = e.target.value;
-        dispatch(finishTask({taskid, id}))        
+        dispatch(finishTask({taskid, id}))
+       
     }
 
 
    const handleSprint = (e) => {
-    dispatch(finishSprint(id));
-    return history.goBack();
+      
+        dispatch(finishSprint(id));
+        setTimeout(() => {
+          return history.replace(`${back.slice(0,14)}`);
+  }, 200);
    }
-//     const onSubmit = async e => {
-//         e.preventDefault();
 
-// console.log(task)    
+
+   const handleBack = (e) => {
+
     
-           
-//         }
+    // //зачем тут таймаут? 
+    // setTimeout(() => {
+      return history.push(`${back.slice(0,14)}`);
+    // }, 200);
+    
+   }
+
     return (
-        <div>
-            <h1>Текущие задачи:</h1> 
+        <div className="sprint__main">
+           {!loading ? <p> loading...</p> : (
+             <>
+          <div>
             
-                {!taskArr ? <p> loading...</p> : (
-                    <div>
-                        {taskArr.map((task, ind) => {
+               
+                    <div >
+                                  <h1>{sprint.status?'Выполненные задачи:':'Текущие задачи:'}</h1> 
+
+                        {taskArr.tasks.map((task, ind) => {
                             return (
-                                <div>
+                              
+                                <div key={ind} className="sprint__tasks">
                                     <p></p>
                                     <form>
                                     <div>
-                                    <p>#{ind+1} / Название:  {task.taskTitle}</p>
+                                      {/* task.taskTitle == 0?????? */}
+                                    <p>#{ind+1} / {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
                                 
-                                    <label> завершить задачу</label>
-                                <input type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
+                                  <label style={{display:`${sprint.status?'none':'block'}`}}> завершить задачу</label>
+                                <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
 
                                 </div>
                                     </form>
+                                    
                                 </div>
                                  )
                         })}
+                        
                     </div>
-                )}
-
+             
+                <button onClick={()=>handleBack()} style={{marginTop: '20px'}}>Вернуться к проекту</button>
+                <button onClick={handleSprint} style={{display:`${sprint.status?'block':'none'}`,marginTop: '20px'}}> Восстановить спринт</button>
+            </div>
 <br></br>
-<h3> Добавить задачи в спринт:</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
-      <ul>
+<div style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right'}}>
+
+
+<h1> Добавить задачи в спринт:</h1>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <ul style={{ listStyleType: 'none'}}>
+
         {fields.map((item, index) => (
           <li key={item.id}>
             <input
               name={`tasks[${index}].taskTitle`}
               ref={register()}
-              defaultValue={item.taskTitle} // make sure to set up defaultValue
+              placeholder="Название задачи" // make sure to set up defaultValue
             />
           <input
           type="number"
+        
               name={`tasks[${index}].workVolume`}
               ref={register()}
-              defaultValue={item.workVolume} // make sure to set up defaultValue
+              style={{width:'125px'}}
+              placeholder="Объем в часах" 
             />
             
-            <button type="button" onClick={() => remove(index)}>Delete</button>
+            <button type="button" style={{display: `${fields.length===1?'none':'block'}`, marginTop: '10px', marginBottom: '10px',marginLeft:'auto', marginRight:'0'}} onClick={() => remove(index)}>Удалить</button>
           </li>
         ))}
       </ul>
+      
       <button
         type="button"
         onClick={() => append({ firstName: "appendBill", lastName: "appendLuo" })}
       >
-        append
+        Добавить
       </button>
-      <input type="submit" />
+      <input type="submit"></input>
     </form>
+
             <br>
             </br>
-            <button onClick={handleSprint}> Завершить спринт</button>
-
+            <button onClick={handleSprint}>Завершить спринт</button>
+            </div>
+            </>
+               )}
         </div>
     )
 }

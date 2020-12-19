@@ -2,7 +2,6 @@ import  {useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { newTicket } from '../../redux/actions/tikets';
 
-
 const Admin = () => {
     const dispatch = useDispatch();
 
@@ -44,7 +43,7 @@ const Admin = () => {
         }
 
     return (
-        <div>
+        <div className="main__alltick">
             <h1> Если у вас есть проблема с компом - вы создать заявку тут //wip</h1>
             <form onSubmit={onSubmit}>
             <input 

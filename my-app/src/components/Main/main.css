@@ -1,0 +1,134 @@
+.main__container{
+
+    width: 60vw;
+    margin-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: grid;
+    grid-template-areas: 
+    'profile profile'
+    'projects news'
+    ;
+    grid-template-columns:15vw 40vw;
+    column-gap: 5vw;
+    text-align: left;
+}
+    .main__profile{
+        grid-area: profile;
+
+        display: grid;
+        grid-template-areas: 
+        'logo name'
+        'logo position'
+        ;
+        grid-template-columns: max-content auto;
+        column-gap: 40px;
+        margin-bottom: 40px;
+        background-color: white;
+        padding: 15px;
+    filter: drop-shadow(0 0 5px black);
+
+    }
+            .main__profile__logo{
+                grid-area: logo;
+                height: 80px;
+                width: 80px;
+                background-color: black;
+            }
+            .main__profile__name{
+                grid-area: name;
+                font-size: 30px;
+            }
+            .main__profile__position{
+                grid-area: position;
+                font-size: 30px;
+
+            }
+    .main__projects{
+        grid-area: projects;
+        background-color: white;
+        padding: 15px;
+        filter: drop-shadow(0 0 5px black);
+
+    }
+                .projects__tr{
+                    display: grid;
+                    grid-template-columns: 4fr 4fr 1fr;     
+                    column-gap: 20px;   
+                    grid-template-rows: 52px; 
+                    border-bottom: .5px solid gray;  
+                    cursor: pointer;
+                }
+                .projects__tr:hover{
+                    background-color: rgb(211, 211, 211);
+                }
+    .main__news{
+        grid-area: news;
+        background-color: white;
+        padding: 15px;
+        filter: drop-shadow(0 0 5px black);
+    
+       
+    }
+            .table__tr{
+               display: grid;
+               grid-template-columns: 1fr 1fr 4fr;     
+               column-gap: 20px;   
+               grid-template-rows: 52px; 
+               border-bottom: .5px solid gray;  
+               cursor: pointer;
+            }
+            .table__tr:hover{
+                background-color: rgb(211, 211, 211);
+
+            }
+            .table_td{
+                overflow: hidden; 
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+              
+
+.opened__news{
+    position: fixed;
+    width: 70vw;
+    height: 60vh;
+    left: 15vw;
+    
+    top: 15vh;
+    padding: 50px;
+   
+
+
+    background-color: white;
+    filter: drop-shadow(0 0 5px black);
+
+    display: grid;
+    grid-template-areas: 
+    'title close'
+    'subtitle close'
+    'texts texts'
+    'update update'
+    ;
+    grid-template-columns: 1fr max-content;
+    column-gap: 40px;
+    grid-template-rows: max-content max-content 1fr 1fr;
+    row-gap: 40px;
+}
+        .open__title{
+            grid-area: title;
+        }
+        .open__subtitle{
+            grid-area: subtitle;
+        }
+        .open__text{
+            grid-area: texts;
+        }
+        .open__close{
+            grid-area: close;
+            font-weight: bold;
+        }
+        .update{
+            grid-area: update;
+        }

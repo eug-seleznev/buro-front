@@ -8,8 +8,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allUsers } from "../../redux/actions/user";
-
-const Users = () => {
+import './user.css'
+const Users = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
     const loaded = useSelector(state => state.users.loaded)
@@ -20,11 +20,11 @@ const Users = () => {
         dispatch(allUsers())
     }, [])
     return (
-        <div> 
-            <h1> Все сотрудники</h1>
+        <div className="main__users"> 
+            <h1 > Все сотрудники</h1>
             {!loaded ? <p>loading...</p> : (
                 <div>
-                    <p> users count: {users.length} </p>
+                    <p> всего сотрудников: {users.length} </p>
                     <table>
   <thead>
     <tr>
@@ -34,10 +34,10 @@ const Users = () => {
       <th>Активные проекты</th>
     </tr>
    </thead>
-   <tbody>
+   <tbody style={{borderCollapse:'collapse'}}>
        {users.map(user => {
            return(  
-        <tr>
+        <tr onClick={() => history.replace(`/users/${user._id}`)}>
             <td>{user.name}</td>
             <td>{user.email}</td>
             <td>{user.position}</td>
