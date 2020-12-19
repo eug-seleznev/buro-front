@@ -5,6 +5,10 @@ import { url } from '../utils/axios';
 
 
 
+//styled components
+import {Button} from '../../Styles/buttons'
+
+
 const Edit = ({match, history}) => {
 	
 	const loaded = useSelector(state => state.auth.isAuthenticated)
@@ -38,8 +42,10 @@ const Edit = ({match, history}) => {
 
      const onSubmit = async e => {
         e.preventDefault();
+		console.log(formData)
+		// dispatch(changeData({formData})) так не обязательно
+		dispatch(changeData(formData))
 
-        dispatch(changeData({formData}))
     //dispatch (changeAvatar({file}))
     
            
@@ -60,6 +66,7 @@ const Edit = ({match, history}) => {
 			  type='text'
 			  placeholder={user.name}
 			name="name"
+			defaultValue={name}
 			  onChange={e => onChange(e)}
 			></input>
 			<p>Сменить должность</p>
@@ -67,19 +74,21 @@ const Edit = ({match, history}) => {
 			  type='text'
 			  placeholder={user.position}
 			  name="position"
+			  defaultValue={position}
 			  onChange={e => onChange(e)}
 			></input>
 			<p>Сменить e-mail</p>
  		<input 
 			  type='text'
 			  placeholder={user.email}
+			  defaultValue={email}
 			  name="email"
 			  onChange={e => onChange(e)}
 			></input>
 			
 			
 			
-			<button  type="submit" value="Submit" >Сохранить</button>
+			<Button  type="submit" value="Submit" >Сохранить</Button>
 				 
 		  </form>
 		  <form >

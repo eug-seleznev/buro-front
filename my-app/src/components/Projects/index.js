@@ -10,6 +10,8 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allProjects } from '../../redux/actions/projects';
+import { Table } from '../../Styles/tabel';
+import { Container } from '../../Styles/layout';
 // import { allUsers } from "../../redux/actions/user";
 
 const Projects = ({history}) => {
@@ -24,12 +26,12 @@ const Projects = ({history}) => {
     }, [])
     
     return (
-        <div className="main__allproj"> 
+        <Container> 
             <h1> Все проекты</h1>
             {!loaded ? <p>loading...</p> : (
                 <div>
                     <p> количество проектов: {projects.length} </p>
-                    <table className="table__allproj" >
+                    <Table>
   <thead>
     <tr>
         
@@ -55,10 +57,10 @@ const Projects = ({history}) => {
        })}
      
   </tbody>
-</table>
+</Table>
                 </div>
             )}
-        </div>
+        </Container>
     )
 }
 

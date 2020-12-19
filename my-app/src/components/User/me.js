@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux"
 import './user.css'
 import { url } from '../utils/axios';
-
+import {Button} from '../../Styles/buttons'
+import styled from 'styled-components'
 
 
 const MyProfile = ({match, history}) => {
@@ -20,7 +21,7 @@ const MyProfile = ({match, history}) => {
                     <p>email: {user.email}</p>
                     <p>Должность: {user.position}</p>
                     <p>Количество проектов:  {user.projects.length === 0?  'проектов нет' :  user.projects.length }</p>
-                    <button onClick={() => history.replace(`/edit`)} >Редактировать профиль</button>
+                    <Button primary onClick={() => history.replace(`/edit`)} >Редактировать профиль</Button>
                 </div>
                 
             

@@ -90,6 +90,8 @@ console.log(deleteConfirm)
             dispatch(allNews())
         }, 100);
     }
+
+    
     const updateNewsButton = async e => {
         e.preventDefault();
 

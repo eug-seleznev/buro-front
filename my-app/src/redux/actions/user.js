@@ -85,16 +85,18 @@ export const userPermissions = (perm, id) => async dispatch  => {
     } 
 
 }
-export const changeData = ({formData}) => async dispatch  => {
-  let body ={
-    name: formData.name,
-    email: formData.email,
-    position: formData.position,
+export const changeData = (formData) => async dispatch  => {
+  /////////////////////////
+  // let body ={
+  //   name: formData.name,
+  //   email: formData.email,
+  //   position: formData.position,
     
-  }
+  // }
+  //////////////////////
   try {
-      console.log('hello change', body)
-      const res = await innerBackend.put(`/users/me`, body)
+      console.log('hello change', formData)
+      const res = await innerBackend.put(`/users/me`, formData)
       dispatch({
           type: CHANGE_USERDATA,
           payload: res.data

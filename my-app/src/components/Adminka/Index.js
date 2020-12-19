@@ -2,7 +2,6 @@ import  {useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { newTicket } from '../../redux/actions/tikets';
 
-
 const Admin = () => {
     const dispatch = useDispatch();
 
