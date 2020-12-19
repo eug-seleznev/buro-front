@@ -8,38 +8,54 @@
 .table{
 
 width: 80vw;
-background-color: aquamarine;
+background-color: white;
+filter: drop-shadow(0 0 5px black);
+padding: 20px;
 text-align: left;
 }
     .news__tr{
         display: grid;
         width: 100%;
-        height: 100px;
+        height: 80px;
         border-bottom: 1px solid black;
-
+        padding-top: 10px;
         grid-template-areas: 
-        'td1 td2 td3'
-        'upd del .'
+        'td1 td2 upd del '
+        'td3 td3 td3 td3'
         ;
-        grid-template-columns: 20% 20% 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         column-gap: 40px;
+        row-gap: 10px;
     }
-    .news__td1{
-        grid-area: td1;
-    }.news__td2{
-        grid-area: td2;
-    }.news__td3{
-        grid-area: td3;
-        overflow: hidden; 
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
+    .news__td{
+        display: flex;
+        margin: 0;
+        
     }
-        .table__update{
-            grid-area: upd;
+        .descript{
+            margin: 0;
+            margin-right: 10px;
+            
+
         }
-        .table__delete{
-            grid-area: del;
-        }
+            .news__td1{
+                grid-area: td1;
+            }.news__td2{
+                grid-area: td2;
+
+            }.news__td3{
+                grid-area: td3;
+
+                overflow: hidden; 
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+                .table__update{
+                    grid-area: upd;
+                }
+                .table__delete{
+                    grid-area: del;
+                }
 
 
 

@@ -60,6 +60,9 @@ const News = ({permissions}) => {
                 setConfirm({status:false, post:''})
                 dispatch(allNews())
             }, 100);  
+            setFormData({
+                title:'',subtitle:'',text:''
+            })
     }
     const onDelete = async (e,id) => {
 console.log(deleteConfirm)
@@ -124,9 +127,9 @@ useEffect(()=>{
                     
                     return(
                         <div className='news__tr' >
-                            <p className='news__td1'>{el.title}</p>
-                            <p className='news__td2'>{el.subtitle}</p>
-                            <p className='news__td3'>{el.text}</p>
+                            <p className='news__td news__td1'><h4 className='descript'>Title: </h4>{el.title}</p>
+                            <p className='news__td news__td2'><h4 className='descript'>Subtitle: </h4>{el.subtitle}</p>
+                            <p className='news__td news__td3'><h4 className='descript'>Text: </h4>{el.text}</p>
 
                             <button className='table__update' onClick={(e)=>onUpdate(e, el)}>update</button>
                             <button className='table__delete' onClick={(e)=>onDelete(e, el)}>delete</button>
