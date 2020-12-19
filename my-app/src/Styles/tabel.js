@@ -6,9 +6,5 @@ export const Table =  styled.table`
     width: 80vw;
     margin-left: 8vw;
     
-
-
-
-
 `
 
