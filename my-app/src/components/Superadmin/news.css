@@ -84,6 +84,7 @@ row-gap: 20px;
         grid-area: texts;
         min-height: 200px;
         margin-top: 40px;
+        resize: none;
     }
 .update__bg{
     position: fixed;

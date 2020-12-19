@@ -96,7 +96,7 @@ useEffect(()=>{
         {user.projects.map((el,i)=>{
 
             return(
-                <tr>
+                <tr onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
                     <td>{el.title}</td>
                     <td>{el.type}</td>
                     <td>{el.sprints.length}</td>

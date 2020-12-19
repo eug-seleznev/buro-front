@@ -202,7 +202,7 @@ useEffect(()=>{
 
                                     <textarea 
                                         className='news__texts'
-                                        
+                                       
                                         placeholder='Текст'
                                         name='text'
                                         value={text}
@@ -212,7 +212,7 @@ useEffect(()=>{
 
                                 <div className='news__submit' >
                                     <button  type="submit" onClick={(e) =>updateNewsButton(e)}>Редактировать новость</button>
-                                    <button  type="submit" onClick={()=>setOpen({status:false, post:''})}>Отмена</button>
+                                    <button  type="submit" onClick={()=>{setOpen({status:false, post:''}); setFormData({title:'',subtitle:'',text:''})}}>Отмена</button>
                                 </div>
                                     
 
