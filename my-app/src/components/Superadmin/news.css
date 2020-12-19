@@ -1,0 +1,129 @@
+.news__administration{
+    margin-top: 100px;
+    margin-left: 5vw;
+    width: 80vw;
+}
+
+
+.table{
+
+width: 80vw;
+background-color: aquamarine;
+text-align: left;
+}
+    .news__tr{
+        display: grid;
+        width: 100%;
+        height: 100px;
+        border-bottom: 1px solid black;
+
+        grid-template-areas: 
+        'td1 td2 td3'
+        'upd del .'
+        ;
+        grid-template-columns: 20% 20% 1fr;
+        column-gap: 40px;
+    }
+    .news__td1{
+        grid-area: td1;
+    }.news__td2{
+        grid-area: td2;
+    }.news__td3{
+        grid-area: td3;
+        overflow: hidden; 
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+    }
+        .table__update{
+            grid-area: upd;
+        }
+        .table__delete{
+            grid-area: del;
+        }
+
+
+
+.create{
+    margin-top: 50px;
+    font-size: 40px;
+    filter: drop-shadow(0 0 10px black);
+    background-color: white;
+    padding: 40px;
+}
+
+
+.news__form{
+display: grid;
+
+width: auto;
+margin-top: 40px;
+/* background-color: burlywood; */
+grid-template-areas: 
+'title subtitle submit'
+'texts texts texts'
+;
+/* grid-template-columns: 30% 30% auto; */
+column-gap: 40px;
+row-gap: 20px;
+
+
+}
+    .news__form input{
+        width: auto;
+    }
+    .news__title{
+        grid-area: title;
+    }
+    .news__subtitle{
+        grid-area: subtitle;
+    }
+    .news__submit{
+        grid-area: submit;
+    }
+    .news__texts{
+        grid-area: texts;
+        min-height: 200px;
+        margin-top: 40px;
+    }
+.update__bg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    ;
+}
+    .news__update{
+        position: fixed;
+        width: 80vw;
+        left: 10vw;
+        top: 10vh;
+        
+        font-size: 40px;
+        filter: drop-shadow(0 0 10px black);
+        background-color: white;
+        padding: 40px;
+
+    }
+
+
+.delete__bg{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    ;
+}
+    .delete__container{
+        background-color: white;
+        filter: drop-shadow(0 0 10px black);
+        width: max-content;
+        padding: 40px;
+        margin: auto;
+        height: 10vh;
+        padding-top: 10vh;
+        display: block;
+    }

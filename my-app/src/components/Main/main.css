@@ -44,10 +44,11 @@
     .main__news{
         grid-area: news;
         background-color: burlywood;
+       
     }
             .table__tr{
                display: grid;
-               grid-template-columns: max-content max-content auto max-content;     
+               grid-template-columns: max-content max-content 1fr;     
                column-gap: 20px;   
                grid-template-rows: 52px; 
                border-bottom: .5px solid gray;  
@@ -55,6 +56,7 @@
             .table_td{
             }
                 .td__text{
+                    
                     overflow: hidden; 
                     white-space: nowrap;
                     text-overflow: ellipsis;

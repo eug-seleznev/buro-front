@@ -14,7 +14,6 @@ import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/
 
 
 //////////////////////////////////////// ШО ЭТО
-import Me from '../User/me'
 import { url } from '../utils/axios';
 ///////////////
 const Main = ({history}) => {
@@ -31,7 +30,7 @@ const Main = ({history}) => {
 
     const [formData, setFormData ] = useState({
         
-        title: '',   //title
+        title: '', 
         subtitle: '', 
         text: '',  
       
@@ -77,12 +76,12 @@ const Main = ({history}) => {
 
 useEffect(()=>{
  dispatch(allNews())
+ console.log(user,'hiiiiiiiiiiii')
 },[])
 
     return (
 <div className='main__container'>
     <div className='main__profile'>
-        {/* КАРТИНКИ ХОСТЯТСЯ НА СЕРВАКЕ, ЧТО БЫ ПРАВИЛЬНО УКАЗАТЬ ПУТЬ СПЕРВА ДОПОЛНИ ЕГО АДРЕСОМ СЕРВЕР */}
         <img className='main__profile__logo' src={`${url}/${user.avatar}`}/>
         <div className='main__profile__name'>{user.name}</div>
         <div className='main__profile__position'>Position: {user.position}</div>
@@ -113,40 +112,11 @@ useEffect(()=>{
 
     <div className='main__news'>
         <div onClick={()=>console.log(listNews)}>news</div>
-        <form className='form' onSubmit={onSubmit}>
-            <input 
-
-                type='text'
-                placeholder='Заголовок'
-                name='title'
-                value={title}
-                onChange={e => onChange(e)}/>
-
-   
-            <input 
-                type='text'
-                placeholder='Подзаголовок'
-                name='subtitle'
-                value={subtitle}
-                onChange={e => onChange(e)}/>
-
-            <input 
-                type='text'
-                placeholder='Текст'
-                name='text'
-                value={text}
-                onChange={e => onChange(e)}/>
-            
-
-
-
-            <button  type="submit">Создать новость</button>
-
-            </form>
+       
 
             {!loaded? <p>loading...</p> : 
             
-            <div className='table'>
+            <div className='main__table'>
                 {listNews.map((el,i)=>{
                     
                     return(
@@ -154,7 +124,7 @@ useEffect(()=>{
                             <p className='table_td'>{el.title}</p>
                             <p className='table_td'>{el.subtitle}</p>
                             <p className='td__text'>{el.text}</p>
-                            <p className='table_td' onClick={(e)=>onDelete(e, el._id)}>delete</p>
+                            
                             
                         </div>
                     )
@@ -176,39 +146,7 @@ useEffect(()=>{
                 <div className='open__subtitle'>{newsOpen.post.subtitle}</div>
                 <div className='open__text'>{newsOpen.post.text}</div>
                 <div className='open__close' onClick={()=>setOpen({post:'', status: false})}>close</div>
-                <div className='update'>
-                    Update news
-                            <form className='form' onSubmit={onUpdate}>
-                                    <input 
-
-                                        type='text'
-                                        placeholder='Заголовок'
-                                        name='title'
-                                        value={newsOpen.post.title}
-                                        onChange={e => onChange(e)}/>
-
-                        
-                                    <input 
-                                        type='text'
-                                        placeholder='Подзаголовок'
-                                        name='subtitle'
-                                        value={newsOpen.post.subtitle}
-                                        onChange={e => onChange(e)}/>
-
-                                    <input 
-                                        type='text'
-                                        placeholder='Текст'
-                                        name='text'
-                                        value={newsOpen.post.text}
-                                        onChange={e => onChange(e)}/>
-                                    
-
-
-
-                                    <button  type="submit">Обновить новость</button>
-
-                            </form>
-                </div>
+                
             </div>
             }
             
