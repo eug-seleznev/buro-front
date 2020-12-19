@@ -22,6 +22,7 @@ import Users from './components/User';
 import Dashboard from './components/Adminka/dashboard';
 import MyProfile from './components/User/me';
 import Employe from './components/User/Employe';
+import Edit from './components/User/edit';
 import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
@@ -80,6 +81,7 @@ const App = () => {
           <Route exact path="/users" component={ Users } /> 
           <Route exact path="/users/me" component={ MyProfile } />
           <Route exact path="/users/:id" component={ Employe } />
+          <Route exact path="/edit"component={ Edit } />
           {/*adminka */}
           <Route exact path="/admin" component={ Superadmin } /> 
           <Route exact path="/admin/permissions" component={ Permissions } />

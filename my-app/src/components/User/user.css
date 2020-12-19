@@ -1,5 +1,13 @@
 .main__users  {
 	width: 50vw;
-	margin-left:25vw;
+	margin-left:120px;
 	align-items: center;
+}
+.main__users h1 {
+	text-align: left;
+
+}
+.main__users p {
+	text-align: left;
+	
 }
