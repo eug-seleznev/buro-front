@@ -18,7 +18,7 @@ const Project = ({match, history}) => {
 
     const sprintLoad = useSelector(state => state.projects.sprint_load)
     const reload = useSelector(state => state.projects.reload)
-    const user = useSelector(state => state.auth.user.id)
+    const user = useSelector(state => state.auth.user)
 
     const sprint = useSelector(state => state.projects.sprint)
     const users = useSelector(state => state.users.users)
@@ -65,7 +65,7 @@ const Project = ({match, history}) => {
 
                     <br>
                     </br>
-                    <button onClick={createSprint}> Создать спринт</button>
+                    <button onClick={createSprint} style={{display:`${user.permission==='user'?'none':'block'}`}}> {user.permission==='user'?'':'Создать спринт'}</button>
                     
                     {!sprintsLoad ? <p> loading..</p> : (
                         <div>

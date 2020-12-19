@@ -24,7 +24,7 @@ const Users = ({history}) => {
             <h1 > Все сотрудники</h1>
             {!loaded ? <p>loading...</p> : (
                 <div>
-                    <p> users count: {users.length} </p>
+                    <p> всего сотрудников: {users.length} </p>
                     <table>
   <thead>
     <tr>

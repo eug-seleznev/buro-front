@@ -1,5 +1,5 @@
 
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION,PERM_RETURN,ONE_USER} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION,PERM_RETURN,ONE_USER, CHANGE_USERDATA} from '../types'
 
 
 
@@ -7,7 +7,8 @@ const initialState = {
     user: null,
     users: [],
     loaded: false,
-    msg: ''
+    msg: '',
+    userLoaded: false
 }
 
 export default function(state = initialState, action) {
@@ -19,8 +20,8 @@ export default function(state = initialState, action) {
         case ONE_USER:
             return {
                 ...state,
-                user: payload
-                
+                user: payload,
+                userLoaded: true
             }
         case PERM_RETURN:
             return {
@@ -40,6 +41,12 @@ export default function(state = initialState, action) {
                         loaded: true,
                         msg: payload
                     }
+                    case CHANGE_USERDATA:
+                        return {
+                            ...state,
+                            
+                            msg: payload
+                        }
             default: 
                 return state;
     }

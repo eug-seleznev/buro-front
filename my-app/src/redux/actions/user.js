@@ -1,5 +1,5 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ALL_USERS, USER_ERR, CHANGE_PERMISSION, PERM_RETURN, ONE_USER } from "../types";
+import { ALL_USERS, USER_ERR, CHANGE_PERMISSION, PERM_RETURN, ONE_USER,CHANGE_USERDATA } from "../types";
 
 
 
@@ -71,6 +71,35 @@ export const userPermissions = (perm, id) => async dispatch  => {
           payload: res.data
       })
       // setAuthToken(localStorage.token);
+
+    }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: USER_ERR,
+          payload: error.msg
+      })
+      })
+          
+    } 
+
+}
+export const changeData = ({formData}) => async dispatch  => {
+  let body ={
+    name: formData.name,
+    email: formData.email,
+    position: formData.position,
+    
+  }
+  try {
+      console.log('hello change', body)
+      const res = await innerBackend.put(`/users/me`, body)
+      dispatch({
+          type: CHANGE_USERDATA,
+          payload: res.data
+      })
+  
 
     }
     catch (err) {
