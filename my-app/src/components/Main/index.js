@@ -91,16 +91,16 @@ useEffect(()=>{
 
     
     <div className='main__projects'>
-        Мои проекты
+        <h3>Мои проекты</h3>
         <table>
         {user.projects.map((el,i)=>{
 
             return(
-                <tr onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
-                    <td>{el.title}</td>
-                    <td>{el.type}</td>
-                    <td>{el.sprints.length}</td>
-                </tr>
+                <div     className='projects__tr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
+                    <p className='table_td'>{el.title}</p>
+                    <p className='table_td'>{el.type}</p>
+                    <p className='table_td'>{el.sprints.length}</p>
+                </div>
             )
         })}
         </table>
@@ -111,7 +111,7 @@ useEffect(()=>{
 
 
     <div className='main__news'>
-        <div onClick={()=>console.log(listNews)}>news</div>
+        <div onClick={()=>console.log(listNews)}><h3>news</h3></div>
        
 
             {!loaded? <p>loading...</p> : 
@@ -120,10 +120,10 @@ useEffect(()=>{
                 {listNews.map((el,i)=>{
                     
                     return(
-                        <div className='table__tr' onClick={()=>newsClick(el)}>
+                      <div     className='table__tr' onClick={()=>newsClick(el)}>
                             <p className='table_td'>{el.title}</p>
                             <p className='table_td'>{el.subtitle}</p>
-                            <p className='td__text'>{el.text}</p>
+                            <p className='table_td'>{el.text}</p>
                             
                             
                         </div>
