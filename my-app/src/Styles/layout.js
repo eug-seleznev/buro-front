@@ -20,7 +20,7 @@ export const Title =  styled.h1`
 
 
 export const Header =  styled.div`
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;
