@@ -67,7 +67,7 @@ const Edit = ({match, history}) => {
 			  type='text'
 			  placeholder={user.name}
 			name="name"
-			defaultValue={user.name}
+			value={name}
 			  onChange={e => onChange(e)}
 			></input>
 			<p>Сменить должность</p>
@@ -75,14 +75,14 @@ const Edit = ({match, history}) => {
 			  type='text'
 			  placeholder={user.position}
 			  name="position"
-			  defaultValue={user.position}
+			  value={position}
 			  onChange={e => onChange(e)}
 			></input>
 			<p>Сменить e-mail</p>
  		<input 
 			  type='text'
 			  placeholder={user.email}
-			  defaultValue={user.email}
+			  value={email}
 			  name="email"
 			  onChange={e => onChange(e)}
 			></input>
