@@ -7,6 +7,7 @@ import { url } from '../utils/axios';
 
 //styled components
 import {Button} from '../../Styles/buttons'
+import { Container } from "../../Styles/layout";
 
 
 const Edit = ({match, history}) => {
@@ -40,7 +41,7 @@ const Edit = ({match, history}) => {
      
 
 
-     const onSubmit = async e => {
+     const onSubmit = e => {
         e.preventDefault();
 		console.log(formData)
 		// dispatch(changeData({formData})) так не обязательно
@@ -53,12 +54,12 @@ const Edit = ({match, history}) => {
    
   
     return (
-        <>
-        {!loaded? (<div>loaded...</div>):
-          (  
+		<Container left>
+
+        {!loaded? <div>loaded...</div> :
 		  
-		  <div style={{marginLeft: '120px', textAlign:"left"}}>
-		  
+		  (  
+			  <>
 		  <form  onSubmit={onSubmit}>
 
 		<p>Сменить имя</p>
@@ -66,7 +67,7 @@ const Edit = ({match, history}) => {
 			  type='text'
 			  placeholder={user.name}
 			name="name"
-			defaultValue={name}
+			defaultValue={user.name}
 			  onChange={e => onChange(e)}
 			></input>
 			<p>Сменить должность</p>
@@ -74,14 +75,14 @@ const Edit = ({match, history}) => {
 			  type='text'
 			  placeholder={user.position}
 			  name="position"
-			  defaultValue={position}
+			  defaultValue={user.position}
 			  onChange={e => onChange(e)}
 			></input>
 			<p>Сменить e-mail</p>
  		<input 
 			  type='text'
 			  placeholder={user.email}
-			  defaultValue={email}
+			  defaultValue={user.email}
 			  name="email"
 			  onChange={e => onChange(e)}
 			></input>
@@ -98,11 +99,11 @@ const Edit = ({match, history}) => {
                 placeholder='загрузите изображение'
 				onChange={handleFile}></input><br/><br/>
 				</form>
-	  		</div>
+				</>
              
-   )
-        }
-        </>
+   )}
+        	  		</Container>
+
     )
 }
 
