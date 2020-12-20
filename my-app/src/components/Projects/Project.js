@@ -98,8 +98,14 @@ const Project = ({match, history}) => {
                             <div key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`${id}/${sprint._id}`)}>
                         <p>
                         Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи: 
-                            {sprint.tasks.length}
-                            {sprint.status ? ' выполнено' : 'ongoing'}
+                            {sprint.tasks.filter(task => task.taskStatus).length}
+                              выполнено из {sprint.tasks.length} 
+                            {sprint.tasks.length - sprint.tasks.filter(task => task.taskStatus).length ===0 ?
+                                <div style={{width:"10vw", height: "5px", backgroundColor:"green"}}></div>:(
+                                    <div style={{width:"10vw", height: "5px", backgroundColor:"red"}}></div>
+
+                                )
+                                                    }
                         </p>
                         </div>
                         )

@@ -16,10 +16,7 @@ const Menu = () => {
              <NavLink
               to='/help'
                ><p>Проблемы с компом </p> </NavLink>
-             <NavLink
-              to='/tickets'
-              ><p>панель сисадмина </p>  </NavLink>
-
+        
             <NavLink
               to='/new'
               ><p>Создать проект</p> </NavLink>

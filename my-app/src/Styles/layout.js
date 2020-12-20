@@ -29,7 +29,7 @@ export const Header =  styled.div`
 `
 
 export const ItemHead = styled.div`
-    margin-left: 1vw;
+    margin-left: 2vw;
     align-self: center;
 `
 
