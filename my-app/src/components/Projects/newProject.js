@@ -9,7 +9,7 @@ const ProjectNew = ({history}) => {
 
     const [formData, setFormData ] = useState({
         
-        title: '',   //title
+        title: '',   
         dateStart: '', 
         city: '',  
         type: '',

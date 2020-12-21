@@ -92,7 +92,7 @@ const Sprint = ({match, history}) => {
                     <div >
                                   <h1>{sprint.status?'Выполненные задачи:':'Текущие задачи:'}</h1> 
 
-                        {taskArr.tasks.filter(task => task.taskStatus).map((task, ind) => {
+                        {taskArr.tasks.map((task, ind) => {
                             return (
                               
                                 <div key={ind} className="sprint__tasks">
