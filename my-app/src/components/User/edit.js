@@ -88,7 +88,8 @@ const Edit = ({match, history}) => {
 			></input>
 			
 			
-			
+			<br/>
+			<br/>
 			<Button  type="submit" value="Submit" >Сохранить</Button>
 				 
 		  </form>
