@@ -19,7 +19,7 @@ const MyProfile = ({match, history}) => {
             <h1> Мой профиль</h1>
             {!loaded ? <p> loading..</p> : (
                 <div style={{display: 'flex'}}>
-                <img  style={{width:'100px', height: '100px', marginRight:'40px',marginTop:'40px'}} className='logo' src={`${url}/${user.avatar}`}/>
+                <img  style={{width:'100px', height: '100px', marginRight:'40px',marginTop:'40px', objectFit: 'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
                 <div>
                     <p>Имя: {user.name}</p>
                     <p>email: {user.email}</p>

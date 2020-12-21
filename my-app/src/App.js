@@ -27,6 +27,8 @@ import Ticket from './components/Adminka/Ticket';
 import ProjectNew from './components/Projects/newProject';
 import Project from './components/Projects/Project';
 import Sprint from './components/Projects/Sprint';
+import ProjectsEdit from './components/Projects/ProjectsEdit';
+import OneProjEdit from './components/Projects/OneProjEdit';
 import Main from './components/Main/index'
 import Permissions from './components/Superadmin/permissions';
 import Superadmin from './components/Superadmin/index.js';
@@ -78,8 +80,8 @@ const App = () => {
 
           <Route exact path="/projects/:id" component={ Project } />
           <Route exact path="/projects/:id/:id" component={ Sprint } />
-
-
+          <Route exact path="/admin/editproj" component={ ProjectsEdit } />
+          <Route exact path="/admin/editproj/:id" component={ OneProjEdit } />
           <Route exact path="/new" component={ ProjectNew } /> 
 
           {/* users */}

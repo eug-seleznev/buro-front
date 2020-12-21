@@ -1,5 +1,5 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT, CREATE_FAIL, DELETE_PROJECT, FINISH_SPRINT, FINISH_TASK, GET_PROJECT, GET_SPRINT, JOIN_TEAM, PROJECT_ID, SPRINT_ERROR } from "../types";
+import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT, CREATE_FAIL, DELETE_PROJECT,EDIT_PROJECT, FINISH_SPRINT, FINISH_TASK, GET_PROJECT, GET_SPRINT, JOIN_TEAM, PROJECT_ID, SPRINT_ERROR } from "../types";
 
 
 
@@ -102,7 +102,29 @@ export const addSprint = (id) => async dispatch  => {
     }
 
 }
-
+export const editProject = (formData, id) => async dispatch  => {
+    try {
+        console.log('hello edit', formData)
+        const res = await innerBackend.put(`/projects/${id}`, formData)
+        dispatch({
+            type: EDIT_PROJECT,
+            payload: res.data
+        })
+    
+  
+      }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: CREATE_FAIL,
+            payload: error.msg
+        })
+        })
+            
+      } 
+  
+  }
 
 export const allSprints = (id) => async dispatch  => {
     try {

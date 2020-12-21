@@ -1,12 +1,14 @@
-import  {useState } from 'react'
+import  {useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { newProject } from '../../redux/actions/projects';
+import {  getProject, editProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
 import './projects.css'
 
-const ProjectNew = ({history}) => {
+const ProjectEdit = ({history, match}) => {
+	let {id} = match.params;
     const dispatch = useDispatch();
-
+	const project = useSelector(state => state.projects.project)
+	const loadProject = useSelector(state => state.projects.loadProject)
     const [formData, setFormData ] = useState({
         
         title: '',   
@@ -20,10 +22,26 @@ const ProjectNew = ({history}) => {
 
       
       });
-   
+	  
+	  useEffect(() => {
+		dispatch(getProject(id));
 
-
-      const { title, dateStart, dateFinish, city, type, stage, customer, area} = formData;
+    }, [])
+	useEffect(() => {
+		if (loadProject ) {
+			console.log (project.customer)
+			setFormData ({...formData, title: project.title, 
+				dateStart: project.dateStart,
+				city: project.city,
+				type: project.type,
+				stage: project.stage,
+				dateFinish: project.dateFinish,
+				customer: project.customer
+				})
+		}
+		
+    }, [loadProject])
+      const { title, dateStart, dateFinish, city, type, stage, customer} = formData;
 
   
     const onChange = e => {
@@ -35,13 +53,13 @@ const ProjectNew = ({history}) => {
 
      const Redirect = () => {
      
-             return history.push(`/projects`)
+             return history.push(`/admin/editproj`)
          
      }
 
      const onSubmit = async e => {
         e.preventDefault();
-        dispatch(newProject(formData))
+        dispatch(editProject(formData, id))
         setTimeout(() => Redirect(),100) 
         
             // register({ name, email, password});
@@ -50,13 +68,15 @@ const ProjectNew = ({history}) => {
         }
 
     return (
-        <div className='main__newproj' >
-            <h1> Тут можно создать новый проект </h1>
+		<>
+		{!loadProject?<div>loading...</div>:(
+			<div className='main__newproj' >
+            <h1> Тут можно редактировать проект </h1>
             <form className='form' onSubmit={onSubmit}>
             <input 
 
                 type='text'
-                placeholder='Название проекта'
+                placeholder={project.title}
                 name='title'
                 value={title}
                 onChange={e => onChange(e)}/>
@@ -106,12 +126,18 @@ const ProjectNew = ({history}) => {
 
 
 
-            <button  type="submit"> Создать новый проект</button>
-
+            <button  type="submit">Сохранить</button>
+			
+			<button  onClick={Redirect}>Ничего не менять</button>
             </form>
+			
         </div>
+
+		)}
+        
+		</>
     )
 }
 
 
-export default ProjectNew
+export default ProjectEdit
