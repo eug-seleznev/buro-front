@@ -58,9 +58,9 @@ const Project = ({match, history}) => {
     }
 
     return (
-        <div>
+        <div >
             {!loaded ? <p> loading...</p>: (
-                <div className="one__proj__main">
+                <div  className="one__proj__main">
                     <h1>{project.title}</h1>
 
                     <br>
@@ -69,24 +69,47 @@ const Project = ({match, history}) => {
                     
                     {!sprintsLoad ? <p> loading..</p> : (
                         <div>
-                            
-                            
-                        <h3> Текущие спринты: </h3>
-
-                        {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
+                            <table  >
+                            <thead>
+    <tr>
+        
+      <th >В работе</th>
+      <th  ></th>
+      <th >Готово</th>
+    </tr>
+   
+        
+      <tr  >Дата создания</tr>
+      <tr  >Задачи</tr>                 
+      <tr  >Статус</tr>   
+   </thead>
+   <tbody>
+      
+       {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
 
                         
                             return (
-                                <div key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                            <p>
-                                Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи:  
+                                <tr>
+                                <tr key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}> </tr>
+                            <th>
+                                Дата создания: {sprint.dateOpen.slice(0, 16)} |
+                                <tr>Задачи:  
                                 {sprint.tasks.filter(task => task.taskStatus).length}/
-                                {sprint.tasks.length} | 
-                                { 'Статус: В работе'}
-                            </p>
-                        </div>
+                                {sprint.tasks.length}</tr>  | 
+                                <tr>{ 'Статус: В работе'}</tr>
+                                
+                            </th>
+                       </tr>
                             )
                         })}
+        
+        )
+   
+     
+  </tbody> </table>  
+                        <h3> Текущие спринты: </h3>
+
+                        
 
                             <br />
                             <h3> Завершенные спринты</h3>
@@ -111,7 +134,7 @@ const Project = ({match, history}) => {
                         )
                         })}
                         <br />
-                        <div>
+                        <div >
                             <h3>Команда проекта:</h3>
                             <div className="team__name">
                                 <div >Имя</div>

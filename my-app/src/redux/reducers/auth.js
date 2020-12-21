@@ -1,5 +1,5 @@
 
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, CHANGE_USERDATA, CHANGE_AVATAR, CHANGE_LOADED} from '../types'
 
 
 
@@ -7,7 +7,7 @@ const initialState = {
     user: null,
     isAuthenticated: false,
     error: '',
-    
+    loaded: false
 }
 
 export default function(state = initialState, action) {
@@ -22,18 +22,38 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
+                loaded: true,
+             
                 error: ''
                 
             }
             case USER_LOADED:
                 return {
-                    
+                    ...state,
+                    loaded: true,
                     isAuthenticated: true,
                     user: payload
                 }
-    
+                case CHANGE_LOADED:
+                    return {
+                        ...state,
+                        loaded: true
+                    }
             
-
+                case CHANGE_USERDATA:
+                    return {
+                        ...state,
+                      
+                        loaded: false,
+                        msg: payload
+                    }
+                    case CHANGE_AVATAR:
+                        return {
+                            ...state,
+                        
+                            loaded: false,
+                            msg: payload
+                        }
             case AUTH_ERROR:
                 return {
                     ...state,

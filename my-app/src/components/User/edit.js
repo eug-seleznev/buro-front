@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from 'react-redux'
-import {changeData, changeAvatar} from '../../redux/actions/user'
+import {changeData, changeAvatar} from '../../redux/actions/auth'
 import { url } from '../utils/axios';
 
 
@@ -12,7 +12,7 @@ import { Container } from "../../Styles/layout";
 
 const Edit = ({match, history}) => {
 	
-	const loaded = useSelector(state => state.auth.isAuthenticated)
+	const loaded = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
     const dispatch = useDispatch();
     const [formData, setFormData ] = useState({
@@ -23,7 +23,7 @@ const Edit = ({match, history}) => {
 
       
       });
-      
+     const [text, setText] = useState ('') 
 
       const {name, position, email} = formData;
 
@@ -33,31 +33,43 @@ const Edit = ({match, history}) => {
       const handleFile = e => {
         setFile(e.target.files[0])
 	}
-	useEffect (()=> {
-		if (file !== null) {
-			setTimeout(() => {
-			dispatch (changeAvatar(file))
-		}, 200);
-		}
+	// useEffect (()=> {
+	// 	if (file !== null) {
+	// 		setTimeout(() => {
+	// 		dispatch (changeAvatar(file))
+	// 	}, 200);
+	// 	}
 		
 		
-	},[file])
+	// },[file])
     const onChange = e => {
         e.preventDefault(); 
 		console.log (e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value });
      }
      
+	 const changeMsg = () => {
 
+		
+		// setText ('Данные были изменены')
+		// setTimeout(() => {
+		// 	setText ('')
+		// }, 4000);
+	 }
 
      const onSubmit = e => {
         e.preventDefault();
 		console.log(formData)
 		// dispatch(changeData({formData})) так не обязательно
 		dispatch(changeData(formData))
-
-    	
-    
+		if (file !== null && file !== undefined) {
+		
+			dispatch (changeAvatar(file))
+		
+	}
+    setTimeout(() => {
+		history.replace(`/users/me`)
+	}, 200);
            
         }
    
@@ -99,7 +111,7 @@ const Edit = ({match, history}) => {
 			
 			<br/>
 			<br/>
-			<Button  type="submit" value="Submit" >Сохранить</Button>
+			<Button onClick={changeMsg} style={{position:'absolute', marginTop: '100px',marginLeft:'-87px'}} type="submit" value="Submit" >Сохранить</Button>
 				 
 		  </form>
 		  <form >
@@ -109,6 +121,7 @@ const Edit = ({match, history}) => {
                 placeholder='загрузите изображение'
 				onChange={handleFile}></input><br/><br/>
 				</form>
+				<div style={{opacity: `${text !==''?1:0}`, transition:'500ms ease opacity', marginTop: '70px'}}>{text}</div>
 				</>
              
    )}

@@ -21,6 +21,7 @@ const Main = ({history}) => {
     // const auth = useSelector(state => state.auth.isAuthenticated)
     const loaded = useSelector(state => state.news.loaded)
     const listNews = useSelector(state => state.news.news)
+    const loadedUser = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
 
     const [newsOpen, setOpen] = useState({
@@ -80,6 +81,8 @@ useEffect(()=>{
 },[])
 
     return (
+        <>
+        {!loadedUser ? <p> loading..</p> : (
 <div className='main__container'>
     <div className='main__profile'>
         <img className='main__profile__logo' src={`${url}/${user.avatar}`}/>
@@ -150,8 +153,8 @@ useEffect(()=>{
             </div>
             }
             
-</div>
-
+</div>)}
+</>
       )
 }
 
