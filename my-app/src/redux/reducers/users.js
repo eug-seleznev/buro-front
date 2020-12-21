@@ -41,18 +41,7 @@ export default function(state = initialState, action) {
                         loaded: true,
                         msg: payload
                     }
-                    case CHANGE_USERDATA:
-                        return {
-                            ...state,
-                            
-                            msg: payload
-                        }
-                        case CHANGE_AVATAR:
-                            return {
-                                ...state,
-                                
-                                msg: payload
-                            }
+                   
             default: 
                 return state;
     }

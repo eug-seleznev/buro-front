@@ -1,5 +1,5 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ALL_USERS, USER_ERR, CHANGE_PERMISSION, PERM_RETURN, ONE_USER,CHANGE_USERDATA, CHANGE_AVATAR } from "../types";
+import { ALL_USERS, USER_ERR, CHANGE_PERMISSION, PERM_RETURN, ONE_USER,} from "../types";
 
 
 
@@ -71,75 +71,6 @@ export const userPermissions = (perm, id) => async dispatch  => {
           payload: res.data
       })
       // setAuthToken(localStorage.token);
-
-    }
-    catch (err) {
-      const errors = err.response.data.errors;
-      errors.map(error => {
-         return dispatch({
-          type: USER_ERR,
-          payload: error.msg
-      })
-      })
-          
-    } 
-
-}
-export const changeData = (formData) => async dispatch  => {
-  /////////////////////////
-  // let body ={
-  //   name: formData.name,
-  //   email: formData.email,
-  //   position: formData.position,
-    
-  // }
-  //////////////////////
-  try {
-      console.log('hello change', formData)
-      const res = await innerBackend.put(`/users/me`, formData)
-      dispatch({
-          type: CHANGE_USERDATA,
-          payload: res.data
-      })
-  
-
-    }
-    catch (err) {
-      const errors = err.response.data.errors;
-      errors.map(error => {
-         return dispatch({
-          type: USER_ERR,
-          payload: error.msg
-      })
-      })
-          
-    } 
-
-}
-export const changeAvatar = (file) => async dispatch  => {
-
-
-  try {
-  
-  const form = new FormData()
-  if(file){
-      form.append(
-          'file',
-          file
-        )
-  }
-  
-
-      console.log(form.get('file'), 'file HERE')
-   
-
-
-      const res = await innerBackend.put(`/users/me/a`, form)
-      dispatch({
-          type: CHANGE_AVATAR,
-          payload: res.data
-      })
-  
 
     }
     catch (err) {

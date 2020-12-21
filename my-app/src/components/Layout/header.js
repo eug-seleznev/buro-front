@@ -9,14 +9,17 @@ import MenuProfile from './MenuProfile'
 
 
 const HeaderL = () => {
+    const loaded = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
     const [hover, setHover] = useState(false)
     const [open, setOpen] = useState({
         menu: false,
         menuProfile: false
     })
+    
     return (
         <>
+        {!loaded? <div>loaded...</div> :(
         <Header>
             <ItemHead onClick={() => setOpen({menu: !open.menu})} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"  fill={hover ? 'grey' : 'black'}  viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
@@ -31,10 +34,10 @@ const HeaderL = () => {
            
 
         </Header>
-
+)}
         {open.menu && <Menu />}
         {open.menuProfile && <MenuProfile />}
-        </>
+          </>
     )
 }
 

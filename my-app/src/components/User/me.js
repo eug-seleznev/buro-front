@@ -1,15 +1,19 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import './user.css'
 import { url } from '../utils/axios';
 import {Button} from '../../Styles/buttons'
 import styled from 'styled-components'
-
+import { useEffect } from "react";
+import {changeLoaded, loadUser} from '../../redux/actions/auth'
 
 const MyProfile = ({match, history}) => {
     let {id} = match.params;
-    const loaded = useSelector(state => state.auth.isAuthenticated)
+    const dispatch = useDispatch ()
+    const loaded = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
-
+    useEffect (()=> {
+        dispatch (loadUser())
+    },[])
     return (
         <div className="main__users"> 
             <h1> Мой профиль</h1>

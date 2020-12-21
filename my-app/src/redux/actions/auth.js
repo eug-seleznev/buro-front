@@ -1,4 +1,4 @@
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED,CHANGE_AVATAR, CHANGE_USERDATA, CHANGE_LOADED} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 
@@ -86,4 +86,79 @@ export const register = ({formData}) => async dispatch  => {
             
       } 
 
+}
+export const changeData = (formData) => async dispatch  => {
+  /////////////////////////
+  // let body ={
+  //   name: formData.name,
+  //   email: formData.email,
+  //   position: formData.position,
+    
+  // }
+  //////////////////////
+  try {
+      console.log('hello change', formData)
+      const res = await innerBackend.put(`/users/me`, formData)
+      dispatch({
+          type: CHANGE_USERDATA,
+          payload: res.data
+      })
+  
+
+    }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: AUTH_ERROR,
+          payload: error.msg
+      })
+      })
+          
+    } 
+
+}
+export const changeAvatar = (file) => async dispatch  => {
+
+
+  try {
+  
+  const form = new FormData()
+  if(file){
+      form.append(
+          'file',
+          file
+        )
+  }
+  
+
+      console.log(form.get('file'), 'file HERE')
+   
+
+
+      const res = await innerBackend.put(`/users/me/a`, form)
+      dispatch({
+          type: CHANGE_AVATAR,
+          payload: res.data
+      })
+  
+
+    }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: AUTH_ERROR,
+          payload: error.msg
+      })
+      })
+          
+    } 
+
+}
+export const changeLoaded = () =>  dispatch => {
+  return dispatch({
+    type: CHANGE_LOADED,
+    
+  })
 }
