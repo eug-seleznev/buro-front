@@ -1,5 +1,5 @@
 
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION,PERM_RETURN,ONE_USER, CHANGE_USERDATA} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, ALL_USERS, CHANGE_PERMISSION,PERM_RETURN,ONE_USER, CHANGE_USERDATA, CHANGE_AVATAR} from '../types'
 
 
 
@@ -47,6 +47,12 @@ export default function(state = initialState, action) {
                             
                             msg: payload
                         }
+                        case CHANGE_AVATAR:
+                            return {
+                                ...state,
+                                
+                                msg: payload
+                            }
             default: 
                 return state;
     }

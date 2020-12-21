@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from 'react-redux'
-import {changeData} from '../../redux/actions/user'
+import {changeData, changeAvatar} from '../../redux/actions/user'
 import { url } from '../utils/axios';
 
 
@@ -17,9 +17,9 @@ const Edit = ({match, history}) => {
     const dispatch = useDispatch();
     const [formData, setFormData ] = useState({
         
-        name: '', 
-        position: '',  
-        email: '', 
+        name: user.name, 
+        position: user.position,  
+        email: user.email, 
 
       
       });
@@ -32,10 +32,19 @@ const Edit = ({match, history}) => {
 
       const handleFile = e => {
         setFile(e.target.files[0])
-    }
+	}
+	useEffect (()=> {
+		if (file !== null) {
+			setTimeout(() => {
+			dispatch (changeAvatar(file))
+		}, 200);
+		}
+		
+		
+	},[file])
     const onChange = e => {
         e.preventDefault(); 
-
+		console.log (e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value });
      }
      
@@ -47,7 +56,7 @@ const Edit = ({match, history}) => {
 		// dispatch(changeData({formData})) так не обязательно
 		dispatch(changeData(formData))
 
-    //dispatch (changeAvatar({file}))
+    	
     
            
         }

@@ -14,6 +14,7 @@ export const GET_EMPLOYE = 'get_users';
 export const CHANGE_PERMISSION = 'change_permission';
 export const ONE_USER = 'get_one'
 export const CHANGE_USERDATA = 'change_user_data';
+export const CHANGE_AVATAR = 'change_avatar'
 //user errors
 export const USER_ERR = 'get_all_users_error'
 
