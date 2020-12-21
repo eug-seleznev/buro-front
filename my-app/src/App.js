@@ -30,6 +30,8 @@ import Sprint from './components/Projects/Sprint';
 import Main from './components/Main/index'
 import Permissions from './components/Superadmin/permissions';
 import Superadmin from './components/Superadmin/index.js';
+import { createBrowserHistory } from "history";
+import MyProjects from './components/Projects/My';
 
 
 
@@ -37,6 +39,7 @@ import Superadmin from './components/Superadmin/index.js';
 
 const App = () => {
   const dispatch = useDispatch();
+  const history = createBrowserHistory();
 
   const auth = useSelector(state => state.auth.isAuthenticated)
   //chek auth token on render
@@ -50,7 +53,7 @@ const App = () => {
   return (
     <div className="App">
       {!auth ? <Auth /> : (
-      <Router> 
+      <Router history={history}> 
         
         <Layout /> 
         <Switch>
@@ -71,6 +74,8 @@ const App = () => {
           <Route exact path="/office" component={ Office } />
           {/* projects */}
           <Route exact path="/projects" component={ Projects } />
+          <Route exact path="/projects/my" component={ MyProjects } />
+
           <Route exact path="/projects/:id" component={ Project } />
           <Route exact path="/projects/:id/:id" component={ Sprint } />
 

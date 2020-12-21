@@ -92,7 +92,7 @@ const Sprint = ({match, history}) => {
                     <div >
                                   <h1>{sprint.status?'Выполненные задачи:':'Текущие задачи:'}</h1> 
 
-                        {taskArr.tasks.map((task, ind) => {
+                        {taskArr.tasks.filter(task => task.taskStatus).map((task, ind) => {
                             return (
                               
                                 <div key={ind} className="sprint__tasks">
@@ -111,6 +111,29 @@ const Sprint = ({match, history}) => {
                                 </div>
                                  )
                         })}
+
+                        {sprint.status && <div>
+                            <h3>невыполненные задачи</h3>
+                            {taskArr.tasks.filter(task => !task.taskStatus).map((task, ind) => {
+                            return (
+                              
+                                <div key={ind} className="sprint__tasks">
+                                    <p></p>
+                                    <form>
+                                    <div>
+                                      {/* task.taskTitle == 0?????? */}
+                                    <p>#{ind+1} / {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
+                                
+                                  <label style={{display:`${sprint.status?'none':'block'}`}}> завершить задачу</label>
+                                <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
+
+                                </div>
+                                    </form>
+                                    
+                                </div>
+                                 )
+                        })}
+                          </div>}
                         
                     </div>
              

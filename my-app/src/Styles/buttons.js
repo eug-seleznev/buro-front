@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const Button =  styled.a`
+export const Button =  styled.button`
   display: inline-block;
   border-radius: 3px;
   padding: 0.5rem 0;
