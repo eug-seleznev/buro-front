@@ -275,7 +275,7 @@ export const addToChosen = (id) => async dispatch  => {
 }
 
 export const finishProject = (id) => async dispatch  => {
-    console.log ('eto id????',id)
+   
     try {
         const res = await innerBackend.put(`projects/finish/${id}`)
         dispatch({

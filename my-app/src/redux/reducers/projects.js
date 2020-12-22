@@ -107,7 +107,7 @@ export default function(state = initialState, action) {
                     return {
                         ...state,
                         msg: payload,
-                   
+                        loaded: false,
                     }
             case FINISH_SPRINT:
                 return {
