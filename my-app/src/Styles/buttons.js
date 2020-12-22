@@ -12,4 +12,9 @@ export const Button =  styled.button`
   border: 2px solid black;
   background: ${props => !props.primary ? "white" : "palevioletred"};
 
+&:hover{
+  color: "red";
+}
+
+
 `
