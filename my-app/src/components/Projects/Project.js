@@ -69,7 +69,31 @@ const Project = ({match, history}) => {
                     
                     {!sprintsLoad ? <p> loading..</p> : (
                         <div>
-                            <table  >
+                           <table>
+<tbody>
+    <tr>
+        <td></td>
+        <td>В работе</td>
+        <td>Готово</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
                             <thead>
     <tr>
         
@@ -82,7 +106,7 @@ const Project = ({match, history}) => {
       <tr  >Дата создания</tr>
       <tr  >Задачи</tr>                 
       <tr  >Статус</tr>   
-   </thead>
+   
    <tbody>
       
        {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
