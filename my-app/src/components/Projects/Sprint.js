@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef} from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addTasks, finishSprint, finishTask, getSprint } from "../../redux/actions/projects";
+import { addTasks, finishSprint, finishTask, getSprint,addToChosen } from "../../redux/actions/projects";
 import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from "react-hook-form";
 import './sprint.css'
-
+import {Button} from '../../Styles/buttons'
 
 
 const Sprint = ({match, history}) => {
@@ -14,7 +14,7 @@ const Sprint = ({match, history}) => {
     const taskArr = useSelector(state => state.projects.sprint)
     // const project = useSelector(state => state.projects.project)
     const loading = useSelector(state => state.projects.sprintLoad)
-
+    const msg = useSelector(state => state.projects.msg)
 
 
     const { register, control, handleSubmit, reset, watch } = useForm({
@@ -52,7 +52,12 @@ const Sprint = ({match, history}) => {
     }, [])
 
 
-
+ 
+    const chosenSprint = (e) => {
+      dispatch(addToChosen(id));
+    console.log ('hi')
+     
+  }
    
     const onChange = (e) => {
        
@@ -86,7 +91,8 @@ const Sprint = ({match, history}) => {
         <div className="sprint__main">
            {!loading ? <p> loading...</p> : (
              <>
-          <div>
+          <div style={{
+                            marginTop:'200px',filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px', padding:'20px', height:'fit-content',width:'400px'}}>
             
                
                     <div >
@@ -95,14 +101,14 @@ const Sprint = ({match, history}) => {
                         {taskArr.tasks.map((task, ind) => {
                             return (
                               
-                                <div key={ind} className="sprint__tasks">
-                                    <p></p>
-                                    <form>
-                                    <div>
+                                <div key={ind} >
+                                  
+                                    <form >
+                                    <div className="sprint__tasks">
                                       {/* task.taskTitle == 0?????? */}
-                                    <p>#{ind+1} / {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
+                                    <p className="sprint__row">{ind+1}.  {task.taskTitle!==''?task.taskTitle:'Без названия'}</p>
                                 
-                                  <label style={{display:`${sprint.status?'none':'block'}`}}> завершить задачу</label>
+                                  <label style={{display:`${sprint.status?'none':'block'}`}}></label>
                                 <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
 
                                 </div>
@@ -122,9 +128,9 @@ const Sprint = ({match, history}) => {
                                     <form>
                                     <div>
                                       {/* task.taskTitle == 0?????? */}
-                                    <p>#{ind+1} / {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
+                                    <p>{ind+1}.  {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
                                 
-                                  <label style={{display:`${sprint.status?'none':'block'}`}}> завершить задачу</label>
+                                  <label style={{display:`${sprint.status?'none':'block'}`}}></label>
                                 <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
 
                                 </div>
@@ -137,14 +143,14 @@ const Sprint = ({match, history}) => {
                         
                     </div>
              
-                <button onClick={()=>handleBack()} style={{marginTop: '20px'}}>Вернуться к проекту</button>
-                <button onClick={handleSprint} style={{display:`${sprint.status?'block':'none'}`,marginTop: '20px'}}> Восстановить спринт</button>
+                <Button onClick={()=>handleBack()} style={{marginTop: '20px'}}>Вернуться к проекту</Button>
+                <Button onClick={handleSprint} style={{display:`${sprint.status?'block':'none'}`,marginTop: '20px'}}> Восстановить спринт</Button>
             </div>
 <br></br>
-<div style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right'}}>
+<div style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right',marginTop:'200px',filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px', padding:'20px', height:'fit-content'}}>
 
 
-<h1> Добавить задачи в спринт:</h1>
+<h1> Добавить задачи </h1>
     <form onSubmit={handleSubmit(onSubmit)}>
       <ul style={{ listStyleType: 'none'}}>
 
@@ -164,23 +170,25 @@ const Sprint = ({match, history}) => {
               placeholder="Объем в часах" 
             />
             
-            <button type="button" style={{display: `${fields.length===1?'none':'block'}`, marginTop: '10px', marginBottom: '10px',marginLeft:'auto', marginRight:'0'}} onClick={() => remove(index)}>Удалить</button>
+            <Button type="button" style={{display: `${fields.length===1?'none':'block'}`, marginTop: '10px', marginBottom: '10px',marginLeft:'auto', marginRight:'0'}} onClick={() => remove(index)}>Удалить</Button>
           </li>
         ))}
       </ul>
       
-      <button
+      <Button
         type="button"
         onClick={() => append({ firstName: "appendBill", lastName: "appendLuo" })}
       >
         Добавить
-      </button>
-      <input type="submit"></input>
+      </Button>
+      <Button type="submit">Сохранить</Button>
     </form>
 
             <br>
             </br>
-            <button onClick={handleSprint}>Завершить спринт</button>
+            <Button onClick={handleSprint}>Завершить спринт</Button>
+            <br></br> <br></br>
+            <Button onClick={chosenSprint}>Добавить спринт в избранное</Button>
             </div>
             </>
                )}

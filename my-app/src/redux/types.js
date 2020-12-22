@@ -22,12 +22,12 @@ export const USER_ERR = 'get_all_users_error'
 //PROJECTS
 export const EDIT_PROJECT = 'edit_project';
 export const ALL_PROJECTS = 'all_projects';
-export const GET_PROJECT = 'create_project';
+export const GET_PROJECT = 'get_project';
 export const CREATE_SPRINT = 'create_sprint';
 export const UPDATE_PROJECT = 'project_updated';
 export const PROJECT_ID = 'project_updated';
 export const DELETE_PROJECT = 'delete_project'
-
+export const FINISH_PROJECT = 'finish_project'
     //sprints
 export const ADD_SPRINT = 'crate_new_sprint';
 export const GET_SPRINT = 'get_sprint';
@@ -36,6 +36,7 @@ export const FINISH_TASK = 'finish_task'
 export const SPRINT_ERROR = 'sprint_error';
 export const ALL_SPRINT = 'get_project_sprints'
 export const FINISH_SPRINT = 'finish_sprint' 
+export const ADD_SPRINT_TO_CHOSEN = 'add_sprint_to_chosen' 
 //teams
 export const JOIN_TEAM = 'join_to_team'
 //projects errors
