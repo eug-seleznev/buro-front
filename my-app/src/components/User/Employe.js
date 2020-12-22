@@ -22,7 +22,7 @@ const Employe = ({match, history}) => {
         {!loaded? (<div>loading...</div>):
           ( <div>
               <div style={{display:'flex', height:'150px',marginLeft:'120px'}}>
-              <img  style={{width:'150px'}} className='logo' src={`${url}/${user.avatar}`}/>
+              <img  style={{width:'150px', objectFit:'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
               <div>
                   <h1 style={{marginLeft:'30px', textAlign:'left'}}>
                     {user.name}

@@ -12,6 +12,7 @@ import { allTickets } from "../../redux/actions/tikets";
 import { allProjects } from '../../redux/actions/projects';
 import { Table } from '../../Styles/tabel';
 import { Container } from '../../Styles/layout';
+import { loadUser } from '../../redux/actions/auth';
 // import { allUsers } from "../../redux/actions/user";
 
 const Projects = ({history}) => {
@@ -23,11 +24,14 @@ const Projects = ({history}) => {
 
     useEffect(() => {
         dispatch(allProjects())
+        
     }, [])
-    
+    useEffect (()=>{
+       console.log (projects)
+    },[loaded])
     return (
         <Container> 
-            <h1> Все проекты</h1>
+            <h1> Проекты в работе</h1>
             {!loaded ? <p>loading...</p> : (
                 <div>
                     <p> количество проектов: {projects.length} </p>
@@ -43,10 +47,38 @@ const Projects = ({history}) => {
     </tr>
    </thead>
    <tbody>
-       {projects.map((project,index) => {
+       {projects.filter(project => !project.status).map((project,index) => {
            return(  
         <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
            
+            <td>{project.title}</td>
+            <td>{project.dateStart.slice(0, 10)}</td>
+            <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>
+            <td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</td>
+            <td>{project.sprints.filter(sprint => sprint.status).length}/{project.sprints.length}</td>
+        </tr>
+        )
+       })}
+     
+  </tbody>
+</Table>
+<h1 style={{marginTop: '100px'}}> Завершенные проекты</h1>
+<Table>
+  <thead>
+    <tr>
+        
+      <th>Название</th>
+      <th>Дата начала</th>
+      <th>Дедлайн</th>
+      <th>Статус</th>
+      <th>Спринты</th>
+    </tr>
+   </thead>
+   <tbody >
+       {projects.filter(project => project.status).map((project,index) => {
+           return(  
+        <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
+         
             <td>{project.title}</td>
             <td>{project.dateStart.slice(0, 10)}</td>
             <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>

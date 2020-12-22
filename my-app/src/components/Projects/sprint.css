@@ -6,5 +6,11 @@
 	width: 100%;
 }
 .sprint__tasks {
+	display: flex;
+	flex-direction: row;
 	margin-left: 0;
+	align-items: baseline;
+}
+.sprint__row {
+	margin-right: 25px;
 }
