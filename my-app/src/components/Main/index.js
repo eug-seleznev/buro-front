@@ -24,6 +24,8 @@ const Main = ({history}) => {
     const loadedUser = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
 
+    const sprint = useSelector(state => state.projects.sprint)
+
     const [newsOpen, setOpen] = useState({
         status: false,
         post: '',
@@ -77,7 +79,7 @@ const Main = ({history}) => {
 
 useEffect(()=>{
  dispatch(allNews())
- console.log(user,'hiiiiiiiiiiii')
+ 
 },[])
 
     return (
@@ -95,7 +97,12 @@ useEffect(()=>{
     
     <div className='main__projects'>
         <h3>Мои проекты</h3>
-        <table>
+        <table className='main__proj__table'>
+                <div     className='projects__tr top' >
+                    <p className='table_td'>Название</p>
+                    <p className='table_td'>Тип</p>
+                    <p className='table_td'>Спринты</p>
+                </div>
         {user.projects.map((el,i)=>{
 
             return(
@@ -114,8 +121,13 @@ useEffect(()=>{
 
         <h3>Мои задачи</h3>
         <table>
+                 <div     className='projects__tr top' >
+                    <p className='table_td'>Название</p>
+                    <p className='table_td'>Тип</p>
+                    <p className='table_td'>Спринты</p>
+                </div>
         {user.projects.map((el,i)=>{
-
+            
             return(
                 <div     className='projects__tr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
                     <p className='table_td'>{el.title}</p>

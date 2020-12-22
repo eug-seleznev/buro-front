@@ -17,9 +17,7 @@ const HeaderL = () => {
         menu: false,
         menuProfile: false
     })
-    useEffect(()=>{
-        console.log(user)
-    },[])
+
     return (
         <>
         {!loaded? <div>loaded...</div> :(
