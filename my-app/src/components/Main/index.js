@@ -109,8 +109,23 @@ useEffect(()=>{
         </table>
     </div>
 
+    
+    <div className='main__tasks'>
 
+        <h3>Мои задачи</h3>
+        <table>
+        {user.projects.map((el,i)=>{
 
+            return(
+                <div     className='projects__tr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
+                    <p className='table_td'>{el.title}</p>
+                    <p className='table_td'>{el.type}</p>
+                    <p className='table_td'>{el.sprints.length}</p>
+                </div>
+            )
+        })}
+        </table>
+    </div>
 
 
     <div className='main__news'>

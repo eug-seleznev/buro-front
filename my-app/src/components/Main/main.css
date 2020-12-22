@@ -9,9 +9,11 @@
     grid-template-areas: 
     'profile profile'
     'projects news'
+    'tasks news'
     ;
-    grid-template-columns:15vw 40vw;
-    column-gap: 5vw;
+    grid-template-columns:35vw 1fr;
+    column-gap: 2vw;
+    row-gap: 40px;
     text-align: left;
 }
     .main__profile{
@@ -64,6 +66,14 @@
                 .projects__tr:hover{
                     background-color: rgb(211, 211, 211);
                 }
+    .main__tasks{
+        grid-area: tasks;
+        background-color: white;
+        padding: 15px;
+        filter: drop-shadow(0 0 5px black);
+
+    }
+
     .main__news{
         grid-area: news;
         background-color: white;

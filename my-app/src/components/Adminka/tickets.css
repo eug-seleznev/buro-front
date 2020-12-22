@@ -1,5 +1,42 @@
 .main__alltick  {
+	margin-top: 10vh;
 	width: 50vw;
 	margin-left:25vw;
 	align-items: center;
 }
+.form__alltick{
+	display: grid;
+	grid-template-areas: 
+	'title title emerg pass'
+	'texts texts texts texts'
+	'span screensh screensh subm'
+	;
+	grid-template-columns: 1fr 2fr 1fr 1fr;
+	column-gap: 40px;
+	row-gap: 20px;
+	
+}
+	.alltik__1{
+		grid-area: title;
+	}
+	.alltik__2{
+		grid-area: emerg;
+	}
+	.alltik__3{
+		grid-area: pass;
+	}
+	.alltik__4{
+		grid-area: screensh;
+	}
+	.alltik__5{
+		grid-area: texts;
+		resize: none;
+		width: 99.35%;
+		height: 200px;
+	}
+	.alltik__6{
+		grid-area: subm;
+	}
+	.alltik__span{
+		grid-area: span;
+	}
