@@ -10,7 +10,7 @@ import {
   
 } from "react-router-dom";
 import Layout from './components/Layout';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { loadUser } from './redux/actions/auth';
 
 //pages
@@ -42,13 +42,16 @@ import MyProjects from './components/Projects/My';
 const App = () => {
   const dispatch = useDispatch();
   const history = createBrowserHistory();
-
+  const [load, setLoad] = useState(false)
   const auth = useSelector(state => state.auth.isAuthenticated)
   //chek auth token on render
   useEffect(() => {
     dispatch(loadUser());
+    setTimeout(() => {
+      setLoad(true)
+    }, 100)
     console.log(localStorage.token) //for postman tests
-  }, [])
+  }, [auth])
 
 
 
