@@ -21,6 +21,7 @@ const Users = ({history}) => {
 
     useEffect(() => {
         dispatch(allUsers())
+        console.log(users)
     }, [])
     return (
         <Container> 

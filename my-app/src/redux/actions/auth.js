@@ -1,4 +1,4 @@
-import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED,CHANGE_AVATAR, CHANGE_USERDATA, CHANGE_LOADED} from '../types'
+import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED,CHANGE_AVATAR, CHANGE_USERDATA, CHANGE_LOADED, ADD_SPRINT_TO_CHOSEN, SPRINT_ERROR} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 
@@ -157,6 +157,31 @@ export const changeAvatar = (file) => async dispatch  => {
     } 
 
 }
+
+
+export const addToChosen = (id) => async dispatch  => {
+  console.log ('hi sprint', id)
+  try {
+      const res = await innerBackend.put(`projects/favsprint/${id}`)
+      dispatch({
+          type: ADD_SPRINT_TO_CHOSEN,
+          payload: res.data
+      })
+      }
+    catch (err) {
+      const errors = err.response.data.errors;
+      errors.map(error => {
+         return dispatch({
+          type: SPRINT_ERROR,
+          payload: error.msg
+      })
+      })            
+    
+  }
+
+}
+
+
 export const changeLoaded = () =>  dispatch => {
   return dispatch({
     type: CHANGE_LOADED,

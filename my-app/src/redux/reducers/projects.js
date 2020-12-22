@@ -115,12 +115,12 @@ export default function(state = initialState, action) {
                     msg: payload,
                     error: ''
                 }
-                case ADD_SPRINT_TO_CHOSEN:
-                    return {
-                        ...state,
+                // case ADD_SPRINT_TO_CHOSEN:
+                //     return {
+                //         ...state,
                     
-                        msg: payload
-                    }
+                //         msg: payload
+                //     }
             case CREATE_FAIL:
                 return {
                     ...state,
