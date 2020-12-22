@@ -23,11 +23,14 @@ const Projects = ({history}) => {
 
 
     useEffect(() => {
-        dispatch(allProjects())
+        
         
     }, [])
     useEffect (()=>{
-       console.log (projects)
+        if (!loaded){
+           dispatch(allProjects()) 
+        }
+        
     },[loaded])
     return (
         <Container> 
