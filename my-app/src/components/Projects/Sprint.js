@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef} from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addTasks, finishSprint, finishTask, getSprint,addToChosen } from "../../redux/actions/projects";
+import { addTasks, finishSprint, finishTask, getSprint, } from "../../redux/actions/projects";
+import { addToChosen } from '../../redux/actions/auth'
 import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from "react-hook-form";
 import './sprint.css'
 import {Button} from '../../Styles/buttons'
@@ -15,6 +16,7 @@ const Sprint = ({match, history}) => {
     // const project = useSelector(state => state.projects.project)
     const loading = useSelector(state => state.projects.sprintLoad)
     const msg = useSelector(state => state.projects.msg)
+    const user = useSelector(state => state.auth.user)
 
 
     const { register, control, handleSubmit, reset, watch } = useForm({
@@ -46,16 +48,16 @@ const Sprint = ({match, history}) => {
   
     useEffect(() => {
         
-            dispatch(getSprint(id));
-            
-           
+            dispatch(getSprint(id));    
+           console.log(user)
     }, [])
 
 
  
     const chosenSprint = (e) => {
+
       dispatch(addToChosen(id));
-    console.log ('hi')
+
      
   }
    

@@ -43,13 +43,21 @@ export const Header =  styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    left: 85vw;
+    right: 20vw;
     top: 2vh;
 `
 
 export const ItemHead = styled.div`
     margin-left: 2vw;
     align-self: center;
+    
+
+    svg{
+        height:30px;
+        width: 30px;
+        margin-top:10px;
+        margin-bottom:auto;
+    }
 `
 
 

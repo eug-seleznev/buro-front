@@ -23,6 +23,7 @@ const Main = ({history}) => {
     const listNews = useSelector(state => state.news.news)
     const loadedUser = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
+    const allUsers = useSelector(state => state.users.users)
 
     const sprint = useSelector(state => state.projects.sprint)
 
@@ -79,7 +80,7 @@ const Main = ({history}) => {
 
 useEffect(()=>{
  dispatch(allNews())
- 
+ console.log(user,'iiiiiiiiiiiiiiiiiiiiiiii',allUsers)
 },[])
 
     return (
