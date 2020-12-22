@@ -79,7 +79,7 @@ const Main = ({history}) => {
 
 useEffect(()=>{
  dispatch(allNews())
- 
+ console.log(user,'iiiiiiiiiiiiiiiiiiiiiiii')
 },[])
 
     return (
