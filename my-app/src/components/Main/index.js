@@ -24,6 +24,8 @@ const Main = ({history}) => {
     const loadedUser = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
 
+    const sprint = useSelector(state => state.projects.sprint)
+
     const [newsOpen, setOpen] = useState({
         status: false,
         post: '',
@@ -77,7 +79,7 @@ const Main = ({history}) => {
 
 useEffect(()=>{
  dispatch(allNews())
- console.log(user,'hiiiiiiiiiiii')
+ 
 },[])
 
     return (
@@ -85,7 +87,7 @@ useEffect(()=>{
         {!loadedUser ? <p> loading..</p> : (
 <div className='main__container'>
     <div className='main__profile'>
-        <img className='main__profile__logo' src={`${url}/${user.avatar}`}/>
+        <img className='main__profile__logo' src={`${url}/${user != null? (user!= undefined? user.avatar:''):''}`}/>
         <div className='main__profile__name'>{user.name}</div>
         <div className='main__profile__position'>Position: {user.position}</div>
     </div>
@@ -95,7 +97,12 @@ useEffect(()=>{
     
     <div className='main__projects'>
         <h3>Мои проекты</h3>
-        <table>
+        <table className='main__proj__table'>
+                <div     className='projects__tr top' >
+                    <p className='table_td'>Название</p>
+                    <p className='table_td'>Тип</p>
+                    <p className='table_td'>Спринты</p>
+                </div>
         {user.projects.map((el,i)=>{
 
             return(
@@ -109,8 +116,28 @@ useEffect(()=>{
         </table>
     </div>
 
+    
+    <div className='main__tasks'>
 
-
+        <h3>Мои задачи</h3>
+        <table>
+                 <div     className='projects__tr top' >
+                    <p className='table_td'>Название</p>
+                    <p className='table_td'>Тип</p>
+                    <p className='table_td'>Спринты</p>
+                </div>
+        {user.projects.map((el,i)=>{
+            
+            return(
+                <div     className='projects__tr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
+                    <p className='table_td'>{el.title}</p>
+                    <p className='table_td'>{el.type}</p>
+                    <p className='table_td'>{el.sprints.length}</p>
+                </div>
+            )
+        })}
+        </table>
+    </div>
 
 
     <div className='main__news'>

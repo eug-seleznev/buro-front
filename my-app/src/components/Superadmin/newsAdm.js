@@ -124,6 +124,7 @@ useEffect(()=>{
 				{!loaded? <p>loading...</p> : 
             
             <div className='table'>
+                <h2>Новости:</h2>
                 {listNews.map((el,i)=>{
                     
                     return(

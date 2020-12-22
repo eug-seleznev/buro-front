@@ -1,22 +1,37 @@
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react";
+import { useDispatch, useSelector,  } from "react-redux"
+import { useEffect, useRef } from "react";
 import { permissionReturn, userPermissions } from "../../redux/actions/user";
 import  News  from './newsAdm'
+import './superadmin.css'
 const Superadmin = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.auth.user)
+	const admBody = useRef(null)
+
+	const newsScroll = () => {
+		window.scrollTo({
+			top: 9000,
+			behavior: "smooth"
+		})
+	}
+
 	useEffect(()=>{
 		dispatch (permissionReturn())
 	},[])
     return (
-        <div style={{textAlign:'center',width:'200px',marginLeft:'110px'}}> 
+        <div className='superadmin__cont' > 
 
 			<h1> Админка </h1>
-			<NavLink to='/admin/permissions'  >Страница доступов</NavLink>
+			
+			<div className='link__cont'>
+			<NavLink className='nav__link__sadm' to='/admin/permissions'  >Страница доступов</NavLink>
 			<br/>
 			
-			<NavLink to='/admin/editproj'  >Редактировать проекты</NavLink>
+			<NavLink className='nav__link__sadm' to='/admin/editproj'  >Редактировать проекты</NavLink>
+			<div className='nav__link__sadm' onClick={()=>newsScroll()}>Создать новость</div>
+			</div>
+			
 			<News permissions={user.permissions} />
 
 		

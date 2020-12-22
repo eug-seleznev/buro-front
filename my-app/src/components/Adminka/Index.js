@@ -1,6 +1,7 @@
 import  {useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { newTicket } from '../../redux/actions/tikets';
+import './tickets.css'
 
 const Admin = () => {
     const dispatch = useDispatch();
@@ -44,46 +45,50 @@ const Admin = () => {
 
     return (
         <div className="main__alltick">
-            <h1> Если у вас есть проблема с компом - вы создать заявку тут //wip</h1>
-            <form onSubmit={onSubmit}>
-            <input 
+            <h1> Если у вас есть проблема с компом - вы можете создать заявку тут //wip</h1>
+            <form className='form__alltick' onSubmit={onSubmit}>
+            <input className='alltik__1'
                 type='text'
-                placeholder='title'
+                placeholder='Проблема'
                 name='problemname'
                 value={problemname}
                 onChange={e => onChange(e)}/>
 
-           <input 
-                type='text'
-                placeholder='about'
-                name='text'
-                value={text}
-                onChange={e => onChange(e)}/>
+         
 
-
-            <input 
+            <input className='alltik__2'
                 type='text'
                 placeholder='срочность'
                 name='emergency'
                 value={emergency}
                 onChange={e => onChange(e)}/>
 
-            <input 
+            <input className='alltik__3'
                 type='text'
                 placeholder='пароль от компа (опционально)'
                 name='pcpass'
                 value={pcpass}
                 onChange={e => onChange(e)}/>
 
-            <input 
+            <span className='altik__span'>{'Скриншот проблемы (опционально):'}</span>
+            <input className='alltik__4'
                 type='file'
+                
                 placeholder='скриншот проблемы (опционально)'
                 onChange={handleFile}/>
 
 
 
 
-            <button  type="submit" value="Submit"> Отправить проблему</button>
+            <button className='alltik__6' type="submit" value="Submit"> Отправить проблему</button>
+
+            <textarea className='alltik__5'
+                // type='text'
+                placeholder='Описание'
+                name='text'
+                value={text}
+                onChange={e => onChange(e)}/>
+
 
             </form>
         </div>

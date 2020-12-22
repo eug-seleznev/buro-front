@@ -28,6 +28,7 @@ const Project = ({match, history}) => {
 
     useEffect(() => {
         dispatch(getProject(id));
+        console.log(sprint,'sritttttttttttttttttttttttttt')
     }, [])
 
 
