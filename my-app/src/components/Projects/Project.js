@@ -49,7 +49,7 @@ const Project = ({match, history}) => {
     const handleEnd = () => {
         
         dispatch(finishProject(id))
-        return history.push(`./`)
+        return history.push(`.`)
 
     }
     const handleDelete = () => {
