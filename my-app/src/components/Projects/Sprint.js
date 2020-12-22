@@ -15,6 +15,7 @@ const Sprint = ({match, history}) => {
     // const project = useSelector(state => state.projects.project)
     const loading = useSelector(state => state.projects.sprintLoad)
     const msg = useSelector(state => state.projects.msg)
+    const user = useSelector(state => state.auth.user)
 
 
     const { register, control, handleSubmit, reset, watch } = useForm({
@@ -47,6 +48,7 @@ const Sprint = ({match, history}) => {
     useEffect(() => {
         
             dispatch(getSprint(id));
+ console.log(user,'iiiiiiiiiiiiiiiiiiiiiiii')
             
            
     }, [])
@@ -54,6 +56,8 @@ const Sprint = ({match, history}) => {
 
  
     const chosenSprint = (e) => {
+      console.log('sprint tыk')
+
       dispatch(addToChosen(id));
     console.log ('hi')
      
