@@ -58,124 +58,176 @@ const Project = ({match, history}) => {
     }
 
     return (
-        <div >
+        <div  >
             {!loaded ? <p> loading...</p>: (
                 <div  className="one__proj__main">
-                    <h1>{project.title}</h1>
+                    
+                    <h1 style={{ fontSize:'56px'}}>{project.title}</h1>
 
                     <br>
                     </br>
-                    <button onClick={createSprint} style={{display:`${user.permission==='user'?'none':'block'}`}}> {user.permission==='user'?'':'Создать спринт'}</button>
+                    
                     
                     {!sprintsLoad ? <p> loading..</p> : (
-                        <div>
-                           <table>
-<tbody>
-    <tr>
-        <td></td>
-        <td>В работе</td>
-        <td>Готово</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-    </tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+                        <div >
+                                <div style={{
+                            filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px'}}>
+                            <h1 >Спринты</h1>
+                            <div style={{display:"flex"}}>
+                            <table style={{width: '40vw'}} >
                             <thead>
     <tr>
         
-      <th >В работе</th>
-      <th  ></th>
-      <th >Готово</th>
+      
+      <th style={{fontSize:'24px', paddingBottom:'20px'}}>В работе</th>
+      
     </tr>
    
         
-      <tr  >Дата создания</tr>
-      <tr  >Задачи</tr>                 
-      <tr  >Статус</tr>   
-   
+     
+   </thead>
    <tbody>
       
        {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
 
                         
                             return (
-                                <tr>
-                                <tr key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}> </tr>
-                            <th>
-                                Дата создания: {sprint.dateOpen.slice(0, 16)} |
+                           <>
+                             <tr>
+                            <th key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                            <br/><tr> Дата создания: {sprint.dateOpen.slice(0, 16)}</tr>
                                 <tr>Задачи:  
-                                {sprint.tasks.filter(task => task.taskStatus).length}/
-                                {sprint.tasks.length}</tr>  | 
-                                <tr>{ 'Статус: В работе'}</tr>
+                                {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</tr>   
+                               
                                 
-                            </th>
-                       </tr>
+                            </th></tr>
+                     </>
                             )
                         })}
+         
         
-        )
    
      
   </tbody> </table>  
-                        <h3> Текущие спринты: </h3>
+  <table style={{ marginLeft:'-2px',width: '40vw'}} >
+                            <thead>
+    <tr>
+        
+      
+      <th style={{fontSize:'24px',
+       paddingBottom:'20px'}}>Готово</th>
+      
+    </tr>
+   
+        
+     
+   </thead>
+   <tbody>
+      
+       {sprints.filter(sprint => sprint.status).map((sprint, i) => {
 
                         
-
-                            <br />
-                            <h3> Завершенные спринты</h3>
-
-                        {sprints.filter(sprint => sprint.status).map((sprint, i) => {
-
-        
-                        return (
-                            <div key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`${id}/${sprint._id}`)}>
-                        <p>
-                        Дата создания: {sprint.dateOpen.slice(0, 16)} | Задачи: 
-                            {sprint.tasks.filter(task => task.taskStatus).length}
-                              выполнено из {sprint.tasks.length} 
-                            {sprint.tasks.length - sprint.tasks.filter(task => task.taskStatus).length ===0 ?
-                                <div style={{width:"10vw", height: "5px", backgroundColor:"green"}}></div>:(
-                                    <div style={{width:"10vw", height: "5px", backgroundColor:"red"}}></div>
-
-                                )
-                                                    }
-                        </p>
-                        </div>
-                        )
+                            return (
+                           <>
+                            <tr className='tr'>
+                               
+                            <th key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                <br/> <tr className='tr'>Дата создания: {sprint.dateOpen.slice(0, 16)}</tr>
+                                <tr className='tr'>Задачи: {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</tr>   
+                               
+                                
+                            </th></tr>  
+                     </>
+                            )
                         })}
+  </tbody> </table> 
+  </div>
                         <br />
-                        <div >
-                            <h3>Команда проекта:</h3>
-                            <div className="team__name">
-                                <div >Имя</div>
-                                 <div className="team__desc">Должность</div>
-                            </div>
-                            <p> {project.team.map(( el, index) => {
-return (
-    <div className="team__part">
-        <div >{el.name}</div>
-        <div className="team__desc">{el.position}</div>
-    </div>
-)
-})} </p>
+
+
+                        <button onClick={createSprint} style={{display:`${user.permission==='user'?'none':'block'}`}}> {user.permission==='user'?'':'Создать спринт'}</button><br/>
+                        </div>
+                        
+                             <div style={{
+                            filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px', paddingBottom:'20px'}}>
+                            <h1 
+                            >Команда проекта</h1>
+                            <div style={{display:"flex"}}>
+                            <table style={{width: '40vw'}} >
+                            <thead>
+    <tr>
+        
+      
+      <th style={{fontSize:'24px', paddingBottom:'20px'}}>Имя</th>
+      
+    </tr>
+   
+        
+     
+   </thead>
+   <tbody >
+      
+   {project.team.map(( el, i) => {
+
+                        
+                            return (
+                           <>
+                             <tr>
+                            <th key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                            <br/><tr> {el.name}</tr>
+                                      
+                                
+                            </th></tr>
+                     </>
+                            )
+                        })}
+         
+        
+   
+     
+  </tbody> </table>  
+  <table style={{ marginLeft:'-2px',width: '40vw'}}  >
+                            <thead>
+    <tr>
+        
+      
+      <th style={{fontSize:'24px',  paddingBottom:'20px'}}>Должность</th>
+      
+    </tr>
+   
+        
+     
+   </thead>
+   <tbody>
+      
+   {project.team.map(( el, i) => {
+
+                        
+                            return (
+                           <>
+                            <tr>
+                               
+                            <th key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                <br/> <tr>{el.position}</tr>
+                                
+                               
+                                
+                            </th></tr>  
+                     </>
+                            )
+                        })}
+         
+        
+   
+     
+  </tbody> </table> 
+  </div>
+                          <br/>
                             <button onClick={hadleTeam}>{project.msg===`Вы были добавлены в команду проекта ${id}`?'Выйти из команды проекта':'Вступить в команду проекта'}</button>
                         </div>
                             <br />
-                        <button onClick={handleDelete} style={{marginBottom: '30px'}}> Удалить проект</button> 
+                            
+                        <button onClick={handleDelete} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'':'Удалить проект'}</button> 
 
 
 

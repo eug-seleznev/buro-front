@@ -1,5 +1,5 @@
 .one__proj__main {
-	width: 50vw;
+	width: 80vw;
 	margin-left:150px;
 	text-align: left;
 }
@@ -21,4 +21,16 @@
 }
 .team__desc {
 	margin-left: 30px;
+}
+.tr {
+	width: 40vw;
+}
+.one__proj__main tr {
+	border:none;
+}
+.one__proj__main td {
+	border:none;
+}
+.one__proj__main th {
+	border:none;
 }
