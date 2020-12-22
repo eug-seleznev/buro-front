@@ -85,7 +85,7 @@ useEffect(()=>{
         {!loadedUser ? <p> loading..</p> : (
 <div className='main__container'>
     <div className='main__profile'>
-        <img className='main__profile__logo' src={`${url}/${user.avatar}`}/>
+        <img className='main__profile__logo' src={`${url}/${user != null? (user!= undefined? user.avatar:''):''}`}/>
         <div className='main__profile__name'>{user.name}</div>
         <div className='main__profile__position'>Position: {user.position}</div>
     </div>

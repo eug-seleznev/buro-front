@@ -1,11 +1,12 @@
 
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {Header, ItemHead} from '../../Styles/layout'
 import { url } from '../utils/axios'
 import Menu from './Menu'
 import MenuProfile from './MenuProfile'
+
 
 
 const HeaderL = () => {
@@ -16,7 +17,9 @@ const HeaderL = () => {
         menu: false,
         menuProfile: false
     })
-    
+    useEffect(()=>{
+        console.log(user)
+    },[])
     return (
         <>
         {!loaded? <div>loaded...</div> :(
@@ -27,7 +30,7 @@ const HeaderL = () => {
              </ItemHead>
 
             <ItemHead onClick={() => setOpen({menuProfile: !open.menuProfile})}>
-                <img width="50px" src={`${url}/${user.avatar||''}`}/>
+                <img width="50px" src={`${url}/${user != null? (user!= undefined? user.avatar:''):''}`}/>
                 <svg xmlns="http://www.w3.org/2000/svg"  width="12" height="12" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"/></svg>   
             </ItemHead>
             
