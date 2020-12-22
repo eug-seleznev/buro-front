@@ -10,11 +10,13 @@ const Superadmin = () => {
 		dispatch (permissionReturn())
 	},[])
     return (
-        <div style={{textAlign:'center',width:'200px',marginLeft:'90px'}}> 
+        <div style={{textAlign:'center',width:'200px',marginLeft:'110px'}}> 
 
 			<h1> Админка </h1>
 			<NavLink to='/admin/permissions'  >Страница доступов</NavLink>
+			<br/>
 			
+			<NavLink to='/admin/editproj'  >Редактировать проекты</NavLink>
 			<News permissions={user.permissions} />
 
 		

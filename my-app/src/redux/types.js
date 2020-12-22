@@ -2,7 +2,9 @@
 export const REGISTER = 'register';
 export const LOGIN = 'login';
 export const USER_LOADED = 'user_loaded'
-
+export const CHANGE_USERDATA = 'change_user_data';
+export const CHANGE_AVATAR = 'change_avatar'
+export const CHANGE_LOADED = 'change_loaded'
 //auth errors
 export const AUTH_ERROR ='auth_error';
 /////////////////////////////
@@ -13,11 +15,12 @@ export const ALL_USERS = 'users';
 export const GET_EMPLOYE = 'get_users';
 export const CHANGE_PERMISSION = 'change_permission';
 export const ONE_USER = 'get_one'
-export const CHANGE_USERDATA = 'change_user_data';
+
 //user errors
 export const USER_ERR = 'get_all_users_error'
 
 //PROJECTS
+export const EDIT_PROJECT = 'edit_project';
 export const ALL_PROJECTS = 'all_projects';
 export const GET_PROJECT = 'create_project';
 export const CREATE_SPRINT = 'create_sprint';

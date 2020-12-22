@@ -20,9 +20,7 @@ const ProjectNew = ({history}) => {
 
       
       });
-      
-      const loaded = useSelector(state => state.projects.loadProject);
-      const project = useSelector(state => state.projects.project);
+   
 
 
       const { title, dateStart, dateFinish, city, type, stage, customer, area} = formData;
