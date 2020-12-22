@@ -1,5 +1,5 @@
 
-import { ADD_SPRINT, ALL_PROJECTS,EDIT_PROJECT, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT, ADD_TASKS, FINISH_TASK, DELETE_PROJECT, FINISH_SPRINT, JOIN_TEAM } from '../types'
+import { ADD_SPRINT, ALL_PROJECTS,EDIT_PROJECT, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT, ADD_TASKS, FINISH_TASK, DELETE_PROJECT, FINISH_SPRINT, JOIN_TEAM,ADD_SPRINT_TO_CHOSEN,FINISH_PROJECT } from '../types'
 
 
 
@@ -103,13 +103,24 @@ export default function(state = initialState, action) {
                     project: payload,
                     error: ''
                 }
-
+                case FINISH_PROJECT:
+                    return {
+                        ...state,
+                        msg: payload,
+                   
+                    }
             case FINISH_SPRINT:
                 return {
                     ...state,
                     msg: payload,
                     error: ''
                 }
+                case ADD_SPRINT_TO_CHOSEN:
+                    return {
+                        ...state,
+                    
+                        msg: payload
+                    }
             case CREATE_FAIL:
                 return {
                     ...state,

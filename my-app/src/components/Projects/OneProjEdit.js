@@ -25,7 +25,7 @@ const ProjectEdit = ({history, match}) => {
 	  
 	  useEffect(() => {
 		dispatch(getProject(id));
-
+        console.log (project)
     }, [])
 	useEffect(() => {
 		if (loadProject ) {

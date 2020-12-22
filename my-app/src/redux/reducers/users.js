@@ -41,7 +41,8 @@ export default function(state = initialState, action) {
                         loaded: true,
                         msg: payload
                     }
-                   
+                    
+                    
             default: 
                 return state;
     }
