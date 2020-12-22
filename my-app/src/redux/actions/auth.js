@@ -65,12 +65,13 @@ export const register = ({formData}) => async dispatch  => {
   // console.log(form.get('email '))
     try {
         const res = await instance.post('/users', formData)
+        console.log(res.data, "DATA FROM REGISTRATION");
         dispatch({
             type: REGISTER,
             payload: res.data
         })
         // setAuthToken(localStorage.token);
-
+        
       }
       catch (err) {
         const errors = err.response.data.errors;
