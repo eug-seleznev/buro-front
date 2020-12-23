@@ -5,7 +5,8 @@ import {Button} from '../../Styles/buttons'
 import styled from 'styled-components'
 import { useEffect } from "react";
 import {changeLoaded, loadUser} from '../../redux/actions/auth'
-import { Card, Container, H1 } from "../../Styles/common";
+import { Card, Container, } from "../../Styles/common";
+import { H1, H3} from '../../Styles/typography'
 
 const MyProfile = ({match, history}) => {
     let {id} = match.params;

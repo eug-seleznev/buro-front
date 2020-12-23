@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  getProject, editProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
 import './projects.css'
-import { Container, Card, H1 } from '../../Styles/common';
+import { Container, Card, } from '../../Styles/common';
 import { Button } from '../../Styles/buttons';
+import { H1, H3} from '../../Styles/typography'
 
 const ProjectEdit = ({history, match}) => {
 	let {id} = match.params;

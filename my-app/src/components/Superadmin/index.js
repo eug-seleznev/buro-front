@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 import { permissionReturn, userPermissions } from "../../redux/actions/user";
 import  News  from './newsAdm'
 import './superadmin.css'
-import { Container, Card, H1 } from '../../Styles/common';
+import { Container, Card, } from '../../Styles/common';
 import { Button } from '../../Styles/buttons';
 import { StyledLink} from '../../Styles/layout'
+import { H1, H3} from '../../Styles/typography'
 
 
 const Superadmin = () => {

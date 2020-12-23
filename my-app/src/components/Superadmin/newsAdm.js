@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
 // import { allUsers } from "../../redux/actions/user";
-import { Container, Card, H1 } from '../../Styles/common';
+import { Container, Card, } from '../../Styles/common';
 import { Button } from '../../Styles/buttons';
+import { H1, H3} from '../../Styles/typography'
 
 //////////////////////////////////////// ШО ЭТО
 import Me from '../User/me'

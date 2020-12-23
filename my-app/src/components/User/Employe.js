@@ -5,7 +5,9 @@ import { url } from '../utils/axios';
 
 import { Table, Td, Tr } from "../../Styles/tables";
 import { Status } from "../../Styles/project";
-import { Container, Card, H1 } from "../../Styles/common";
+import { Container, Card, } from "../../Styles/common";
+import { H1, H3} from '../../Styles/typography'
+
 import './user.css'
 
 

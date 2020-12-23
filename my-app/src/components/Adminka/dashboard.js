@@ -8,7 +8,8 @@ import { allTickets } from "../../redux/actions/tikets";
 
 //styled components
 import {Table, Tr, Td} from '../../Styles/tables'
-import {Container, Card, Title, H1} from '../../Styles/common'
+import {Container, Card, Title,} from '../../Styles/common'
+import { H1, H3} from '../../Styles/typography'
 
 
 const Dashboard = ({history}) => {
