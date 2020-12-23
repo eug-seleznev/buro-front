@@ -35,6 +35,7 @@
 			
 		}
 		.emp__logo{
+			width: 250px;
 			grid-area: logo;
 		}
 		.emp__position{
