@@ -72,7 +72,6 @@ const Project = ({match, history}) => {
 <div className='project__grid'>   
     
     <Card><H1>{project.title}</H1></Card>
-
     <Card>
                     
                     
@@ -92,7 +91,6 @@ const Project = ({match, history}) => {
 
                                 {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
                                         return (
-                                    
                                         <Tr columns='1fr 1fr 1fr' key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
                                             <Td> {sprint.dateOpen.slice(0, 16)}</Td>
                                             <Td>спринт {i}</Td> 
