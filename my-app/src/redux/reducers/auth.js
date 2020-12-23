@@ -20,10 +20,10 @@ export default function(state = initialState, action) {
         case REGISTER:
         case LOGIN:
              localStorage.setItem('token', payload.token);
+             console.log(localStorage.token, 'NEW TOKEN ')
             return {
                 ...state,
                 loaded: true,
-             
                 error: ''
                 
             }
