@@ -44,14 +44,17 @@ const App = () => {
   const history = createBrowserHistory();
   const [load, setLoad] = useState(false)
   const auth = useSelector(state => state.auth.isAuthenticated)
+  const loaded = useSelector(state => state.auth.loaded)
+
   //chek auth token on render
   useEffect(() => {
     dispatch(loadUser());
-    setTimeout(() => {
-      setLoad(true)
-    }, 100)
+    console.log('dispatch my action!')
+    // setTimeout(() => {
+    //   setLoad(true)
+    // }, 100)
     console.log(localStorage.token) //for postman tests
-  }, [auth])
+  }, [loaded])
 
 
 

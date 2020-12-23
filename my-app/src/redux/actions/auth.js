@@ -8,7 +8,7 @@ export const loadUser = () => async dispatch => {
     if (localStorage.token) {
       innerBackend(localStorage.token);
     }
-
+    console.log(localStorage.token, 'HEY TOKEN HERE')
     const res = await innerBackend.get('/users/me')
 
    
@@ -22,13 +22,14 @@ export const loadUser = () => async dispatch => {
 
 export const login = (formData) => async dispatch  => {
     try {
-
+      console.log(formData, 'data?')
         const res = await instance.post('/auth', formData)
+        console.log(res, 'respond')
         dispatch({
             type: LOGIN,
             payload: res.data
         })
-            // dispatch(loadUser())
+
 
         }
       catch (err) {
