@@ -11,6 +11,7 @@
     'projects news'
     'tasks news'
     ;
+    grid-template-rows: min-content min-content min-content;
     grid-template-columns:35vw 1fr;
     column-gap: 2vw;
     row-gap: 40px;
@@ -19,15 +20,17 @@
     .main__profile{
         grid-area: profile;
 
+
         display: grid;
         grid-template-areas: 
         'logo name'
         'logo position'
         ;
         grid-template-columns: max-content auto;
+        grid-template-rows: 40px 40px;
         column-gap: 40px;
         
-        padding: 15px;
+      
         
 
     }

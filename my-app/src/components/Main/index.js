@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
 // import { allUsers } from "../../redux/actions/user";
-
+import {Card, H1, Table, Tr, Td} from '../../Styles/common'
 
 //////////////////////////////////////// ШО ЭТО
 import { url } from '../utils/axios';
@@ -87,80 +87,84 @@ useEffect(()=>{
         <>
         {!loadedUser ? <p> loading..</p> : (
 <div className='main__container'>
-    <div className='main__profile'>
+    <Card className='main__profile'>
         <img className='main__profile__logo' src={`${url}/${user != null? (user!= undefined? user.avatar:''):''}`}/>
-        <div className='main__profile__name'>{user.name}</div>
+        <H1 className='main__profile__name'>{user.name}</H1>
         <div className='main__profile__position'>Position: {user.position}</div>
-    </div>
+    </Card>
 
 
 
     
-    <div className='main__projects'>
-        <h3>Мои проекты</h3>
-        <table className='main__proj__table'>
-                <div     className='projects__tr top' >
-                    <p className='table_td'>Название</p>
-                    <p className='table_td'>Тип</p>
-                    <p className='table_td'>Спринты</p>
-                </div>
+    <Card className='main__projects'>
+        <H1>Мои проекты</H1>
+        <Table>
+                <Tr columns='4fr 2fr 1fr' top='top'>
+                    <Td >Название</Td>
+                    <Td >Тип</Td>
+                    <Td >Спринты</Td>
+                </Tr>
         {user.projects.map((el,i)=>{
 
             return(
-                <div     className='projects__tr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
-                    <p className='table_td'>{el.title}</p>
-                    <p className='table_td'>{el.type}</p>
-                    <p className='table_td'>{el.sprints.length}</p>
-                </div>
+                <Tr columns='4fr 2fr 1fr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
+                    <Td >{el.title}</Td>
+                    <Td >{el.type}</Td>
+                    <Td >{el.sprints.length}</Td>
+                </Tr>
             )
         })}
-        </table>
-    </div>
+        </Table>
+    </Card>
 
     
-    <div className='main__tasks'>
+    <Card className='main__tasks'>
 
-        <h3>Мои задачи</h3>
-        <table>
-                 <div     className='projects__tr top' >
-                    <p className='table_td'>Название</p>
-                    <p className='table_td'>Тип</p>
-                    <p className='table_td'>Спринты</p>
-                </div>
+        <H1>Мои задачи</H1>
+        <Table>
+                 <Tr columns='4fr 2fr 1fr' top='top' >
+                    <Td>Название</Td>
+                    <Td>Тип</Td>
+                    <Td>Спринты</Td>
+                </Tr>
         {user.projects.map((el,i)=>{
             
             return(
-                <div     className='projects__tr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
-                    <p className='table_td'>{el.title}</p>
-                    <p className='table_td'>{el.type}</p>
-                    <p className='table_td'>{el.sprints.length}</p>
-                </div>
+                <Tr columns='4fr 2fr 1fr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
+                    <Td>{el.title}</Td>
+                    <Td>{el.type}</Td>
+                    <Td>{el.sprints.length}</Td>
+                </Tr>
             )
         })}
-        </table>
-    </div>
+        </Table>
+
+    </Card>
 
 
-    <div className='main__news'>
-        <div onClick={()=>console.log(listNews)}><h3>news</h3></div>
-       
+    <Card className='main__news'>
+        
+        <H1>Новсоти</H1>
 
             {!loaded? <p>loading...</p> : 
             
-            <div className='main__table'>
+            <Table>
+                <Tr columns='1fr 1fr 3fr' top='top'>
+                    <Td >Заголовок</Td>
+                    <Td >Подзаголовок</Td>
+                    <Td >Текст</Td> 
+                </Tr>
                 {listNews.map((el,i)=>{
                     
                     return(
-                      <div     className='table__tr' onClick={()=>newsClick(el)}>
-                            <p className='table_td'>{el.title}</p>
-                            <p className='table_td'>{el.subtitle}</p>
-                            <p className='table_td'>{el.text}</p>
-                            
-                            
-                        </div>
+                        <Tr columns='1fr 1fr 3fr' onClick={()=>newsClick(el)}>
+                            <Td >{el.title}</Td>
+                            <Td >{el.subtitle}</Td>
+                            <Td >{el.text}</Td> 
+                        </Tr>
                     )
                 })}
-            </div>
+            </Table>
             
             }
             
@@ -168,7 +172,7 @@ useEffect(()=>{
            
 
 
-    </div>
+    </Card>
 
 
      {!newsOpen.status? <div/> : 
