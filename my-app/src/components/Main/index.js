@@ -145,7 +145,7 @@ useEffect(()=>{
 
     <Card className='main__news'>
         
-        <H1>Новсоти</H1>
+        <H1>Новости</H1>
 
             {!loaded? <p>loading...</p> : 
             

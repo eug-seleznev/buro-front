@@ -18,10 +18,10 @@ const Project = ({match, history}) => {
     const dispatch = useDispatch();
     const loaded = useSelector(state => state.projects.loadProject);
     const sprintsLoad = useSelector(state => state.projects.loadSprints)
-
+    const user = useSelector(state => state.auth.user) 
     const sprintLoad = useSelector(state => state.projects.sprint_load)
     const reload = useSelector(state => state.projects.reload)
-    const user = useSelector(state => state.auth.user)
+   
 
     const sprint = useSelector(state => state.projects.sprint)
     const users = useSelector(state => state.users.users)
@@ -49,6 +49,7 @@ const Project = ({match, history}) => {
 
     const createSprint = () => {
         dispatch(addSprint(project.crypt))
+
     }
     const handleEnd = () => {
         
@@ -62,8 +63,10 @@ const Project = ({match, history}) => {
 
     }
     const hadleTeam = () => {
-       console.log  (project.msg)
+        console.log (project.team)
+        console.log  (project.msg)
         dispatch(joinTeam(id))
+
     }
 
     return (
@@ -92,7 +95,7 @@ const Project = ({match, history}) => {
                                 {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
                                         return (
                                         <Tr columns='1fr 1fr 1fr' key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                                            <Td> {sprint.dateOpen.slice(0, 16)}</Td>
+                                            <Td> {sprint.dateOpen.slice(0, 16).replace(/T/g, "  ")}</Td>
                                             <Td>спринт {i}</Td> 
                                             <Td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</Td>       
                                         </Tr>
@@ -134,7 +137,7 @@ const Project = ({match, history}) => {
                             {sprints.filter(sprint => sprint.status).map((sprint, i) => {
                                     return (
                                     <Tr  columns='1fr 1fr 1fr 1fr' key={i}  title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                                        <Td> {sprint.dateOpen.slice(0, 16)}</Td>
+                                        <Td> {sprint.dateOpen.slice(0, 16).replace(/T/g, "  ")}</Td>
                                         <Td>спринт {i}</Td>
                                         <Td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</Td>
                                         <Td>{sprint.tasks.length-sprint.tasks.filter(task => task.taskStatus).length === 0 ? <Status green /> : <Status red/>}</Td>
@@ -166,7 +169,7 @@ const Project = ({match, history}) => {
                          {project.team.map((user, i) => {
                             return (
                              
-                                <Tr columns='1fr 1fr 1fr' key={i}  title="Профиль сотрудника" onClick={() => history.push(`/users/${user.id}`)}>
+                                <Tr columns='1fr 1fr 1fr' key={i}  title="Профиль сотрудника" onClick={() => history.push(`/users/${user._id}`)}>
                                     <Td> {user.name}</Td>
                                     <Td>{user.email}</Td>
                                     <Td>{user.position}</Td>
@@ -180,7 +183,17 @@ const Project = ({match, history}) => {
          
         </Table>  
       <br />
-        <Button onClick={hadleTeam} style ={{display: `${project.status?'none':'block'}`}}>{project.msg===`Вы были добавлены в команду проекта ${id}`?'Выйти из команды проекта':'Вступить в команду проекта'}</Button>
+      {project.team.map((empl, ind) => {
+          console.log(user, 'emp id' )
+          if(empl._id === user.id  ){
+              console.log(ind, 'INDEX USER')
+              return  <Button onClick={hadleTeam} style ={{display: `${project.status?'none':'block'}`}}>Выйти из команды проекта</Button>
+
+          } else  if (project.team.length-1 == ind){
+              return  <Button onClick={hadleTeam} style ={{display: `${project.status?'none':'block'}`}}>Вступить в команду проекта</Button>
+
+          }
+      })}
 
 
     
