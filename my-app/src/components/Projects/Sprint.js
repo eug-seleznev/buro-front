@@ -155,7 +155,7 @@ const Sprint = ({match, history}) => {
       <ul style={{ listStyleType: 'none'}}>
 
         {fields.map((item, index) => (
-          <li key={item.id}>
+          <li key={item.id} style= {{display:'flex'}}>
             <input
               name={`tasks[${index}].taskTitle`}
               ref={register()}
