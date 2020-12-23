@@ -10,10 +10,15 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allProjects } from '../../redux/actions/projects';
-import { Table } from '../../Styles/tabel';
-import { Container } from '../../Styles/layout';
+
+
 import { loadUser } from '../../redux/actions/auth';
 // import { allUsers } from "../../redux/actions/user";
+import { Table, Tr, Td } from '../../Styles/tables';
+import { Container, Card, H1, } from '../../Styles/common'
+
+
+
 
 const Projects = ({history}) => {
     const dispatch = useDispatch();
@@ -33,66 +38,78 @@ const Projects = ({history}) => {
         
     },[loaded])
     return (
-        <Container> 
-            <h1> Проекты в работе</h1>
+    <Container>
+
+       
             {!loaded ? <p>loading...</p> : (
-                <div>
+                <div className='projects__grid'>
+<Card>
+            <H1> Проекты в работе</H1>
                     <p> количество проектов: {projects.length} </p>
                     <Table>
-  <thead>
-    <tr>
-        
-      <th>Название</th>
-      <th>Дата начала</th>
-      <th>Дедлайн</th>
-      <th>Статус</th>
-      <th>Спринты</th>
-    </tr>
-   </thead>
-   <tbody>
+  
+    <Tr columns='1fr 1fr 1fr 1fr 1fr' top='top'>
+ 
+      <Td>Название</Td>
+      <Td>Дата начала</Td>
+      <Td>Дедлайн</Td>
+      <Td>Статус</Td>
+      <Td>Спринты</Td>
+
+    </Tr>
+   
+   
        {projects.filter(project => !project.status).map((project,index) => {
            return(  
-        <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
+        <Tr columns='1fr 1fr 1fr 1fr 1fr' key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
            
-            <td>{project.title}</td>
-            <td>{project.dateStart.slice(0, 10)}</td>
-            <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>
-            <td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</td>
-            <td>{project.sprints.filter(sprint => sprint.status).length}/{project.sprints.length}</td>
-        </tr>
+            <Td>{project.title}</Td>
+            <Td>{project.dateStart.slice(0, 10)}</Td>
+            <Td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</Td>
+            <Td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</Td>
+            <Td>{project.sprints.filter(sprint => sprint.status).length}/{project.sprints.length}</Td>
+        </Tr>
         )
        })}
      
-  </tbody>
+  
 </Table>
-<h1 style={{marginTop: '100px'}}> Завершенные проекты</h1>
+</Card>
+
+
+<Card>
+           
+
+<H1 > Завершенные проекты</H1>
+
+
 <Table>
-  <thead>
-    <tr>
+  
+    <Tr columns='1fr 1fr 1fr 1fr 1fr' top='top'>
         
-      <th>Название</th>
-      <th>Дата начала</th>
-      <th>Дедлайн</th>
-      <th>Статус</th>
-      <th>Спринты</th>
-    </tr>
-   </thead>
-   <tbody >
+      <Td>Название</Td>
+      <Td>Дата начала</Td>
+      <Td>Дедлайн</Td>
+      <Td>Статус</Td>
+      <Td>Спринты</Td>
+    </Tr>
+ 
        {projects.filter(project => project.status).map((project,index) => {
            return(  
-        <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
+        <Tr columns='1fr 1fr 1fr 1fr 1fr' key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
          
-            <td>{project.title}</td>
-            <td>{project.dateStart.slice(0, 10)}</td>
-            <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>
-            <td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</td>
-            <td>{project.sprints.filter(sprint => sprint.status).length}/{project.sprints.length}</td>
-        </tr>
+            <Td>{project.title}</Td>
+            <Td>{project.dateStart.slice(0, 10)}</Td>
+            <Td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</Td>
+            <Td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</Td>
+            <Td>{project.sprints.filter(sprint => sprint.status).length}/{project.sprints.length}</Td>
+        </Tr>
         )
        })}
      
-  </tbody>
-</Table>
+ 
+    </Table>
+</Card>
                 </div>
             )}
         </Container>

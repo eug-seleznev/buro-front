@@ -4,7 +4,7 @@ import Sidebar from './sidebar'
 
 
 const Layout = () => {
-    return <div>
+    return <div style={{zIndex: '9999'}}>
         <Header />
         <Sidebar />
         </div>

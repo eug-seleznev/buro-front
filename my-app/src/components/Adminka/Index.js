@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux';
 import { newTicket } from '../../redux/actions/tikets';
 import './tickets.css'
 
+import {Table, Tr, Td} from '../../Styles/tables'
+import {Container, Card, Title, H1} from '../../Styles/common'
+import { Button } from '../../Styles/buttons';
+
 const Admin = () => {
     const dispatch = useDispatch();
 
@@ -44,8 +48,10 @@ const Admin = () => {
         }
 
     return (
-        <div className="main__alltick">
-            <h1> Если у вас есть проблема с компом - вы можете создать заявку тут //wip</h1>
+        <Container>
+            <Card>
+            <H1> Если у вас есть проблема с компом - вы можете создать заявку тут //wip</H1>
+            <br/>
             <form className='form__alltick' onSubmit={onSubmit}>
             <input className='alltik__1'
                 type='text'
@@ -80,7 +86,7 @@ const Admin = () => {
 
 
 
-            <button className='alltik__6' type="submit" value="Submit"> Отправить проблему</button>
+            <Button className='alltik__6' type="submit" value="Submit"> Отправить проблему</Button>
 
             <textarea className='alltik__5'
                 // type='text'
@@ -91,7 +97,8 @@ const Admin = () => {
 
 
             </form>
-        </div>
+            </Card>
+        </Container>
     )
 }
 

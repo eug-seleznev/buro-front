@@ -2,14 +2,16 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './sidebar.css'
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import {SidebarOpen , StyledLink} from '../../Styles/layout'
+import {H1} from '../../Styles/common'
 
 
 
 
 const Sidebar = () => {
     // const user = useSelector(state => state.auth.isAuthenticated)
+const [open, setOpen] = useState(false)
 const user = useSelector(state => state.auth.user)
 useEffect(()=> {
      console.log (user.permission)
@@ -57,9 +59,20 @@ useEffect(()=> {
               to='/users/me'
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
               <p> перенести проф</p> */}
-          {user.permission==='admin'?<NavLink to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img>  </NavLink>: ''}
+          {user.permission==='admin'?<NavLink onMouseOver={()=>setOpen(true)}  to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img>  </NavLink>: ''}
           <p>админка</p>
-         
+              
+              {open && <SidebarOpen open top={40} onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
+
+                    <H1> Админка </H1>
+                    <StyledLink to='/admin/permissions'  >Страница доступов</StyledLink>
+                    <StyledLink to='/admin/editproj'  >Редактировать проекты</StyledLink>
+                    <StyledLink to='/admin/news'  >Редактировать новости</StyledLink>
+
+
+              </SidebarOpen>
+                }
+
          </div>
          </div>
          )

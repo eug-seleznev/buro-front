@@ -7,7 +7,7 @@ import { url } from '../utils/axios';
 
 //styled components
 import {Button} from '../../Styles/buttons'
-import { Container } from "../../Styles/layout";
+import { Card, Container } from "../../Styles/common";
 
 
 const Edit = ({match, history}) => {
@@ -75,8 +75,8 @@ const Edit = ({match, history}) => {
    
   
     return (
-		<Container left>
-
+		<Container>
+			<Card>
         {!loaded? <div>loaded...</div> :
 		  
 		  (  
@@ -125,7 +125,8 @@ const Edit = ({match, history}) => {
 				</>
              
    )}
-        	  		</Container>
+			</Card>
+	</Container>
 
     )
 }

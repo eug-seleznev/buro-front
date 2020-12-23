@@ -8,8 +8,9 @@ import { addSprint, getProject, allSprints, deleteProject, joinTeam, finishProje
 import { getTicket } from "../../redux/actions/tikets";
 import {Button} from '../../Styles/buttons'
 import {  Redirect } from 'react-router-dom';
-import { Table } from "../../Styles/tabel";
-import { Container, Flex, Title, Item, Status } from "../../Styles/layout";
+import { Table, Td, Tr } from "../../Styles/tables";
+import { Status } from "../../Styles/project";
+import { Container, Card, H1 } from "../../Styles/common";
 
 
 const Project = ({match, history}) => {
@@ -66,147 +67,135 @@ const Project = ({match, history}) => {
     }
 
     return (
-        <Container  >
+        <Container>
             {!loaded && !sprintsLoad ? <p> loading...</p>: (
-<Flex>   
-    <Item>
-                    <Title>{project.title}</Title>
+<div className='project__grid'>   
+    
+    <Card><H1>{project.title}</H1></Card>
+
+    <Card>
                     
-                     <div style={{filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px'}}>
-                     <Title>Текущий спринт</Title>
+                    
+                     <H1>Текущий спринт</H1>
 
                         {sprints.length == 0 ? <p>Спринтов нет</p> :(
                             
-                            <Table  >
-                                <thead>
-                                    <tr>
-                                        <th> Дата </th>
-                                        <th> Название</th>
-                                        <th> Задачи</th>
-                                    </tr>
-                                </thead>
+                            <Table >
                                 
-                                <tbody>
+                                    <Tr columns='1fr 1fr 1fr' top>
+                                        <Td> Дата </Td>
+                                        <Td> Название</Td>
+                                        <Td> Задачи</Td>
+                                    </Tr>
+                              
                                 
 
                                 {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
                                         return (
                                     
-                                        <tr key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                                            <td> {sprint.dateOpen.slice(0, 16)}</td>
-                                            <td>спринт {i}</td> 
-                                            <td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</td>       
-                                        </tr>
+                                        <Tr columns='1fr 1fr 1fr' key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                            <Td> {sprint.dateOpen.slice(0, 16)}</Td>
+                                            <Td>спринт {i}</Td> 
+                                            <Td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</Td>       
+                                        </Tr>
                                             )
                                     })}
 
-                                </tbody>
+                             
                             </Table> 
                          )}
                          <br />
                          <Button onClick={createSprint} style={{display:`${user.permission==='user' || project.status?'none':'block'}`}}> {user.permission==='user'?'':'Создать спринт'}</Button><br/>
 
-                    </div>
 
 
 
 
 
-                    </Item>
+                    </Card>
 
 
 
 
-                    <Item>
+                    <Card>
 
-                        <div style={{
-                            filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white'}}>
-                            <Title >Завершенные спринты</Title>
+                            <H1 >Завершенные спринты</H1>
                         
                             {sprints.length == 0 ? <p>Завершенных спринтов нет</p> :(
                         <Table  >
-                            <thead>
-                                <tr>
-                                    <th> Дата </th>
-                                    <th> Название</th>
-                                    <th> Задачи</th>
-                                    <th> Статус</th>
-                                </tr>
-                            </thead>
                             
-                            <tbody>
+                                <Tr columns='1fr 1fr 1fr 1fr' top>
+                                    <Td> Дата </Td>
+                                    <Td> Название</Td>
+                                    <Td> Задачи</Td>
+                                    <Td> Статус</Td>
+                                </Tr>
+                           
                                
 
                             {sprints.filter(sprint => sprint.status).map((sprint, i) => {
                                     return (
-                                    <tr key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                                        <td> {sprint.dateOpen.slice(0, 16)}</td>
-                                        <td>спринт {i}</td> 
-                                        <td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</td>  
-                                        <td>{sprint.tasks.length-sprint.tasks.filter(task => task.taskStatus).length === 0 ? <Status green /> : <Status red/>}</td>
-                                    </tr>
+                                    <Tr  columns='1fr 1fr 1fr 1fr' key={i}  title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
+                                        <Td> {sprint.dateOpen.slice(0, 16)}</Td>
+                                        <Td>спринт {i}</Td>
+                                        <Td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</Td>
+                                        <Td>{sprint.tasks.length-sprint.tasks.filter(task => task.taskStatus).length === 0 ? <Status green /> : <Status red/>}</Td>
+                                    </Tr>
                             )
                          })}
 
-                        </tbody>
+                     
                      </Table>  
                          )}
                 
-                         <br />
+                      
 
-                        </div>
-                        </Item>
+                        </Card>
                         
-                        <Item>
-                             <div style={{ filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px', paddingBottom:'20px'}}>
-                            <Title> Команда</Title>
+                        <Card>
+                            <H1> Команда</H1>
 
                             <Table  >
-                            <thead>
-                                <tr>                              
-                                    <th >Имя</th>
-                                    <th >email</th>
-                                    <th >Дожность</th>
-                                </tr>
-                            </thead>
-                            <tbody >
+                           
+                                <Tr  columns='1fr 1fr 1fr' top>                              
+                                    <Td >Имя</Td>
+                                    <Td >email</Td>
+                                    <Td >Дожность</Td>
+                                </Tr>
+                            
+                           
       
                          {project.team.map((user, i) => {
                             return (
                              
-                                <tr key={i} style={{cursor:'pointer'}} title="Профиль сотрудника" onClick={() => history.push(`/users/${user.id}`)}>
-                                    <td> {user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.position}</td>
+                                <Tr columns='1fr 1fr 1fr' key={i}  title="Профиль сотрудника" onClick={() => history.push(`/users/${user.id}`)}>
+                                    <Td> {user.name}</Td>
+                                    <Td>{user.email}</Td>
+                                    <Td>{user.position}</Td>
                                             
                                     
-                                </tr>
+                                </Tr>
                             
                      
                             )
                         })}
          
-        
-   
-     
-            </tbody> 
         </Table>  
-        <br />
+      <br />
         <Button onClick={hadleTeam} style ={{display: `${project.status?'none':'block'}`}}>{project.msg===`Вы были добавлены в команду проекта ${id}`?'Выйти из команды проекта':'Вступить в команду проекта'}</Button>
 
-    </div>
-    
-  </Item>
 
-                          <br/>
-                            <br />
+    
+  </Card>
+
+                        <Card>
                             <Button onClick={handleEnd} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'': project.status?'Восстановить проект':'Завершить проект'}</Button> 
                             <Button onClick={handleDelete} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'':'Удалить проект'}</Button> 
-
+                        </Card>
 
 
                 
-                    </Flex>
+</div>
  
                 
                 

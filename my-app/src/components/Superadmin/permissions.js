@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from "react-redux"
 // import { allProjects } from '../../redux/actions/projects';
 import { allUsers, userPermissions } from "../../redux/actions/user";
 
+import { Table, Td, Tr } from "../../Styles/tables";
+import { Status } from "../../Styles/project";
+import { Container, Card, H1 } from "../../Styles/common";
+
 const Permission = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
@@ -32,49 +36,49 @@ const Permission = ({history}) => {
 			dispatch(userPermissions(e.target.value, id))
 	}
     return (
-		<div>
+		<Container>
+			<Card>
 		{!loaded? (<div></div>):
-        (<div className="main__allproj"> 
-            <h1> Все пользователи</h1>
+        (<div> 
+            <H1> Все пользователи</H1>
             
-                <div>
+               
                  
-                    <table className="table__allproj" >
-  <thead>
-    <tr>
-    	<th>Пользователь</th>
-      	<th>Должность</th>
-      	<th>Доступ</th>
+                    <Table className="table__allproj" >
+  
+    <Tr columns='1fr 1fr 1fr' top>
+    	<Td>Пользователь</Td>
+      	<Td>Должность</Td>
+      	<Td>Доступ</Td>
       
-    </tr>
-   </thead>
-   <tbody>
+    </Tr>
+   
        {team.map((team,index) => {
            return(  
 			
-			<tr key={index} >
-				<td>{team.name}</td>
-				<td>{team.position}</td>
-				<td> 
+			<Tr columns='1fr 1fr 1fr' key={index} >
+				<Td>{team.name}</Td>
+				<Td>{team.position}</Td>
+				<Td> 
 				<select  defaultValue={team.permission} style={{width: '100px',marginTop:'10px', overflow:'hidden', outline: 'none', border:'none'}} onChange={(e)=>selected(e, team._id)}>
 					<option  value='user'>user</option>
 					<option  value='admin'>admin</option>
 					<option  value='manager'>manager</option>
-				</select></td>
-			</tr>
+				</select></Td>
+			</Tr>
     	 )
        }
 	   )
 	   } 
      
-  </tbody>
-</table>
-                </div>
+
+</Table>
+              
             
 		</div>
 		)}
-		
-		</div>
+		</Card>
+		</Container>
     )
 }
 

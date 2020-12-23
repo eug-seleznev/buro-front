@@ -5,7 +5,8 @@ import { addToChosen } from '../../redux/actions/auth'
 import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from "react-hook-form";
 import './sprint.css'
 import {Button} from '../../Styles/buttons'
-
+import { Table, Td, Tr } from "../../Styles/tables";
+import { Container, Card, H1 } from "../../Styles/common";
 
 const Sprint = ({match, history}) => {
   const dispatch = useDispatch();
@@ -90,15 +91,14 @@ const Sprint = ({match, history}) => {
    }
 
     return (
-        <div className="sprint__main">
+        <Container  >
            {!loading ? <p> loading...</p> : (
-             <>
-          <div style={{
-                            marginTop:'200px',filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px', padding:'20px', height:'fit-content',width:'400px'}}>
+           <div className='sprint__grid'> 
+          <Card >
             
                
-                    <div >
-                                  <h1>{sprint.status?'Выполненные задачи:':'Текущие задачи:'}</h1> 
+                    
+                                  <H1>{sprint.status?'Выполненные задачи:':'Текущие задачи:'}</H1> 
 
                         {taskArr.tasks.map((task, ind) => {
                             return (
@@ -106,53 +106,51 @@ const Sprint = ({match, history}) => {
                                 <div key={ind} >
                                   
                                     <form >
-                                    <div className="sprint__tasks">
-                                      {/* task.taskTitle == 0?????? */}
-                                    <p className="sprint__row">{ind+1}.  {task.taskTitle!==''?task.taskTitle:'Без названия'}</p>
-                                
-                                  <label style={{display:`${sprint.status?'none':'block'}`}}></label>
-                                <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
+                                      <div className="sprint__tasks">
+                                      
+                                          <p className="sprint__row">{ind+1}.  {task.taskTitle!==''?task.taskTitle:'Без названия'}</p>
+                                          <label style={{display:`${sprint.status?'none':'block'}`}}></label>
+                                          <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
 
-                                </div>
+                                       </div>
                                     </form>
                                     
                                 </div>
                                  )
                         })}
-
+{/* 
                         {sprint.status && <div>
-                            <h3>невыполненные задачи</h3>
+                            <H1>невыполненные задачи</H1>
                             {taskArr.tasks.filter(task => !task.taskStatus).map((task, ind) => {
                             return (
                               
                                 <div key={ind} className="sprint__tasks">
                                     <p></p>
                                     <form>
-                                    <div>
-                                      {/* task.taskTitle == 0?????? */}
-                                    <p>{ind+1}.  {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
-                                
-                                  <label style={{display:`${sprint.status?'none':'block'}`}}></label>
-                                <input style={{display:`${sprint.status?'none':'block'}`}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
+                                        <div>
+                                          
+                                            <p>{ind+1}.  {task.taskTitle!==0?task.taskTitle:'Без названия'}</p>
+                                            <label></label>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={onChange}/>
 
-                                </div>
+                                        </div>
                                     </form>
                                     
                                 </div>
                                  )
                         })}
-                          </div>}
+                          </div>} */}
                         
-                    </div>
+                   
              
                 <Button onClick={()=>handleBack()} style={{marginTop: '20px'}}>Вернуться к проекту</Button>
                 <Button onClick={handleSprint} style={{display:`${sprint.status?'block':'none'}`,marginTop: '20px'}}> Восстановить спринт</Button>
-            </div>
-<br></br>
-<div style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right',marginTop:'200px',filter: 'drop-shadow(0 0 5px black)', backgroundColor:'white', paddingLeft:'20px', padding:'20px', height:'fit-content'}}>
+            </Card>
+
+<Card style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right'}}>
 
 
-<h1> Добавить задачи </h1>
+<H1> Добавить задачи </H1>
     <form onSubmit={handleSubmit(onSubmit)}>
       <ul style={{ listStyleType: 'none'}}>
 
@@ -191,10 +189,10 @@ const Sprint = ({match, history}) => {
             <Button onClick={handleSprint}>Завершить спринт</Button>
             <br></br> <br></br>
             <Button onClick={chosenSprint}>Добавить спринт в избранное</Button>
+    </Card>
             </div>
-            </>
                )}
-        </div>
+        </Container>
     )
 }
 

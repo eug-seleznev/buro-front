@@ -13,7 +13,9 @@ export const Button =  styled.button`
   background-color: white;
 
 &:hover{
-  color: red;
+  // text-decoration: underline;
+  background-color: rgb(240, 239, 239);
+
 }
 
 

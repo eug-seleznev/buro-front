@@ -11,7 +11,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
 // import { allUsers } from "../../redux/actions/user";
-import {Card, H1, Table, Tr, Td} from '../../Styles/common'
+import {Card, H1, } from '../../Styles/common'
+import {Table, Tr, Td} from '../../Styles/tables'
 
 //////////////////////////////////////// ШО ЭТО
 import { url } from '../utils/axios';

@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
 // import { allUsers } from "../../redux/actions/user";
-
+import { Container, Card, H1 } from '../../Styles/common';
+import { Button } from '../../Styles/buttons';
 
 //////////////////////////////////////// ШО ЭТО
 import Me from '../User/me'
@@ -115,36 +116,11 @@ useEffect(()=>{
 
     return (
 
-<div className='news__administration'>
+<Container className='news__container'>
 				
 
 
-
-                
-				{!loaded? <p>loading...</p> : 
-            
-            <div className='table'>
-                <h2>Новости:</h2>
-                {listNews.map((el,i)=>{
-                    
-                    return(
-                        <div className='news__tr' >
-                            <p className='news__td news__td1'><h4 className='descript'>Title: </h4>{el.title}</p>
-                            <p className='news__td news__td2'><h4 className='descript'>Subtitle: </h4>{el.subtitle}</p>
-                            <p className='news__td news__td3'><h4 className='descript'>Text: </h4>{el.text}</p>
-
-                            <button className='table__update' onClick={(e)=>onUpdate(e, el)}>update</button>
-                            <button className='table__delete' onClick={(e)=>onDelete(e, el)}>delete</button>
-                            
-                        </div>
-                    )
-                })}
-            </div>
-            
-            }
-
-
-<div className='create'>Создать новость
+<Card className='create'>Создать новость
 <form className='form news__form' onSubmit={onSubmit}>
            
             <input 
@@ -178,11 +154,36 @@ useEffect(()=>{
             <button className='news__submit'  type="submit">Создать новость</button>
 
             </form>
-            </div>
+            </Card>
+                
+				{!loaded? <p>loading...</p> : 
+            
+            <Card className='table'>
+                <h2>Новости:</h2>
+                {listNews.map((el,i)=>{
+                    
+                    return(
+                        <div className='news__tr' >
+                            <p className='news__td news__td1'><h4 className='descript'>Title: </h4>{el.title}</p>
+                            <p className='news__td news__td2'><h4 className='descript'>Subtitle: </h4>{el.subtitle}</p>
+                            <p className='news__td news__td3'><h4 className='descript'>Text: </h4>{el.text}</p>
+
+                            <button className='table__update' onClick={(e)=>onUpdate(e, el)}>update</button>
+                            <button className='table__delete' onClick={(e)=>onDelete(e, el)}>delete</button>
+                            
+                        </div>
+                    )
+                })}
+            </Card>
+            
+            }
+
+
+
 
 
             {!newsOpen.status? <div/>:
-            <div className='update__bg'>
+            <Card className='update__bg'>
 				<div className='news__update'>
 						Редактировать новость
                         <form className='form news__form' onSubmit={onUpdate}>
@@ -222,18 +223,18 @@ useEffect(()=>{
 
                         </form>
                 </div>
-            </div>
+            </Card>
             }
             {!deleteConfirm.post? <div/>:
-            <div className='delete__bg'>
+            <Card className='delete__bg'>
                 <div className='delete__container'>
                     <div onClick={()=>console.log(deleteConfirm)}>Вы уверенны что хотите удалить новость "{deleteConfirm.post.title}"</div>
                     <button  type="submit" onClick={(e)=>deleteNewsButton(e)}>Удалить новость</button>
                     <button  type="submit" onClick={()=>setConfirm({status:false, post:''})}>Отмена</button>
                 </div>
-            </div>
+            </Card>
             }
-			</div>
+			</Container>
 
 )
 }

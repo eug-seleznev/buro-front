@@ -3,7 +3,8 @@
   display: flex;
   justify-content: flex-start;
   width: 100vw;
-  height: 100vh;
+  height: max-content;
+  min-height: 100vh;
   background-color: rgb(240, 239, 239);
 }
 

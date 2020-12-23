@@ -4,6 +4,9 @@ import { newProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
 import './projects.css'
 
+import {Container, Card, Title, H1} from '../../Styles/common'
+import { Button } from '../../Styles/buttons';
+
 const ProjectNew = ({history}) => {
     const dispatch = useDispatch();
 
@@ -50,8 +53,9 @@ const ProjectNew = ({history}) => {
         }
 
     return (
-        <div className='main__newproj' >
-            <h1> Тут можно создать новый проект </h1>
+        <Container >
+            <Card>
+            <H1> Тут можно создать новый проект </H1>
             <form className='form' onSubmit={onSubmit}>
             <input 
 
@@ -106,10 +110,11 @@ const ProjectNew = ({history}) => {
 
 
 
-            <button  type="submit"> Создать новый проект</button>
+            <Button  type="submit"> Создать новый проект</Button>
 
             </form>
-        </div>
+            </Card>
+        </Container>
     )
 }
 
