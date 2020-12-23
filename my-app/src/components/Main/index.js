@@ -10,10 +10,12 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
+import { addTasks, finishSprint, finishTask, getSprint, } from "../../redux/actions/projects";
+
 // import { allUsers } from "../../redux/actions/user";
 import {Card, H1, } from '../../Styles/common'
 import {Table, Tr, Td} from '../../Styles/tables'
-
+import {H3} from '../../Styles/typography'
 //////////////////////////////////////// ШО ЭТО
 import { url } from '../utils/axios';
 ///////////////
@@ -78,7 +80,13 @@ const Main = ({history}) => {
         //в body засовывать все что было в создании новости. 
         // dispatch(updateNews(????????????))
     }
-
+    const onCheck = (e,id) => {
+       
+    console.log(e,'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',id)
+        let taskid = e.target.value;
+        dispatch(finishTask({taskid, id}))
+       
+    }
 useEffect(()=>{
  dispatch(allNews())
  console.log(user,'iiiiiiiiiiiiiiiiiiiiiiii',allUsers)
@@ -122,23 +130,39 @@ useEffect(()=>{
     <Card className='main__tasks'>
 
         <H1>Мои задачи</H1>
-        <Table>
-                 <Tr columns='4fr 2fr 1fr' top='top' >
-                    <Td>Название</Td>
-                    <Td>Тип</Td>
-                    <Td>Спринты</Td>
-                </Tr>
-        {user.projects.map((el,i)=>{
+        
+        {user.sprints.map((sprint,i)=>{
             
             return(
-                <Tr columns='4fr 2fr 1fr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
-                    <Td>{el.title}</Td>
-                    <Td>{el.type}</Td>
-                    <Td>{el.sprints.length}</Td>
+                <>
+                <H3>Спринт: {sprint.dateOpen.slice (0, 16)}</H3>
+                <Table>
+                 <Tr columns='4fr 2fr 1fr' top='top' >
+                    <Td>Название</Td>
+                    <Td>Объем</Td>
+                    <Td>Статус</Td>
                 </Tr>
+                
+                    
+                    {sprint.tasks.map((task,i)=>{
+
+                        return(
+                            <Tr columns='4fr 2fr 1fr' /*onClick={() => history.replace(`/projects/${el.crypt}`)}*/ >
+                                    <Td>{task.taskTitle!=''?task.taskTitle:'Без названия'}</Td>
+                                    <Td>{task.workVolume!=null?task.workVolume:'--'}</Td>
+                                    <Td><input /*style={{display:`${el.status?'none':'block'}`}}*/ type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={(e)=>onCheck(e,sprint._id)}/></Td>
+                            </Tr>
+                        )
+
+
+                    })}
+                   
+                
+                </Table>
+                </>
             )
         })}
-        </Table>
+        
 
     </Card>
 

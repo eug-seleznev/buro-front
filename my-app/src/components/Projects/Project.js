@@ -31,7 +31,7 @@ const Project = ({match, history}) => {
 
     useEffect(() => {
         dispatch(getProject(id));
-        console.log(sprint,'sritttttttttttttttttttttttttt')
+       
     }, [])
 
 
@@ -71,9 +71,10 @@ const Project = ({match, history}) => {
 
     return (
         <Container>
-            {!loaded && !sprintsLoad ? <p> loading...</p>: (
+            {!loaded ?  <p> loading...</p>: (
 <div className='project__grid'>   
-    
+    {!sprintsLoad ? <p> loading...</p> :( 
+<>
     <Card><H1>{project.title}</H1></Card>
     <Card>
                     
@@ -203,14 +204,15 @@ const Project = ({match, history}) => {
                             <Button onClick={handleEnd} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'': project.status?'Восстановить проект':'Завершить проект'}</Button> 
                             <Button onClick={handleDelete} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'':'Удалить проект'}</Button> 
                         </Card>
-
-
-                
+</>
+)}
+     
 </div>
  
+    
+     )}                  
                 
-                
-            )}
+           
         </Container>
     )
 }

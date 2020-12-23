@@ -5,17 +5,22 @@ import {innerBackend, instance, setAuthToken} from '../../components/utils/axios
 
 // LOAD USER 
 export const loadUser = () => async dispatch => {
-    if (localStorage.token) {
-      innerBackend(localStorage.token);
-    }
-    console.log(localStorage.token, 'HEY TOKEN HERE')
-    const res = await innerBackend.get('/users/me')
+  try {
+    
+     
+  
+     const res = await innerBackend.get("/users/me");
 
+     console.log(res, "/response???");
+    
+     dispatch({
+       type: USER_LOADED,
+       payload: res.data,
+     });
+  } catch (err) {
+    console.log(err.response.data, 'ERROR!!!')
+  }
    
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data
-      });
   };
     
 
@@ -29,6 +34,8 @@ export const login = (formData) => async dispatch  => {
             type: LOGIN,
             payload: res.data
         })
+                 setAuthToken(localStorage.token);
+
 
 
         }
@@ -71,7 +78,7 @@ export const register = ({formData}) => async dispatch  => {
             type: REGISTER,
             payload: res.data
         })
-        // setAuthToken(localStorage.token);
+         setAuthToken(localStorage.token);
         
       }
       catch (err) {
