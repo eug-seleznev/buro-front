@@ -35,7 +35,7 @@ import Superadmin from './components/Superadmin/index.js';
 import { createBrowserHistory } from "history";
 import MyProjects from './components/Projects/My';
 import News from './components/Superadmin/newsAdm';
-import { innerBackend } from './components/utils/axios';
+import { innerBackend, setAuthToken } from './components/utils/axios';
 
 
 
@@ -53,10 +53,12 @@ const App = () => {
     if (loaded) {
       console.log(localStorage.token, 'FOR POSTMAN'); //for postman tests
       innerBackend(localStorage.token);
+      setAuthToken(localStorage.token)
       setTimeout(() => {
         dispatch(loadUser());
       }, 1000);
     }
+    dispatch(loadUser());
    
   }, [loaded])
 

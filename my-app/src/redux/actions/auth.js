@@ -34,6 +34,8 @@ export const login = (formData) => async dispatch  => {
             type: LOGIN,
             payload: res.data
         })
+                 setAuthToken(localStorage.token);
+
 
 
         }
@@ -76,7 +78,7 @@ export const register = ({formData}) => async dispatch  => {
             type: REGISTER,
             payload: res.data
         })
-        // setAuthToken(localStorage.token);
+         setAuthToken(localStorage.token);
         
       }
       catch (err) {
