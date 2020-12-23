@@ -69,9 +69,10 @@
     }
        
 .opened__news{
-    position: fixed;
+    position: absolute;
     width: 70vw;
-    height: 60vh;
+    min-height: 60vh;
+    max-height: min-content ;
     left: 15vw;
     
     top: 15vh;
@@ -87,11 +88,11 @@
     'title close'
     'subtitle close'
     'texts texts'
-    'update update'
+    
     ;
     grid-template-columns: 1fr max-content;
     column-gap: 40px;
-    grid-template-rows: max-content max-content 1fr 1fr;
+    grid-template-rows: max-content max-content 1fr ;
     row-gap: 40px;
 }
         .open__title{

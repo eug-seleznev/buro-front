@@ -4,8 +4,9 @@ import { newProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
 import './projects.css'
 
-import {Container, Card, Title, H1} from '../../Styles/common'
+import {Container, Card, Title,} from '../../Styles/common'
 import { Button } from '../../Styles/buttons';
+import { H1, H3} from '../../Styles/typography'
 
 const ProjectNew = ({history}) => {
     const dispatch = useDispatch();

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import './sidebar.css'
 import { useEffect, useState } from "react";
 import {SidebarOpen , StyledLink} from '../../Styles/layout'
-import {H1} from '../../Styles/common'
+import { H1, H3} from '../../Styles/typography'
 
 
 

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 export const Table = styled.div`
 margin:0;
-
+margin-bottom:40px;
+border-bottom: 2px solid Black;
 
 `
 export const Tr = styled.div` //need columns='...' on <Tr> and top='top' on sorting <Tr>
