@@ -16,6 +16,8 @@ const user = useSelector(state => state.auth.user)
 useEffect(()=> {
      console.log (user.permission)
 },[])
+
+
     return (
          <div>
           
@@ -59,7 +61,7 @@ useEffect(()=> {
               to='/users/me'
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
               <p> перенести проф</p> */}
-          {user.permission==='admin'?<NavLink onMouseOver={()=>setOpen(true)}  to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img>  </NavLink>: ''}
+          {user.permission==='admin'?<NavLink onMouseOver={()=>setOpen(true)} to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img>  </NavLink>: ''}
           <p>админка</p>
               
               {open && <SidebarOpen open top={40} onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>

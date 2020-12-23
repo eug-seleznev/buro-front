@@ -30,7 +30,7 @@ const Employe = ({match, history}) => {
               <H1   className='grid-p  emp__name'>Имя: {user.name}</H1>
 
             <div    className='grid-p  emp__position'>Должность: {user.position}</div>
-            <div    className='grid-p  emp__e-ball'>Е-баллы: {Math.floor(Math.random() * 100)}</div>
+            
               
                 
              

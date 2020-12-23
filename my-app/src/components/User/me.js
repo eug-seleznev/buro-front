@@ -26,7 +26,7 @@ const MyProfile = ({match, history}) => {
                     <p>Имя: {user.name}</p>
                     <p>email: {user.email}</p>
                     <p>Должность: {user.position}</p>
-                    <p>Количество проектов:  {user.projects.length === 0?  'проектов нет' :  user.projects.length }</p>
+                    <p>Количество проектов:  {user.projects.length === 0?  '0' :  user.projects.length }</p>
                     <Button primary onClick={() => history.replace(`/edit`)} >Редактировать профиль</Button>
                 </div>
                 
