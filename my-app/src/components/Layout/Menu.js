@@ -8,12 +8,24 @@ import {Button} from '../../Styles/buttons'
 
 
 const Menu = ({menu}) => {
-
-const [open, setOpen] = useState(menu==true&& true)
+//menu = state({menu: boolean, menuProfile: boolean})
+const [open, setOpen] = useState({
+    menu:false,
+    menuProfile:false
+})
 
 useEffect(()=>{
-    menu==true && setOpen(true)
-},[])
+    open.menu==false ? setOpen({menuProfile:false, menu:true}) : setOpen({menuProfile:false, menu:false})
+
+},[menu.menu])
+
+useEffect(()=>{
+    open.menuProfile==false ? setOpen({menuProfile:true, menu:false}) : setOpen({menuProfile:false, menu:false})
+
+},[menu.menuProfile])
+
+
+
 
 const exit = () => {
   
@@ -24,12 +36,10 @@ const exit = () => {
 
     const user = useSelector(state => state.auth.user)
     return (
-        <MenuHead open={menu} /*onMouseLeave={()=>setOpen(false)}*/>
+        <MenuHead open={open}>
             
-            <div className='open__menu'>
-                    {/* <StyledLink
-                    to='/users/me'
-                    > <p>Мой профиль</p></StyledLink> */}
+            <div className='open__menu' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
+                   
 
 
                     <StyledLink className='menu__nav'
@@ -42,7 +52,7 @@ const exit = () => {
             </div>
 
 
-            <div className='open__menuProfile'>
+            <div className='open__menuProfile' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
                     <StyledLink
                     to='/users/me'
                     >Мой профиль</StyledLink>
