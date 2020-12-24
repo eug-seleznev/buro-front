@@ -66,7 +66,6 @@ const Main = ({history}) => {
 
 useEffect(()=>{
  dispatch(allNews())
-
 },[])
 
     return (
@@ -114,7 +113,7 @@ console.log(el,'project')
                 <>
                 <Tr columns='3fr 1fr' top>
                         <H3>Спринт: {sprint.dateOpen.slice (0, 16)}</H3>
-                        <Button onClick={()=>finishSprintButton(sprint._id)}>Завершить спринт</Button>
+                        {user.permission=='user'?<div/>:<Button onClick={()=>finishSprintButton(sprint._id)}>Завершить спринт</Button>}
                 </Tr>
                 
                 <Table>
@@ -131,7 +130,7 @@ console.log(el,'project')
                             <Tr columns='4fr 2fr 1fr' /*onClick={() => history.replace(`/projects/${el.crypt}`)}*/ >
                                     <Td>{task.taskTitle!=''?task.taskTitle:'Без названия'}</Td>
                                     <Td>{task.workVolume!=null?task.workVolume:'--'}</Td>
-                                    <Td><input /*style={{display:`${el.status?'none':'block'}`}}*/ type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={(e)=>onCheck(e,sprint._id)}/></Td>
+                                    <Td><input style={{pointerEvents: user.permission=='user'?'none':'block'}} type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={(e)=>onCheck(e,sprint._id)}/></Td>
                             </Tr>
                         )
 

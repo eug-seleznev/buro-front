@@ -41,7 +41,7 @@ export const MenuHead = styled.div`
     padding: 10px;
     heigth: auto;
     background: none;
-    top: 5vh;
+    top: 50px;
     
 
     div{
@@ -91,7 +91,7 @@ export const SidebarOpen = styled.div`
 display: ${props => props.open? 'block' : 'none'};
 position: absolute;
 left:110px;
-top: ${props=>props.top}vh;
+top: ${props=>props.top}px;
 width: max-content;
 background-color: white;
 `

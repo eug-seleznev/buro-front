@@ -2,7 +2,7 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './sidebar.css'
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import {SidebarOpen , StyledLink} from '../../Styles/layout'
 import { H1, H3} from '../../Styles/typography'
 
@@ -13,13 +13,16 @@ const Sidebar = () => {
     // const user = useSelector(state => state.auth.isAuthenticated)
 const [open, setOpen] = useState(false)
 const user = useSelector(state => state.auth.user)
+const adminka = useRef(null)
+
+
 useEffect(()=> {
      console.log (user.permission)
 },[])
 
 
     return (
-         <div>
+         <div >
           
           <div className="main">
          <NavLink
@@ -61,10 +64,12 @@ useEffect(()=> {
               to='/users/me'
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
               <p> перенести проф</p> */}
-          {user.permission==='admin'?<NavLink onMouseOver={()=>setOpen(true)} to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img>  </NavLink>: ''}
+          {user.permission==='admin'?<NavLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
+                                        <img src='/customer-insight.png' title="Админка"></img>  
+                                    </NavLink>: ''}
           <p>админка</p>
               
-              {open && <SidebarOpen open top={40} onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
+              {open && <SidebarOpen open top={adminka.current.offsetTop-40} onMouseEnter={()=>setTimeout(()=>setOpen(true),100) } onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
 
                     <H1> Админка </H1>
                     <StyledLink to='/admin/permissions'  >Страница доступов</StyledLink>

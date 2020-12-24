@@ -1,13 +1,28 @@
 import { NavLink } from "react-router-dom"
-
+import {useEffect, useState} from 'react'
 import {MenuHead, StyledLink} from '../../Styles/layout'
+import {Button} from '../../Styles/buttons'
 
 
 
 
 const Menu = ({menu}) => {
+
+const [open, setOpen] = useState(menu==true&& true)
+
+useEffect(()=>{
+    menu==true && setOpen(true)
+},[])
+
+const exit = () => {
+  
+    localStorage.removeItem('token')
+    window.location.reload();
+}
+
+
     return (
-        <MenuHead open={menu}>
+        <MenuHead open={menu} /*onMouseLeave={()=>setOpen(false)}*/>
             
             <div className='open__menu'>
                     {/* <StyledLink
@@ -37,6 +52,9 @@ const Menu = ({menu}) => {
                     <StyledLink
                     to='/tickets'
                     >Панель сисадмина</StyledLink>
+
+                    <Button onClick={()=>exit()}
+                    >Выход</Button>
             </div>
 
         </MenuHead>
