@@ -54,11 +54,11 @@ const exit = () => {
                     {user.permission==='admin'?(<StyledLink
                     to='/tickets'
                     >Панель сисадмина</StyledLink>):<></>}
-                    </div>
+                    
 
                     <Button onClick={()=>exit()}
                     >Выход</Button>
-
+            </div>
 
         </MenuHead>
     )
