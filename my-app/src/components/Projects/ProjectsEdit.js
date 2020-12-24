@@ -11,7 +11,7 @@ import { H1, H3} from '../../Styles/typography'
 const ProjectsEdit = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
-    const loaded = useSelector(state => state.projects.loaded)
+    const loaded = useSelector(state => state.projects.loadedAllProj)
     const projects = useSelector(state => state.projects.projects)
 
 

@@ -7,7 +7,12 @@ width: 80vw;
 margin-top: 20vh;
 
 `
+export const SmallContainer =  styled.div`
+margin-left: 30vw;
+width: 40vw;
+margin-top: 25vh;
 
+`
 
 
 export const Title =  styled.h1`

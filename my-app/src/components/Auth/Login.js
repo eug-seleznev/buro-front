@@ -2,8 +2,8 @@ import  {useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/auth';
 // import Login from './Login copy';
-
-
+import {Input, LogForm} from '../../Styles/Forms'
+import {Button} from '../../Styles/buttons'
 const Login = () => {
     const dispatch = useDispatch();
 
@@ -37,28 +37,28 @@ const Login = () => {
         }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-            <input 
-                type='email'
-                placeholder='email'
-                name='email'
-                value={email}
-                onChange={e => onChange(e)}/>
+        <div style={{display: 'flex', justifyContent:'center'}}>
+            <LogForm >
+                <Input 
+                    type='email'
+                    placeholder='email'
+                    name='email'
+                    value={email}
+                    onChange={e => onChange(e)}/>
 
-           <input 
-                type='password'
-                placeholder='password'
-                name='password'
-                value={password}
-                onChange={e => onChange(e)}/>
-
-
+                <Input
+                    type='password'
+                    placeholder='password'
+                    name='password'
+                    value={password}
+                    onChange={e => onChange(e)}/>
 
 
-            <button  type="submit"> Логин</button>
 
-            </form>
+
+            <Button style={{width:'20vw'}}  type="submit"> Логин</Button>
+
+            </LogForm>
         </div>
     )
 }
