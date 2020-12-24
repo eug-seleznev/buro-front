@@ -18,9 +18,7 @@ const MenuProfile = () => {
             <StyledLink
               to='/projects/my'
                >Мои проекты</StyledLink>
-            {user.permission==='admin'?(<StyledLink
-              to='/tickets'
-              >Панель сисадмина</StyledLink>):<></>}
+            
 
               
                

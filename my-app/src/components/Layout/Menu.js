@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom"
-
+import {useSelector} from 'react-redux'
 import {MenuHead, StyledLink} from '../../Styles/layout'
 
 
 
 
 const Menu = ({menu}) => {
+    const user = useSelector(state => state.auth.user)
     return (
         <MenuHead open={menu}>
             
@@ -34,9 +35,9 @@ const Menu = ({menu}) => {
                     to='/projects/my'
                     >Мои проекты</StyledLink>
 
-                    <StyledLink
-                    to='/tickets'
-                    >Панель сисадмина</StyledLink>
+{user.permission==='admin'?(<StyledLink
+              to='/tickets'
+              >Панель сисадмина</StyledLink>):<></>}
             </div>
 
         </MenuHead>
