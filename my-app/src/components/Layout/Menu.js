@@ -51,16 +51,14 @@ const exit = () => {
                     to='/projects/my'
                     >Мои проекты</StyledLink>
 
-                    <StyledLink
+                    {user.permission==='admin'?(<StyledLink
                     to='/tickets'
-                    >Панель сисадмина</StyledLink>
+                    >Панель сисадмина</StyledLink>):<></>}
+                    </div>
 
                     <Button onClick={()=>exit()}
                     >Выход</Button>
-{user.permission==='admin'?(<StyledLink
-              to='/tickets'
-              >Панель сисадмина</StyledLink>):<></>}
-            </div>
+
 
         </MenuHead>
     )
