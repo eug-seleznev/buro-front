@@ -7,8 +7,8 @@ import { url } from '../utils/axios';
 
 //styled components
 import {Button} from '../../Styles/buttons'
-import { Card, Container } from "../../Styles/common";
-
+import { Card, SmallContainer } from "../../Styles/common";
+import { Input, LogForm } from "../../Styles/Forms";
 
 const Edit = ({match, history}) => {
 	
@@ -75,58 +75,58 @@ const Edit = ({match, history}) => {
    
   
     return (
-		<Container>
-			<Card>
+		<SmallContainer>
+			<Card style={{paddingBottom:'75px'}}>
         {!loaded? <div>loaded...</div> :
 		  
 		  (  
-			  <>
-		  <form  onSubmit={onSubmit}>
+			  <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+		  <LogForm  onSubmit={onSubmit}>
 
 		<p>Сменить имя</p>
-		  <input 
-			  type='text'
-			  placeholder={user.name}
-			name="name"
-			value={name}
-			  onChange={e => onChange(e)}
-			></input>
+		  <Input 
+			  	type='text'
+			 	placeholder={user.name}
+				name="name"
+				value={name}
+			  	onChange={e => onChange(e)}
+			></Input>
 			<p>Сменить должность</p>
- 		<input 
+ 		<Input 
 			  type='text'
 			  placeholder={user.position}
 			  name="position"
 			  value={position}
 			  onChange={e => onChange(e)}
-			></input>
+			></Input>
 			<p>Сменить e-mail</p>
- 		<input 
+ 		<Input 
 			  type='text'
 			  placeholder={user.email}
 			  value={email}
 			  name="email"
 			  onChange={e => onChange(e)}
-			></input>
+			></Input>
 			
 			
 			<br/>
 			<br/>
-			<Button onClick={changeMsg} style={{position:'absolute', marginTop: '100px',marginLeft:'-87px'}} type="submit" value="Submit" >Сохранить</Button>
-				 
-		  </form>
-		  <form >
+			<Button style={{width:'20vw', transform: 'translateY(60px)'}} onClick={changeMsg}  type="submit" value="Submit" >Сохранить</Button>
+			<Button style={{width:'20vw', transform: 'translateY(80px)'}} onClick={changeMsg}  >Ничего не менять</Button>
+		  </LogForm>
+		  <form style={{marginTop:'-110px'}} >
 			  <p>Сменить аватар</p>
-			 <input 
+			 <Input 
                 type='file'
                 placeholder='загрузите изображение'
-				onChange={handleFile}></input><br/><br/>
+				onChange={handleFile}></Input><br/><br/>
 				</form>
 				<div style={{opacity: `${text !==''?1:0}`, transition:'500ms ease opacity', marginTop: '70px'}}>{text}</div>
-				</>
+				</div>
              
    )}
 			</Card>
-	</Container>
+	</SmallContainer>
 
     )
 }

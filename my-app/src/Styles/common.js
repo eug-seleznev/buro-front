@@ -10,7 +10,7 @@ margin-top: 20vh;
 export const SmallContainer =  styled.div`
 margin-left: 30vw;
 width: 40vw;
-margin-top: 25vh;
+margin-top: 20vh;
 
 `
 

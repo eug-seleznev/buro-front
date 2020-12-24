@@ -100,7 +100,7 @@ export default function(state = initialState, action) {
             case UPDATE_PROJECT:
                 return {
                     ...state,
-                    loaded: true,
+                    loadedAllProj: true,
                     project: payload,
                     error: ''
                 }
@@ -108,7 +108,7 @@ export default function(state = initialState, action) {
                     return {
                         ...state,
                         msg: payload,
-                        loaded: false,
+                        loadedAllProj: false,
                     }
             case FINISH_SPRINT:
                 return {
@@ -127,7 +127,7 @@ export default function(state = initialState, action) {
                     ...state,
                     error: payload,
                     loadProject: false,
-                    loaded: false
+                    loadedAllProj: false
                 }
                 case FINISH_TASK:
                     return {
@@ -139,7 +139,7 @@ export default function(state = initialState, action) {
                     ...state,
                     error: payload,
                     loadProject: false,
-                    loaded: false
+                    loadedAllProj: false
                 }
             case DELETE_PROJECT: 
                 return {
