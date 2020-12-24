@@ -78,11 +78,7 @@ const Project = ({ match, history }) => {
           ) : (
             <div>
               <div
-                style={{
-                  filter: "drop-shadow(0 0 5px black)",
-                  backgroundColor: "white",
-                  paddingLeft: "20px",
-                }}
+                
               >
                 <h1>Спринты</h1>
                 <div style={{ display: "flex" }}>
