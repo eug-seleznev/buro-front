@@ -38,7 +38,7 @@ const Login = () => {
 
     return (
         <div style={{display: 'flex', justifyContent:'center'}}>
-            <LogForm >
+            <LogForm onSubmit={onSubmit}>
                 <Input 
                     type='email'
                     placeholder='email'
@@ -56,7 +56,7 @@ const Login = () => {
 
 
 
-            <Button style={{width:'20vw'}}  type="submit"> Логин</Button>
+            <Button style={{width:'20vw'}} type="submit"> Логин</Button>
 
             </LogForm>
         </div>

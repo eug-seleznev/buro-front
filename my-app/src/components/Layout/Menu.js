@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import {useEffect, useState} from 'react'
+import {useSelector} from 'react-redux'
 import {MenuHead, StyledLink} from '../../Styles/layout'
 import {Button} from '../../Styles/buttons'
 
@@ -21,6 +22,7 @@ const exit = () => {
 }
 
 
+    const user = useSelector(state => state.auth.user)
     return (
         <MenuHead open={menu} /*onMouseLeave={()=>setOpen(false)}*/>
             
@@ -55,6 +57,9 @@ const exit = () => {
 
                     <Button onClick={()=>exit()}
                     >Выход</Button>
+{user.permission==='admin'?(<StyledLink
+              to='/tickets'
+              >Панель сисадмина</StyledLink>):<></>}
             </div>
 
         </MenuHead>
