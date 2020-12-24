@@ -22,7 +22,7 @@ const MyProfile = ({match, history}) => {
             <H1> Мой профиль</H1>
             {!loaded ? <p> loading..</p> : (
                 <div style={{display: 'flex', justifyContent:'space-around'}}>
-                <img  style={{width:'100px', height: '100px', marginRight:'40px',marginTop:'40px', objectFit: 'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
+                <img  style={{width:'150px', height: '150px', marginRight:'40px',marginTop:'20px', objectFit: 'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
                 <div>
                     <p>Имя: {user.name}</p>
                     <p>email: {user.email}</p>

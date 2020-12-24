@@ -56,7 +56,11 @@ const Edit = ({match, history}) => {
 		// 	setText ('')
 		// }, 4000);
 	 }
-
+	 const Redirect = () => {
+     
+		return history.replace(`/users/me`)
+	
+}
      const onSubmit = e => {
         e.preventDefault();
 		console.log(formData)
@@ -112,7 +116,7 @@ const Edit = ({match, history}) => {
 			<br/>
 			<br/>
 			<Button style={{width:'20vw', transform: 'translateY(60px)'}} onClick={changeMsg}  type="submit" value="Submit" >Сохранить</Button>
-			<Button style={{width:'20vw', transform: 'translateY(80px)'}} onClick={changeMsg}  >Ничего не менять</Button>
+			<Button style={{width:'20vw', transform: 'translateY(80px)'}} onClick={Redirect}  >Ничего не менять</Button>
 		  </LogForm>
 		  <form style={{marginTop:'-110px'}} >
 			  <p>Сменить аватар</p>
