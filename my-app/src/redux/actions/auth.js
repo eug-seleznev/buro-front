@@ -8,7 +8,6 @@ export const loadUser = () => async dispatch => {
   try {
     
      
-  
      const res = await innerBackend.get("/users/me");
 
      console.log(res, "/response???");
@@ -34,9 +33,9 @@ export const login = (formData) => async dispatch  => {
             type: LOGIN,
             payload: res.data
         })
-                 setAuthToken(localStorage.token);
-
-
+                  setAuthToken(res.data.token);
+                  setTimeout(() =>loadUser(),200)
+                  
 
         }
       catch (err) {

@@ -50,15 +50,27 @@ const App = () => {
 
   //chek auth token on render
   useEffect(() => {
+    setAuthToken(localStorage.token)
+
+    if(localStorage.token){
+      dispatch(loadUser());
+
+    }
+
+
+  })
+
+
+  useEffect(() => {
     if (loaded) {
       console.log(localStorage.token, 'FOR POSTMAN'); //for postman tests
-      innerBackend(localStorage.token);
+      // innerBackend(localStorage.token);
       setAuthToken(localStorage.token)
       setTimeout(() => {
         dispatch(loadUser());
       }, 1000);
     }
-    dispatch(loadUser());
+    // dispatch(loadUser());
    
   }, [loaded])
 
