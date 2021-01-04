@@ -1,19 +1,45 @@
 import { NavLink } from "react-router-dom"
+import {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {MenuHead, StyledLink} from '../../Styles/layout'
+import {Button} from '../../Styles/buttons'
 
 
 
 
 const Menu = ({menu}) => {
+//menu = state({menu: boolean, menuProfile: boolean})
+const [open, setOpen] = useState({
+    menu:false,
+    menuProfile:false
+})
+
+useEffect(()=>{
+    open.menu==false ? setOpen({menuProfile:false, menu:true}) : setOpen({menuProfile:false, menu:false})
+
+},[menu.menu])
+
+useEffect(()=>{
+    open.menuProfile==false ? setOpen({menuProfile:true, menu:false}) : setOpen({menuProfile:false, menu:false})
+
+},[menu.menuProfile])
+
+
+
+
+const exit = () => {
+  
+    localStorage.removeItem('token')
+    window.location.reload();
+}
+
+
     const user = useSelector(state => state.auth.user)
     return (
-        <MenuHead open={menu}>
+        <MenuHead open={open}>
             
-            <div className='open__menu'>
-                    {/* <StyledLink
-                    to='/users/me'
-                    > <p>Мой профиль</p></StyledLink> */}
+            <div className='open__menu' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
+                   
 
 
                     <StyledLink className='menu__nav'
@@ -26,7 +52,7 @@ const Menu = ({menu}) => {
             </div>
 
 
-            <div className='open__menuProfile'>
+            <div className='open__menuProfile' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
                     <StyledLink
                     to='/users/me'
                     >Мой профиль</StyledLink>
@@ -35,9 +61,13 @@ const Menu = ({menu}) => {
                     to='/projects/my'
                     >Мои проекты</StyledLink>
 
-{user.permission==='admin'?(<StyledLink
-              to='/tickets'
-              >Панель сисадмина</StyledLink>):<></>}
+                    {user.permission==='admin'?(<StyledLink
+                    to='/tickets'
+                    >Панель сисадмина</StyledLink>):<></>}
+                    
+
+                    <Button onClick={()=>exit()}
+                    >Выход</Button>
             </div>
 
         </MenuHead>

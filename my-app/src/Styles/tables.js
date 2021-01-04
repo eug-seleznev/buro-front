@@ -13,7 +13,7 @@ grid-template-columns: ${props => props.columns};
 column-gap: 20px;   
 // grid-template-rows: 52px; 
 border-bottom: .5px solid gray;  
-cursor: pointer;
+cursor: ${props => props.top?'default':'pointer'};
 font-weight: ${props => props.top?'bold':'normal'};
 
 
