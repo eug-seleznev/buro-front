@@ -6,7 +6,8 @@ import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from
 import './sprint.css'
 import {Button} from '../../Styles/buttons'
 import { Table, Td, Tr } from "../../Styles/tables";
-import { Container, Card, H1 } from "../../Styles/common";
+import { Container, Card, } from "../../Styles/common";
+import { H1, H3} from '../../Styles/typography'
 
 const Sprint = ({match, history}) => {
   const dispatch = useDispatch();
@@ -94,7 +95,7 @@ const Sprint = ({match, history}) => {
         <Container  >
            {!loading ? <p> loading...</p> : (
            <div className='sprint__grid'> 
-          <Card >
+          <Card style={{height:'fit-content', paddingBottom:'20px'}} >
             
                
                     
@@ -147,7 +148,7 @@ const Sprint = ({match, history}) => {
                 <Button onClick={handleSprint} style={{display:`${sprint.status?'block':'none'}`,marginTop: '20px'}}> Восстановить спринт</Button>
             </Card>
 
-<Card style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right'}}>
+<Card style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right', height:'fit-content', paddingBottom:'20px'}}>
 
 
 <H1> Добавить задачи </H1>
@@ -155,8 +156,9 @@ const Sprint = ({match, history}) => {
       <ul style={{ listStyleType: 'none'}}>
 
         {fields.map((item, index) => (
-          <li key={item.id}>
+          <li key={item.id} style= {{display:'flex'}}>
             <input
+            style={{width:'125px',height: '20px'}}
               name={`tasks[${index}].taskTitle`}
               ref={register()}
               placeholder="Название задачи" // make sure to set up defaultValue
@@ -166,7 +168,7 @@ const Sprint = ({match, history}) => {
         
               name={`tasks[${index}].workVolume`}
               ref={register()}
-              style={{width:'125px'}}
+              style={{width:'125px',height: '20px'}}
               placeholder="Объем в часах" 
             />
             

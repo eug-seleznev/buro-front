@@ -7,7 +7,7 @@ const initialState = {
     projects: null,
     project: null,
     loadProject: false,
-    loaded: false,
+    loadedAllProj: false,
     sprints: [],
     loadSprints: false,
     sprint: [],
@@ -30,7 +30,7 @@ export default function(state = initialState, action) {
             case ALL_PROJECTS:
                 return {
                     ...state,
-                    loaded: true,
+                    loadedAllProj: true,
                     projects: payload,
                     loadProject: false,
                     sprint_load: false,
@@ -48,6 +48,7 @@ export default function(state = initialState, action) {
                 return {
                     ...state,
                     project: payload,
+                    loadedAllProj: false,
                     loadProject: true,
                     sprint_load: false,
                     sprintLoad: false,
@@ -99,7 +100,7 @@ export default function(state = initialState, action) {
             case UPDATE_PROJECT:
                 return {
                     ...state,
-                    loaded: true,
+                    loadedAllProj: true,
                     project: payload,
                     error: ''
                 }
@@ -107,7 +108,7 @@ export default function(state = initialState, action) {
                     return {
                         ...state,
                         msg: payload,
-                        loaded: false,
+                        loadedAllProj: false,
                     }
             case FINISH_SPRINT:
                 return {
@@ -126,7 +127,7 @@ export default function(state = initialState, action) {
                     ...state,
                     error: payload,
                     loadProject: false,
-                    loaded: false
+                    loadedAllProj: false
                 }
                 case FINISH_TASK:
                     return {
@@ -138,7 +139,7 @@ export default function(state = initialState, action) {
                     ...state,
                     error: payload,
                     loadProject: false,
-                    loaded: false
+                    loadedAllProj: false
                 }
             case DELETE_PROJECT: 
                 return {

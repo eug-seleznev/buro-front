@@ -10,10 +10,15 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 import { allNews, createNews, deleteNews, updateNews} from '../../redux/actions/news';
+import { addTasks, finishSprint, finishTask, getSprint, } from "../../redux/actions/projects";
+
 // import { allUsers } from "../../redux/actions/user";
-import {Card, H1, } from '../../Styles/common'
+import {Card, } from '../../Styles/common'
+import { H1, H3} from '../../Styles/typography'
+
 import {Table, Tr, Td} from '../../Styles/tables'
 
+import { Button } from '../../Styles/buttons'
 //////////////////////////////////////// ШО ЭТО
 import { url } from '../utils/axios';
 ///////////////
@@ -33,55 +38,35 @@ const Main = ({history}) => {
         post: '',
     })
 
-    const [formData, setFormData ] = useState({
-        
-        title: '', 
-        subtitle: '', 
-        text: '',  
-      
-      });
   
-      const { title, subtitle, text,} = formData;
 
 
-    const onChange = e => {
-
-            e.preventDefault(); 
-
-            setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
 //     const Redirect = () => {  
 //         return history.push(`/projects`)
 // }
-    const onSubmit = async e => {
-        
-            e.preventDefault();
 
-            dispatch(createNews(formData))
-            // setTimeout(() => Redirect(),100)  
-    }
-    const onDelete = async (e,id) => {
 
-        e.preventDefault();
-
-        dispatch(deleteNews(id))
-    }
     const newsClick = (post) => {
         console.log('news click',newsOpen,post)
         setOpen({status: true, post: post})
     }
-    const onUpdate = async e => {
-
-        e.preventDefault();
-        alert(`don't work now`)
-        //PUT news/:id 
-        //в body засовывать все что было в создании новости. 
-        // dispatch(updateNews(????????????))
+   
+    const onCheck = (e,id) => {
+       
+ 
+        let taskid = e.target.value;
+        dispatch(finishTask({taskid, id}))
+       
+    }
+    const finishSprintButton = (id) => {
+     
+        dispatch(finishSprint(id));
+      
     }
 
 useEffect(()=>{
  dispatch(allNews())
- console.log(user,'iiiiiiiiiiiiiiiiiiiiiiii',allUsers)
+
 },[])
 
     return (
@@ -102,15 +87,15 @@ useEffect(()=>{
         <Table>
                 <Tr columns='4fr 2fr 1fr' top='top'>
                     <Td >Название</Td>
-                    <Td >Тип</Td>
+                    <Td >Дедлайн</Td>
                     <Td >Спринты</Td>
                 </Tr>
         {user.projects.map((el,i)=>{
-
+console.log(el,'project')
             return(
-                <Tr columns='4fr 2fr 1fr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
+                <Tr columns='4.6fr 3fr 0.5fr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
                     <Td >{el.title}</Td>
-                    <Td >{el.type}</Td>
+                    <Td >{el.dateFinish.slice(0,16)}</Td>
                     <Td >{el.sprints.length}</Td>
                 </Tr>
             )
@@ -122,46 +107,66 @@ useEffect(()=>{
     <Card className='main__tasks'>
 
         <H1>Мои задачи</H1>
-        <Table>
-                 <Tr columns='4fr 2fr 1fr' top='top' >
-                    <Td>Название</Td>
-                    <Td>Тип</Td>
-                    <Td>Спринты</Td>
-                </Tr>
-        {user.projects.map((el,i)=>{
+        
+        {user.sprints.map((sprint,i)=>{
             
             return(
-                <Tr columns='4fr 2fr 1fr' onClick={() => history.replace(`/projects/${el.crypt}`)} title="Открыть проект">
-                    <Td>{el.title}</Td>
-                    <Td>{el.type}</Td>
-                    <Td>{el.sprints.length}</Td>
+                <>
+                <Tr columns='3fr 1fr' top>
+                        <H3>Спринт: {sprint.dateOpen.slice (0, 16)}</H3>
+                        <Button onClick={()=>finishSprintButton(sprint._id)}>Завершить спринт</Button>
                 </Tr>
+                
+                <Table>
+                 <Tr columns='4fr 2fr 1fr' top='top' >
+                    <Td>Название</Td>
+                    <Td>Объем</Td>
+                    <Td>Статус</Td>
+                </Tr>
+                
+                    
+                    {sprint.tasks.map((task,i)=>{
+
+                        return(
+                            <Tr columns='4fr 2fr 1fr' /*onClick={() => history.replace(`/projects/${el.crypt}`)}*/ >
+                                    <Td>{task.taskTitle!=''?task.taskTitle:'Без названия'}</Td>
+                                    <Td>{task.workVolume!=null?task.workVolume:'--'}</Td>
+                                    <Td><input /*style={{display:`${el.status?'none':'block'}`}}*/ type="checkbox" id="vehicle1" name="vehicle1" defaultChecked={task.taskStatus} value={task._id} onChange={(e)=>onCheck(e,sprint._id)}/></Td>
+                            </Tr>
+                        )
+
+
+                    })}
+                   
+                <br/>
+                </Table>
+                
+                </>
             )
         })}
-        </Table>
+        
 
     </Card>
 
 
     <Card className='main__news'>
         
-        <H1>Новсоти</H1>
+        <H1>Новости</H1>
 
             {!loaded? <p>loading...</p> : 
             
             <Table>
-                <Tr columns='1fr 1fr 3fr' top='top'>
+                <Tr columns='4fr 0.5fr' top='top'>
                     <Td >Заголовок</Td>
-                    <Td >Подзаголовок</Td>
-                    <Td >Текст</Td> 
+                    <Td >Дата</Td> 
                 </Tr>
                 {listNews.map((el,i)=>{
-                    
+                 
                     return(
-                        <Tr columns='1fr 1fr 3fr' onClick={()=>newsClick(el)}>
+                        <Tr columns='4fr 2fr' onClick={()=>newsClick(el)}>
                             <Td >{el.title}</Td>
-                            <Td >{el.subtitle}</Td>
-                            <Td >{el.text}</Td> 
+                            <Td >{el.postDate.slice(0,16)}</Td>
+                            
                         </Tr>
                     )
                 })}

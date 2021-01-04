@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import './sidebar.css'
 import { useEffect, useState } from "react";
 import {SidebarOpen , StyledLink} from '../../Styles/layout'
-import {H1} from '../../Styles/common'
+import { H1, H3} from '../../Styles/typography'
 
 
 
@@ -61,8 +61,8 @@ useEffect(()=> {
               to='/users/me'
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
               <p> перенести проф</p> */}
-          {user.permission==='admin'?<NavLink onMouseOver={()=>setOpen(true)} to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img>  </NavLink>: ''}
-          <p>админка</p>
+          {user.permission==='admin'?<NavLink onMouseOver={()=>setOpen(true)} to='/admin' className="nav-link" ><img src='/customer-insight.png' title="Админка"></img><p>админка</p>  </NavLink>: ''}
+          
               
               {open && <SidebarOpen open top={40} onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
 

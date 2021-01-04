@@ -1,7 +1,8 @@
 import  {useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/actions/auth';
-
+import {Input, LogForm} from '../../Styles/Forms'
+import {Button} from '../../Styles/buttons'
 
 const Auth = () => {
 const dispatch = useDispatch();
@@ -34,16 +35,16 @@ const dispatch = useDispatch();
         }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-            <input 
+        <div style={{display: 'flex', justifyContent:'center'}}>
+            <LogForm onSubmit={onSubmit}>
+            <Input 
                 type='email'
                 placeholder='email'
                 name='email'
                 value={email}
                 onChange={e => onChange(e)}/>
 
-           <input 
+           <Input 
                 type='password'
                 placeholder='password'
                 name='password'
@@ -51,7 +52,7 @@ const dispatch = useDispatch();
                 onChange={e => onChange(e)}/>
 
 
-            <input 
+            <Input 
                 type='name'
                 placeholder='Имя'
                 name='name'
@@ -60,22 +61,22 @@ const dispatch = useDispatch();
 
 
 
-            <input 
+            <Input 
                 type='position'
                 placeholder='Должность'
                 name='position'
                 value={position}
                 onChange={e => onChange(e)}/>
-            <input 
+            <Input 
                 type='text'
                 placeholder='Код организации'
                 name='permCode'
                 value={permCode}
                 onChange={e => onChange(e)}/>
 
-            <button  type="submit"> Зарегаться</button>
+            <Button style={{width:'20vw'}} type="submit"> Зарегистрироваться</Button>
 
-            </form>
+            </LogForm>
         </div>
     )
 }

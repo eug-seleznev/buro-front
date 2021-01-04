@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux"
 import { Card } from "../../Styles/common"
-
-const { Container, Title, H1 } = require("../../Styles/common")
+import { H1, H3} from '../../Styles/typography'
+const { Container, Title,} = require("../../Styles/common")
 const { Table, Tr, Td } = require("../../Styles/tables")
+
 
 
 

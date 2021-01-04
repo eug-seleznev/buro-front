@@ -12,11 +12,20 @@ export const Button =  styled.button`
   border: 2px solid black;
   background-color: white;
 
-&:hover{
+  &:hover{
   // text-decoration: underline;
   background-color: rgb(240, 239, 239);
 
 }
 
+
+`
+export const LoginButton =  styled.button` 
+  outline: none;
+  display: inline-block;
+  border-radius: 0px;
+  padding: 10px ;
+  border: 0px solid black;
+  background-color: white;
 
 `

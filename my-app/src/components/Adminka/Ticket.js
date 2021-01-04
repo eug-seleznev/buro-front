@@ -8,8 +8,9 @@ import { getTicket } from "../../redux/actions/tikets";
 import { url } from "../utils/axios";
 
 
-import { Container, Card, H1 } from '../../Styles/common';
+import { Container, Card, } from '../../Styles/common';
 import { Button } from '../../Styles/buttons';
+import { H1, H3} from '../../Styles/typography'
 
 
 const Ticket = ({match}) => {

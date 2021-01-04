@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { allUsers } from "../../redux/actions/user";
 
 //styled components
-import { Container, H1,Card } from "../../Styles/common";
+import { Container, Card } from "../../Styles/common";
 import { Table, Tr, Td } from "../../Styles/tables";
+import { H1, H3} from '../../Styles/typography'
 
 
 

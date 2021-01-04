@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { allProjects } from '../../redux/actions/projects';
 import { Table, Tr, Td } from '../../Styles/tables';
-import { Container, Card, H1 } from '../../Styles/common';
+import { Container, Card,  } from '../../Styles/common';
+import { H1, H3} from '../../Styles/typography'
 
 
 const ProjectsEdit = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
-    const loaded = useSelector(state => state.projects.loaded)
+    const loaded = useSelector(state => state.projects.loadedAllProj)
     const projects = useSelector(state => state.projects.projects)
 
 

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  getProject, editProject } from '../../redux/actions/projects';
 import { newTicket } from '../../redux/actions/tikets';
 import './projects.css'
-import { Container, Card, H1 } from '../../Styles/common';
+import { SmallContainer, Card, } from '../../Styles/common';
 import { Button } from '../../Styles/buttons';
+import { H1, H3} from '../../Styles/typography'
 
 const ProjectEdit = ({history, match}) => {
 	let {id} = match.params;
@@ -70,11 +71,11 @@ const ProjectEdit = ({history, match}) => {
         }
 
     return (
-		<Container>
+		<SmallContainer>
             <Card>
 		{!loadProject?<div>loading...</div>:(
 			<div>
-            <H1> Тут можно редактировать проект </H1>
+            <H1> Тут можно редактировать данные проекта </H1>
             <form className='form' onSubmit={onSubmit}>
             <input 
 
@@ -138,7 +139,7 @@ const ProjectEdit = ({history, match}) => {
 
 		)}
         </Card>
-		</Container>
+		</SmallContainer>
     )
 }
 
