@@ -1,30 +1,30 @@
 import { NavLink } from "react-router-dom"
 
-import {MenuHead, MenuPro} from '../../Styles/layout'
+import {MenuHead, StyledLink} from '../../Styles/layout'
 
 
 
 
 const MenuProfile = () => {
     return (
-        <MenuPro>
-            <NavLink
+        <MenuHead>
+            <StyledLink
               to='/users/me'
-              > <p>Мой профиль</p></NavLink>
+              >Мой профиль</StyledLink>
 
 
-             <NavLink
+            <StyledLink
               to='/projects/my'
-               ><p>Мои проекты </p> </NavLink>
-             <NavLink
+               >Мои проекты</StyledLink>
+            <StyledLink
               to='/tickets'
-              ><p>панель сисадмина </p>  </NavLink>
+              >Панель сисадмина</StyledLink>
 
               
                
 
 
-        </MenuPro>
+        </MenuHead>
     )
 }
 

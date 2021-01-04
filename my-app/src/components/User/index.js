@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { allUsers } from "../../redux/actions/user";
 
 //styled components
-import { Container, Title } from "../../Styles/layout";
-import { Table } from "../../Styles/tabel";
+import { Container, H1,Card } from "../../Styles/common";
+import { Table, Tr, Td } from "../../Styles/tables";
 
 
 
@@ -21,36 +21,35 @@ const Users = ({history}) => {
 
     useEffect(() => {
         dispatch(allUsers())
-        console.log(users)
     }, [])
     return (
         <Container> 
-            <Title > Все сотрудники</Title>
-            
-            {!users ? <p>loading...</p> : (
-                <Table>
-                    <thead>
-                        <tr>
-                        <th>Имя</th>
-                        <th>email</th>
-                        <th>Должность</th>
-                        <th>Активные проекты</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(user => {
-                            return(  
-                            <tr onClick={() => history.replace(`/users/${user._id}`)}>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.position}</td>
-                                <td>{user.projects.length}</td>
-                            </tr>
-                            )
-                        })}
-                    </tbody>
-                </Table>
-            )}
+            <Card>
+                <H1 > Все сотрудники</H1>
+                    {!users ? <p>loading...</p> : (
+                        <Table>
+                            
+                                <Tr columns='1fr 1fr 1fr 1fr' top='top'>
+                                    <Td>Имя</Td>
+                                    <Td>email</Td>
+                                    <Td>Должность</Td>
+                                    <Td>Активные проекты</Td>
+                                </Tr>
+                        
+                                {users.map(user => {
+                                    return(  
+                                    <Tr columns='1fr 1fr 1fr 1fr' onClick={() => history.replace(`/users/${user._id}`)}>
+                                        <Td>{user.name}</Td>
+                                        <Td>{user.email}</Td>
+                                        <Td>{user.position}</Td>
+                                        <Td>{user.projects.length}</Td>
+                                    </Tr>
+                                    )
+                                })}
+                            
+                        </Table>
+                    )}
+            </Card>
         </Container>
     )
 }

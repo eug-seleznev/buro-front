@@ -14,3 +14,10 @@
 .sprint__row {
 	margin-right: 25px;
 }
+
+.sprint__grid{
+	text-align: left;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 200px;
+}

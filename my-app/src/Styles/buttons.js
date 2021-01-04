@@ -10,10 +10,12 @@ export const Button =  styled.button`
 
   color: black;
   border: 2px solid black;
-  background: ${props => !props.primary ? "white" : "white"};
+  background-color: white;
 
 &:hover{
-  color: "red";
+  // text-decoration: underline;
+  background-color: rgb(240, 239, 239);
+
 }
 
 

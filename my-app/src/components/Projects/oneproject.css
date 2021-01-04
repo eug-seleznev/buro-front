@@ -1,3 +1,9 @@
+.project__grid{
+	display: grid;
+	grid-template-columns: 1fr;
+	row-gap: 100px;
+}
+
 .one__proj__main {
 	width: 80vw;
 	margin-left:150px;

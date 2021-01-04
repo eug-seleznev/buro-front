@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { allTickets } from "../../redux/actions/tikets";
 
 //styled components
-import {Table} from '../../Styles/tabel'
-import {Container, Title} from '../../Styles/layout'
+import {Table, Tr, Td} from '../../Styles/tables'
+import {Container, Card, Title, H1} from '../../Styles/common'
 
 
 const Dashboard = ({history}) => {
@@ -24,35 +24,35 @@ const Dashboard = ({history}) => {
     
     return (
         <Container> 
-            <Title> Входящие тикеты</Title>
+            <Card>
+            <H1> Входящие тикеты</H1>
                 <p> количество проблем: {tickets.length} </p>
 
             {!loaded ? <p>loading...</p> : (
             
                     <Table main>
-                        <thead>
-                            <tr>
-                            <th>Номер</th>
-                            <th>Проблема</th>
-                            <th>Статус</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
+                      
+                            <Tr columns='1fr 5fr 1fr' top='top'>
+                                <Td>Номер</Td>
+                                <Td>Проблема</Td>
+                                <Td>Статус</Td>
+                            </Tr>
+                    
                             {tickets.map((ticket,index) => 
                                 
-                                <tr onClick={() => history.push(`/tickets/${ticket._id}`)}>
-                                    <td>{index+1}</td>
-                                    <td>{ticket.problemname}</td>
-                                    <td>{ticket.status ? <p>ongoing</p>:<p>complete</p>}</td>
+                                <Tr columns='1fr 5fr 1fr' onClick={() => history.push(`/tickets/${ticket._id}`)}>
+                                    <Td>{index+1}</Td>
+                                    <Td>{ticket.problemname}</Td>
+                                    <Td>{ticket.status ? <p>ongoing</p>:<p>complete</p>}</Td>
                                     
-                                </tr>
+                                </Tr>
                                 
                             )}
-                        </tbody>
+                     
                     </Table>
                 
             )}
+            </Card>
         </Container>
     )
 }

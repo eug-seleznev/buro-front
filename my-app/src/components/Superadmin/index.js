@@ -4,6 +4,11 @@ import { useEffect, useRef } from "react";
 import { permissionReturn, userPermissions } from "../../redux/actions/user";
 import  News  from './newsAdm'
 import './superadmin.css'
+import { Container, Card, H1 } from '../../Styles/common';
+import { Button } from '../../Styles/buttons';
+import { StyledLink} from '../../Styles/layout'
+
+
 const Superadmin = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(state => state.auth.user)
@@ -20,23 +25,26 @@ const Superadmin = () => {
 		dispatch (permissionReturn())
 	},[])
     return (
-        <div className='superadmin__cont' > 
+		
+        <Container> 
+			<Card>
+			<H1> Админка </H1>
+		
+			<StyledLink to='/admin/permissions'  >Страница доступов</StyledLink>
+			
+			
+			<StyledLink to='/admin/editproj'  >Редактировать проекты</StyledLink>
 
-			<h1> Админка </h1>
 			
-			<div className='link__cont'>
-			<NavLink className='nav__link__sadm' to='/admin/permissions'  >Страница доступов</NavLink>
-			<br/>
 			
-			<NavLink className='nav__link__sadm' to='/admin/editproj'  >Редактировать проекты</NavLink>
-			<div className='nav__link__sadm' onClick={()=>newsScroll()}>Создать новость</div>
-			</div>
-			
-			<News permissions={user.permissions} />
-
+			<StyledLink to='/admin/news'  >Редактировать новости</StyledLink>
 		
 
-		</div>
+			{/* <News permissions={user.permissions} /> */}
+
+		</Card>
+
+		</Container>
     )
 }
 

@@ -3,6 +3,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import { getUser } from "../../redux/actions/user";
 import { url } from '../utils/axios';
 
+import { Table, Td, Tr } from "../../Styles/tables";
+import { Status } from "../../Styles/project";
+import { Container, Card, H1 } from "../../Styles/common";
+import './user.css'
 
 
 const Employe = ({match, history}) => {
@@ -18,51 +22,48 @@ const Employe = ({match, history}) => {
     },[])
     
     return (
-        <>
+        <Container>
         {!loaded? (<div>loading...</div>):
-          ( <div>
-              <div style={{display:'flex', height:'150px',marginLeft:'120px'}}>
-              <img  style={{width:'150px', objectFit:'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
-              <div>
-                  <h1 style={{marginLeft:'30px', textAlign:'left'}}>
-                    {user.name}
-                </h1>
-                <h3 style={{marginLeft:'30px', textAlign:'left'}}>{user.position}</h3>
-                <p style={{marginLeft:'30px', textAlign:'left'}}>Е-баллы: {Math.floor(Math.random() * 100)}</p>
-              </div>
-                
-              </div>
-             <h1 style={{marginLeft:'120px',marginTop:'70px',marginBottom:'40px'}}>Проекты сотрудника</h1>
-              <table style={{marginLeft:'120px'}} className="table__allproj" >
-  <thead>
-    <tr>
-        
-      <th>Название</th>
-      <th>Дата начала</th>
-      <th>Дедлайн</th>
-      <th>Статус</th>
-  
-    </tr>
-   </thead>
-    <tbody>
-       {user.projects.map((project,index) => {
-           return(  
-        <tr key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
-           
-            <td>{project.title}</td>
-            <td>{project.dateStart.slice(0, 10)}</td>
-            <td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</td>
-            <td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</td>
+          ( <Card className='emp__grid'>
+              
+              <img  className='emp__logo' src={`${url}/${user.avatar}`}/>
+              <H1   className='grid-p  emp__name'>Имя: {user.name}</H1>
+
+            <div    className='grid-p  emp__position'>Должность: {user.position}</div>
             
-        </tr>
-        )
-       })} 
-     
-  </tbody>
-</table>
-        </div> )
+              
+                
+             
+              <Table className='emp__table'>
+                   <H1>Проекты сотрудника</H1>
+                   <br/>
+                  
+                    <Tr columns='1fr 1fr 1fr 1fr' top>
+                      <Td>Название</Td>
+                      <Td>Дата начала</Td>
+                      <Td>Дедлайн</Td>
+                      <Td>Статус</Td>
+                  
+                    </Tr>
+                 
+                      {user.projects.map((project,index) => {
+                          return(  
+                        <Tr  columns='1fr 1fr 1fr 1fr' key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
+                          
+                            <Td>{project.title}</Td>
+                            <Td>{project.dateStart.slice(0, 10)}</Td>
+                            <Td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</Td>
+                            <Td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</Td>
+                            
+                        </Tr>
+                        )
+                      })} 
+                    
+                  
+                </Table>
+        </Card> )
         }
-        </>
+        </Container>
     )
 }
 

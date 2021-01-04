@@ -1,28 +1,43 @@
 import { NavLink } from "react-router-dom"
 
-import {MenuHead} from '../../Styles/layout'
+import {MenuHead, StyledLink} from '../../Styles/layout'
 
 
 
 
-const Menu = () => {
+const Menu = ({menu}) => {
     return (
-        <MenuHead>
-            {/* <NavLink
-              to='/users/me'
-              > <p>Мой профиль</p></NavLink> */}
+        <MenuHead open={menu}>
+            
+            <div className='open__menu'>
+                    {/* <StyledLink
+                    to='/users/me'
+                    > <p>Мой профиль</p></StyledLink> */}
 
 
-             <NavLink
-              to='/help'
-               ><p>Проблемы с компом </p> </NavLink>
-        
-            <NavLink
-              to='/new'
-              ><p>Создать проект</p> </NavLink>
-              
-               
+                    <StyledLink className='menu__nav'
+                    to='/help'
+                    >Проблемы с компом </StyledLink>
+                
+                    <StyledLink className='menu__nav'
+                    to='/new'
+                    >Создать проект </StyledLink>       
+            </div>
 
+
+            <div className='open__menuProfile'>
+                    <StyledLink
+                    to='/users/me'
+                    >Мой профиль</StyledLink>
+
+                    <StyledLink
+                    to='/projects/my'
+                    >Мои проекты</StyledLink>
+
+                    <StyledLink
+                    to='/tickets'
+                    >Панель сисадмина</StyledLink>
+            </div>
 
         </MenuHead>
     )

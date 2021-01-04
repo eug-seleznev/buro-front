@@ -8,6 +8,9 @@ import { getTicket } from "../../redux/actions/tikets";
 import { url } from "../utils/axios";
 
 
+import { Container, Card, H1 } from '../../Styles/common';
+import { Button } from '../../Styles/buttons';
+
 
 const Ticket = ({match}) => {
     let {id} = match.params;
@@ -21,7 +24,8 @@ const Ticket = ({match}) => {
 
     
     return (
-        <div className="main__alltick">
+        <Container>
+            <Card>
             {!loaded ? <p> loading...</p>: (
                 <div>
                     <h1>{ticket.problemname}</h1>
@@ -35,7 +39,8 @@ const Ticket = ({match}) => {
                     
                 </div>
             )}
-        </div>
+            </Card>
+        </Container>
     )
 }
 

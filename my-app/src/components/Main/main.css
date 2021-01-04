@@ -11,6 +11,7 @@
     'projects news'
     'tasks news'
     ;
+    grid-template-rows: min-content min-content min-content;
     grid-template-columns:35vw 1fr;
     column-gap: 2vw;
     row-gap: 40px;
@@ -19,17 +20,18 @@
     .main__profile{
         grid-area: profile;
 
+
         display: grid;
         grid-template-areas: 
         'logo name'
         'logo position'
         ;
         grid-template-columns: max-content auto;
+        grid-template-rows: 40px 40px;
         column-gap: 40px;
-        margin-bottom: 40px;
-        background-color: white;
-        padding: 15px;
-    filter: drop-shadow(0 0 5px black);
+        
+      
+        
 
     }
             .main__profile__logo{
@@ -48,25 +50,7 @@
                 font-size: 30px;
 
             }
-    .main__projects{
-        grid-area: projects;
-        background-color: white;
-        padding: 15px;
-        filter: drop-shadow(0 0 5px black);
-
-    }
-                .projects__tr{
-                    display: grid;
-                    grid-template-columns: 4fr 4fr 1fr;   
-                    width: 100%;  
-                    column-gap: 20px;   
-                    grid-template-rows: 52px; 
-                    border-bottom: .5px solid gray;  
-                    cursor: pointer;
-                }
-                .projects__tr:hover{
-                    background-color: rgb(211, 211, 211);
-                }
+  
     .main__tasks{
         grid-area: tasks;
         background-color: white;
@@ -83,35 +67,7 @@
     
        
     }
-        .main__proj__table{
-            width: 100%;
-            margin: 0;
-        }
-                            .top{
-                                font-weight: bold;
-                            }
-                            .top:hover{
-                                background-color: white;
-                            }
-            .table__tr{
-               display: grid;
-               grid-template-columns: 1fr 1fr 4fr;     
-               column-gap: 20px;   
-               grid-template-rows: 52px; 
-               border-bottom: .5px solid gray;  
-               cursor: pointer;
-            }
-            .table__tr:hover{
-                background-color: rgb(211, 211, 211);
-
-            }
-            .table_td{
-                overflow: hidden; 
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-              
-
+       
 .opened__news{
     position: fixed;
     width: 70vw;

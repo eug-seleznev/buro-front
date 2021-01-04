@@ -1,3 +1,12 @@
+
+.projects__grid{
+
+
+	display: grid;
+	grid-template-columns: 1fr;
+	row-gap: 200px;
+}
+
 .main__newproj {
 	width: 50vw;
 	margin-left:25vw;
