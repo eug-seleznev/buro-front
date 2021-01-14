@@ -67,7 +67,7 @@ useEffect(()=> {
           {user.permission==='admin'?<NavLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
                                         <img src='/customer-insight.png' title="Админка"></img>  
                                     </NavLink>: ''}
-          <p>админка</p>
+                                    {user.permission==='admin'?<p>админка</p>:''}
               
               {open && <SidebarOpen open top={adminka.current.offsetTop-40} onMouseEnter={()=>setTimeout(()=>setOpen(false),100) } onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setOpen(false)}>
 
