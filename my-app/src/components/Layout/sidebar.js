@@ -64,12 +64,12 @@ useEffect(()=> {
               to='/users/me'
               className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
               <p> перенести проф</p> */}
-          {user.permission==='admin'?<NavLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
+          {user.permission==='admin'?<NavLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
                                         <img src='/customer-insight.png' title="Админка"></img>  
                                     </NavLink>: ''}
           <p>админка</p>
               
-              {open && <SidebarOpen open top={adminka.current.offsetTop-40} onMouseEnter={()=>setTimeout(()=>setOpen(true),100) } onMouseOver={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
+              {open && <SidebarOpen open top={adminka.current.offsetTop-40} onMouseEnter={()=>setTimeout(()=>setOpen(false),100) } onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setOpen(false)}>
 
                     <H1> Админка </H1>
                     <StyledLink to='/admin/permissions'  >Страница доступов</StyledLink>
