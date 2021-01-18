@@ -1,4 +1,4 @@
-
+import styles from '../../Styles/modules/main/main.module.css'
 
 
 import {  Redirect } from 'react-router-dom';
