@@ -23,7 +23,6 @@ export const Title =  styled.h1`
 
 export const Card = styled.div`
 background-color:white;
-filter: drop-shadow(0 0 5px black);
 padding: 15px;
 `
 

@@ -6,6 +6,7 @@ import {REGISTER, AUTH_ERROR, LOGIN, USER_LOADED, CHANGE_USERDATA, CHANGE_AVATAR
 const initialState = {
     user: null,
     isAuthenticated: false,
+    token: false,
     msg:'',
     error: '',
     loaded: false
@@ -24,6 +25,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 loaded: true,
+                token: true,
                 error: ''
                 
             }
