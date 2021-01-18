@@ -4,8 +4,9 @@ import { newTicket } from '../../redux/actions/tikets';
 import './tickets.css'
 
 import {Table, Tr, Td} from '../../Styles/tables'
-import {Container, Card, Title, H1} from '../../Styles/common'
+import {Container, Card, Title,} from '../../Styles/common'
 import { Button } from '../../Styles/buttons';
+import { H1, H3} from '../../Styles/typography'
 
 const Admin = () => {
     const dispatch = useDispatch();

@@ -5,7 +5,8 @@ import {Button} from '../../Styles/buttons'
 import styled from 'styled-components'
 import { useEffect } from "react";
 import {changeLoaded, loadUser} from '../../redux/actions/auth'
-import { Card, Container, H1 } from "../../Styles/common";
+import { Card, SmallContainer, } from "../../Styles/common";
+import { H1, H3} from '../../Styles/typography'
 
 const MyProfile = ({match, history}) => {
     let {id} = match.params;
@@ -16,12 +17,12 @@ const MyProfile = ({match, history}) => {
         dispatch (loadUser())
     },[])
     return (
-        <Container> 
+        <SmallContainer> 
             <Card>
             <H1> Мой профиль</H1>
             {!loaded ? <p> loading..</p> : (
-                <div style={{display: 'flex'}}>
-                <img  style={{width:'100px', height: '100px', marginRight:'40px',marginTop:'40px', objectFit: 'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
+                <div style={{display: 'flex', justifyContent:'space-around'}}>
+                <img  style={{width:'150px', height: '150px', marginRight:'40px',marginTop:'20px', objectFit: 'cover'}} className='logo' src={`${url}/${user.avatar}`}/>
                 <div>
                     <p>Имя: {user.name}</p>
                     <p>email: {user.email}</p>
@@ -35,7 +36,7 @@ const MyProfile = ({match, history}) => {
                 </div>
             )}
             </Card>
-        </Container>
+        </SmallContainer>
     )
 }
 

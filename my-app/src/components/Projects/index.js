@@ -15,7 +15,9 @@ import { allProjects } from '../../redux/actions/projects';
 import { loadUser } from '../../redux/actions/auth';
 // import { allUsers } from "../../redux/actions/user";
 import { Table, Tr, Td } from '../../Styles/tables';
-import { Container, Card, H1, } from '../../Styles/common'
+import { Container, Card, } from '../../Styles/common'
+import { H1, H3} from '../../Styles/typography'
+
 
 
 
@@ -23,7 +25,7 @@ import { Container, Card, H1, } from '../../Styles/common'
 const Projects = ({history}) => {
     const dispatch = useDispatch();
     // const auth = useSelector(state => state.auth.isAuthenticated)
-    const loaded = useSelector(state => state.projects.loaded)
+    const loaded = useSelector(state => state.projects.loadedAllProj)
     const projects = useSelector(state => state.projects.projects)
 
 
