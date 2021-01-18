@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 
-export const url = "http://195.2.71.115:7070";
+export const url = "http://185.231.153.99:7070";
 
 
 
@@ -13,9 +13,7 @@ export const setAuthToken = (token) => {
 
     if(token){
         innerBackend.defaults.headers.common['auth-token'] = token;
-    } else {
-        delete innerBackend.defaults.headers.common['auth-token'];
-    }
+    } 
 }
 
 
@@ -25,7 +23,6 @@ export const innerBackend = axios.create ({
         baseURL: url,
         headers: {
             accept: 'application/json',
-            'auth-token': localStorage.token
         
         }
        

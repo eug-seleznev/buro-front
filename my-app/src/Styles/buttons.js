@@ -3,18 +3,18 @@ import styled from 'styled-components'
 
 export const Button =  styled.button`
   display: inline-block;
-  border-radius: 3px;
-  padding: 0.5rem 0;
+  border-radius: 30px;
+
 
   width: 11rem;
-
-  color: black;
-  border: 2px solid black;
-  background-color: white;
+  height: 30px;
+  color: white;
+  background-color: #3F496C;
+  ;
 
   &:hover{
   // text-decoration: underline;
-  background-color: rgb(240, 239, 239);
+  background-color: black;
 
 }
 

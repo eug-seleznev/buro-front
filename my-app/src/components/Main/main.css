@@ -55,7 +55,7 @@
         grid-area: tasks;
         background-color: white;
         padding: 15px;
-        filter: drop-shadow(0 0 5px black);
+        
 
     }
 
@@ -80,7 +80,7 @@
 
 
     background-color: white;
-    filter: drop-shadow(0 0 5px black);
+    
 
     display: grid;
     grid-template-areas: 

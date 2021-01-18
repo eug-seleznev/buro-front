@@ -11,7 +11,6 @@ width: 78vw;
 /* max-height: 70vh; */
 /* overflow-y: scroll; */
 background-color: white;
-filter: drop-shadow(0 0 5px black);
 padding: 20px;
 text-align: left;
 }
