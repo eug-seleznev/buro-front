@@ -49,6 +49,7 @@ const Project = ({match, history}) => {
     }, [reload])
 
     const createSprint = () => {
+        
         dispatch(addSprint(project.crypt))
 
     }
@@ -71,151 +72,241 @@ const Project = ({match, history}) => {
     }
 
     return (
-        <Container>
-            {!loaded ?  <p> loading...</p>: (
-<div className='project__grid'>   
-    {!sprintsLoad ? <p> loading...</p> :( 
-<>
-    <Card><H1>{project.title}</H1></Card>
-    <Card>
-                    
-                    
-                     <H1>Текущий спринт</H1>
+      <Container>
+        {!loaded ? (
+          <p> loading...</p>
+        ) : (
+          <div className="project__grid">
+            {!sprintsLoad ? (
+              <p> loading...</p>
+            ) : (
+              <>
+                <Card>
+                  <H1>{project.title}</H1>
+                </Card>
+                <Card>
+                  <H1>Текущий спринт</H1>
 
-                        {sprints.length == 0 ? <p>Спринтов нет</p> :(
-                            
-                            <Table >
-                                
-                                    <Tr columns='1fr 1fr 1fr' top>
-                                        <Td> Дата </Td>
-                                        <Td> Название</Td>
-                                        <Td> Задачи</Td>
-                                    </Tr>
-                              
-                                
+                  {sprints.length == 0 ? (
+                    <p>Спринтов нет</p>
+                  ) : (
+                    <Table>
+                      <Tr columns="1fr 1fr 1fr" top>
+                        <Td> Дата </Td>
+                        <Td> Название</Td>
+                        <Td> Задачи</Td>
+                      </Tr>
 
-                                {sprints.filter(sprint => !sprint.status).map((sprint, i) => {
-                                        return (
-                                        <Tr columns='1fr 1fr 1fr' key={i} style={{cursor:'pointer'}} title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                                            <Td> {sprint.dateOpen.slice(0, 16).replace(/T/g, "  ")}</Td>
-                                            <Td>спринт {i}</Td> 
-                                            <Td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</Td>       
-                                        </Tr>
-                                            )
-                                    })}
-
-                             
-                            </Table> 
-                         )}
-                         <br />
-                         <Button onClick={createSprint} style={{display:`${user.permission==='user' || project.status?'none':'block'}`}}> {user.permission==='user'?'':'Создать спринт'}</Button><br/>
-
-
-
-
-
-
-                    </Card>
-
-
-
-
-                    <Card>
-
-                            <H1 >Завершенные спринты</H1>
-                        
-                            {sprints.length == 0 ? <p>Завершенных спринтов нет</p> :(
-                        <Table  >
-                            
-                                <Tr columns='1fr 1fr 1fr 1fr' top>
-                                    <Td> Дата </Td>
-                                    <Td> Название</Td>
-                                    <Td> Задачи</Td>
-                                    <Td> Статус</Td>
-                                </Tr>
-                           
-                               
-
-                            {sprints.filter(sprint => sprint.status).map((sprint, i) => {
-                                    return (
-                                    <Tr  columns='1fr 1fr 1fr 1fr' key={i}  title="Открыть спринт" onClick={() => history.push(`/projects/${id}/${sprint._id}`)}>
-                                        <Td> {sprint.dateOpen.slice(0, 16).replace(/T/g, "  ")}</Td>
-                                        <Td>спринт {i}</Td>
-                                        <Td> {sprint.tasks.filter(task => task.taskStatus).length}/{sprint.tasks.length}</Td>
-                                        <Td>{sprint.tasks.length-sprint.tasks.filter(task => task.taskStatus).length === 0 ? <Status green /> : <Status red/>}</Td>
-                                    </Tr>
-                            )
-                         })}
-
-                     
-                     </Table>  
-                         )}
-                
-                      
-
-                        </Card>
-                        
-                        <Card>
-                            <H1> Команда</H1>
-
-                            <Table  >
-                           
-                                <Tr  columns='1fr 1fr 1fr' top>                              
-                                    <Td >Имя</Td>
-                                    <Td >email</Td>
-                                    <Td >Дожность</Td>
-                                </Tr>
-                            
-                           
-      
-                         {project.team.map((user, i) => {
-                            return (
-                             
-                                <Tr columns='1fr 1fr 1fr' key={i}  title="Профиль сотрудника" onClick={() => history.push(`/users/${user._id}`)}>
-                                    <Td> {user.name}</Td>
-                                    <Td>{user.email}</Td>
-                                    <Td>{user.position}</Td>
-                                            
-                                    
-                                </Tr>
-                            
-                     
-                            )
+                      {sprints
+                        .filter((sprint) => !sprint.status)
+                        .map((sprint, i) => {
+                          return (
+                            <Tr
+                              columns="1fr 1fr 1fr"
+                              key={i}
+                              style={{ cursor: "pointer" }}
+                              title="Открыть спринт"
+                              onClick={() =>
+                                history.push(`/projects/${id}/${sprint._id}`)
+                              }
+                            >
+                              <Td>
+                                {" "}
+                                {sprint.dateOpen
+                                  .slice(0, 16)
+                                  .replace(/T/g, "  ")}
+                              </Td>
+                              <Td>спринт {i}</Td>
+                              <Td>
+                                {" "}
+                                {
+                                  sprint.tasks.filter((task) => task.taskStatus)
+                                    .length
+                                }
+                                /{sprint.tasks.length}
+                              </Td>{" "}
+                                
+                            </Tr>
+                          );
                         })}
-         
-        </Table>  
-      <br />
-      {project.team.map((empl, ind) => {
-          console.log(user, 'emp id' )
-          if(empl._id === user.id  ){
-              console.log(ind, 'INDEX USER')
-              return  <Button onClick={hadleTeam} style ={{display: `${project.status?'none':'block'}`}}>Выйти из команды проекта</Button>
+                    </Table>
+                  )}
+                  <br />
+                  <Button
+                    onClick={createSprint}
+                    style={{
+                      display: `${
+                        user.permission === "user" || project.status
+                          ? "none"
+                          : "block"
+                      }`,
+                    }}
+                  >
+                    {" "}
+                    {user.permission === "user" ? "" : "Создать спринт"}
+                  </Button>
+                  <br />
+                </Card>
 
-          } else  if (project.team.length-1 == ind){
-              return  <Button onClick={hadleTeam} style ={{display: `${project.status?'none':'block'}`}}>Вступить в команду проекта</Button>
+                <Card>
+                  <H1>Завершенные спринты</H1>
 
-          }
-      })}
+                  {sprints.length == 0 ? (
+                    <p>Завершенных спринтов нет</p>
+                  ) : (
+                    <Table>
+                      <Tr columns="1fr 1fr 1fr 1fr" top>
+                        <Td> Дата </Td>
+                        <Td> Название</Td>
+                        <Td> Задачи</Td>
+                        <Td> Статус</Td>
+                      </Tr>
 
+                      {sprints
+                        .filter((sprint) => sprint.status)
+                        .map((sprint, i) => {
+                          return (
+                            <Tr
+                              columns="1fr 1fr 1fr 1fr"
+                              key={i}
+                              title="Открыть спринт"
+                              onClick={() =>
+                                history.push(`/projects/${id}/${sprint._id}`)
+                              }
+                            >
+                              <Td>
+                                {" "}
+                                {sprint.dateOpen
+                                  .slice(0, 16)
+                                  .replace(/T/g, "  ")}
+                              </Td>
+                              <Td>спринт {i}</Td>
+                              <Td>
+                                {" "}
+                                {
+                                  sprint.tasks.filter((task) => task.taskStatus)
+                                    .length
+                                }
+                                /{sprint.tasks.length}
+                              </Td>
+                              <Td>
+                                {sprint.tasks.length -
+                                  sprint.tasks.filter((task) => task.taskStatus)
+                                    .length ===
+                                0 ? (
+                                  <Status green />
+                                ) : (
+                                  <Status red />
+                                )}
+                              </Td>
+                            </Tr>
+                          );
+                        })}
+                    </Table>
+                  )}
+                </Card>
 
-    
-  </Card>
+                <Card>
+                  <H1> Команда</H1>
 
-                        <Card>
-                            <Button onClick={handleEnd} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'': project.status?'Восстановить проект':'Завершить проект'}</Button> 
-                            <Button onClick={handleDelete} style={{display:`${user.permission==='user'?'none':'block'}`,marginBottom: '30px'}}> {user.permission==='user'?'':'Удалить проект'}</Button> 
-                        </Card>
-</>
-)}
-     
-</div>
- 
-    
-     )}                  
-                
-           
-        </Container>
-    )
+                  <Table>
+                    <Tr columns="1fr 1fr 1fr" top>
+                      <Td>Имя</Td>
+                      <Td>email</Td>
+                      <Td>Дожность</Td>
+                    </Tr>
+
+                    {project.team.map((user, i) => {
+                      return (
+                        <Tr
+                          columns="1fr 1fr 1fr"
+                          key={i}
+                          title="Профиль сотрудника"
+                          onClick={() => history.push(`/users/${user._id}`)}
+                        >
+                          <Td> {user.name}</Td>
+                          <Td>{user.email}</Td>
+                          <Td>{user.position}</Td>
+                        </Tr>
+                      );
+                    })}
+                  </Table>
+                  <br />
+                  {project.team.length == 0 && (
+                    <Button
+                      onClick={hadleTeam}
+                      style={{
+                        display: `${project.status ? "none" : "block"}`,
+                      }}
+                    >
+                      Вступить в команду проекта
+                    </Button>
+                  )}
+                  {project.team.map((empl, ind) => {
+                    console.log(user, "emp id");
+                    if (empl._id === user.id) {
+                      console.log(ind, "INDEX USER");
+                      return (
+                        <Button
+                          onClick={hadleTeam}
+                          style={{
+                            display: `${project.status ? "none" : "block"}`,
+                          }}
+                        >
+                          Выйти из команды проекта
+                        </Button>
+                      );
+                    } else if (project.team.length - 1 == ind) {
+                      return (
+                        <Button
+                          onClick={hadleTeam}
+                          style={{
+                            display: `${project.status ? "none" : "block"}`,
+                          }}
+                        >
+                          Вступить в команду проекта
+                        </Button>
+                      );
+                    }
+                  })}
+                </Card>
+
+                <Card>
+                  <Button
+                    onClick={handleEnd}
+                    style={{
+                      display: `${
+                        user.permission === "user" ? "none" : "block"
+                      }`,
+                      marginBottom: "30px",
+                    }}
+                  >
+                    {" "}
+                    {user.permission === "user"
+                      ? ""
+                      : project.status
+                      ? "Восстановить проект"
+                      : "Завершить проект"}
+                  </Button>
+                  <Button
+                    onClick={handleDelete}
+                    style={{
+                      display: `${
+                        user.permission === "user" ? "none" : "block"
+                      }`,
+                      marginBottom: "30px",
+                    }}
+                  >
+                    {" "}
+                    {user.permission === "user" ? "" : "Удалить проект"}
+                  </Button>
+                </Card>
+              </>
+            )}
+          </div>
+        )}
+      </Container>
+    );
 }
 
 
