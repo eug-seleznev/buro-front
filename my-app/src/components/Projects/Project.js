@@ -85,64 +85,22 @@ const Project = ({match, history}) => {
                   
                   <H1>{project.title}</H1>
                 </Card>
-                <Card>
-                  <H1>Текущий спринт</H1>
+                <div>
+                  
                   {sprints.length == 0 ? (
                     <p>Спринтов нет</p>
                   ) : (
-                   <div>
+                   <div className="sprint__descr__cont">
                      {sprints.filter((sprint)=> !sprint.status)
                      .map ((sprint, i) => {
                        return (
-                         <SprintDescription ></SprintDescription>
+                         <SprintDescription history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
+                         alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
                        )
                      })}
                    </div>
                   )}
-                  {sprints.length == 0 ? (
-                    <p>Спринтов нет</p>
-                  ) : (
-                    <Table>
-                      <Tr columns="1fr 1fr 1fr" top>
-                        <Td> Дата </Td>
-                        <Td> Название</Td>
-                        <Td> Задачи</Td>
-                      </Tr>
-
-                      {sprints
-                        .filter((sprint) => !sprint.status)
-                        .map((sprint, i) => {
-                          return (
-                            <Tr
-                              columns="1fr 1fr 1fr"
-                              key={i}
-                              style={{ cursor: "pointer" }}
-                              title="Открыть спринт"
-                              onClick={() =>
-                                history.push(`/projects/${id}/${sprint._id}`)
-                              }
-                            >
-                              <Td>
-                                {" "}
-                                {sprint.dateOpen
-                                  .slice(0, 16)
-                                  .replace(/T/g, "  ")}
-                              </Td>
-                              <Td>спринт {i}</Td>
-                              <Td>
-                                {" "}
-                                {
-                                  sprint.tasks.filter((task) => task.taskStatus)
-                                    .length
-                                }
-                                /{sprint.tasks.length}
-                              </Td>{" "}
-                                
-                            </Tr>
-                          );
-                        })}
-                    </Table>
-                  )}
+                  
                   <br />
                   <Button
                     onClick={createSprint}
@@ -158,7 +116,7 @@ const Project = ({match, history}) => {
                     {user.permission === "user" ? "" : "Создать спринт"}
                   </Button>
                   <br />
-                </Card>
+                </div>
 
                 <Card>
                   <H1>Завершенные спринты</H1>

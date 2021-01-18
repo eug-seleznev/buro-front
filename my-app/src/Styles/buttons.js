@@ -4,12 +4,16 @@ import styled from 'styled-components'
 export const Button =  styled.button`
   display: inline-block;
   border-radius: 30px;
-
+  font-size:${props => props.fontSize};
   font-family: SuisseIntlRegular;
-  width: 11rem;
+  width: auto;
+  padding-left:15px;
+  padding-right: 15px;
   height: 35px;
+  outline: none;
+  text-decoration: none;
   color: white;
-  background-color: #3F496C;
+  background-color: ${props => props.grey ? "grey" : "#3F496C"};
   ;
 
   &:hover{

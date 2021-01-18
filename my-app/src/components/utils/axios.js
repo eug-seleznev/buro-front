@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 //export const url = "http://185.231.153.99:7070";
-export const url = "https://bd.buro82.ru";
+export const url = process.env.REACT_APP_IP;
 
 
 
