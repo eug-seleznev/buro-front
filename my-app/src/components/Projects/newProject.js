@@ -53,69 +53,73 @@ const ProjectNew = ({history}) => {
         }
 
     return (
-        <Container >
-            <Card>
-            <H1> Тут можно создать новый проект </H1>
-            <form className='form' onSubmit={onSubmit}>
-            <input 
+      <Container>
+        <Card>
+          <H1>
+       
+            Тут можно создать новый проект
+           
+          </H1>
+          <form className="form" onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="Название проекта"
+              name="title"
+              value={title}
+              onChange={(e) => onChange(e)}
+            />
 
-                type='text'
-                placeholder='Название проекта'
-                name='title'
-                value={title}
-                onChange={e => onChange(e)}/>
+            <input
+              type="date"
+              placeholder="date"
+              name="dateStart"
+              value={dateStart}
+              onChange={(e) => onChange(e)}
+            />
 
-           <input 
-                type='date'
-                placeholder='date'
-                name='dateStart'
-                value={dateStart}
-                onChange={e => onChange(e)}/>
+            <input
+              type="date"
+              placeholder="date"
+              name="dateFinish"
+              value={dateFinish}
+              onChange={(e) => onChange(e)}
+            />
 
+            <input
+              type="text"
+              placeholder="Город"
+              name="city"
+              value={city}
+              onChange={(e) => onChange(e)}
+            />
 
-            <input 
-                type='date'
-                placeholder='date'
-                name='dateFinish'
-                value={dateFinish}
-                onChange={e => onChange(e)}/>
+            <input
+              type="text"
+              placeholder="Тип проекта"
+              name="type"
+              value={type}
+              onChange={(e) => onChange(e)}
+            />
+            <input
+              type="text"
+              placeholder="Фаза"
+              name="stage"
+              value={stage}
+              onChange={(e) => onChange(e)}
+            />
+            <input
+              type="text"
+              placeholder="Заказчик"
+              name="customer"
+              value={customer}
+              onChange={(e) => onChange(e)}
+            />
 
-            <input 
-                type='text'
-                placeholder='Город'
-                name='city'
-                value={city}
-                onChange={e => onChange(e)}/>
-
-            <input 
-                type='text'
-                placeholder='Тип проекта'
-                name='type'
-                value={type}
-                onChange={e => onChange(e)}/>
-            <input 
-                type='text'
-                placeholder='Фаза'
-                name='stage'
-                value={stage}
-                onChange={e => onChange(e)}/>
-            <input 
-                type='text'
-                placeholder='Заказчик'
-                name='customer'
-                value={customer}
-                onChange={e => onChange(e)}/>
-
-
-
-
-
-            <Button  type="submit"> Создать новый проект</Button>
-
-            </form>
-            </Card>
-        </Container>
-    )
+            <Button type="submit"> Создать новый проект</Button>
+          </form>
+        </Card>
+      </Container>
+    );
 }
 
 
