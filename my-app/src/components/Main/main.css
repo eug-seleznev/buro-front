@@ -18,20 +18,7 @@
     text-align: left;
 }
     .main__profile{
-        grid-area: profile;
-
-
-        display: grid;
-        grid-template-areas: 
-        'logo name'
-        'logo position'
-        ;
-        grid-template-columns: max-content auto;
-        grid-template-rows: 40px 40px;
-        column-gap: 40px;
-        
-      
-        
+        grid-area: profile; 
 
     }
             .main__profile__logo{

@@ -1,4 +1,5 @@
 import styles from '../../Styles/modules/main/main.module.css'
+import Profile from './profileComponent'
 
 
 import {  Redirect } from 'react-router-dom';
@@ -72,11 +73,9 @@ useEffect(()=>{
         <>
         {!loadedUser ? <p> loading..</p> : (
 <div className='main__container'>
-    <Card className='main__profile'>
-        <img className='main__profile__logo' src={`${url}/${user != null? (user!= undefined? user.avatar:''):''}`}/>
-        <H1 className='main__profile__name'>{user.name}</H1>
-        <div className='main__profile__position'>Position: {user.position}</div>
-    </Card>
+
+    <Profile className='main__profile' />
+ 
 
 
 
