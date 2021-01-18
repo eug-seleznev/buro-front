@@ -61,9 +61,8 @@
 
     .main__news{
         grid-area: news;
-        background-color: white;
-        padding: 15px;
-        
+     
+       
     
        
     }
