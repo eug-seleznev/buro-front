@@ -5,9 +5,9 @@ export const Button =  styled.button`
   display: inline-block;
   border-radius: 30px;
 
-
+  font-family: SuisseIntlRegular;
   width: 11rem;
-  height: 30px;
+  height: 35px;
   color: white;
   background-color: #3F496C;
   ;
