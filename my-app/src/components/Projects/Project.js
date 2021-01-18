@@ -12,7 +12,7 @@ import { Table, Td, Tr } from "../../Styles/tables";
 import { Status } from "../../Styles/project";
 import { Container, Card,} from "../../Styles/common";
 import { H1, H3} from '../../Styles/typography'
-
+import SprintDescription from './components/SprintDescrForOneProj'
 
 const Project = ({match, history}) => {
     let {id} = match.params;
@@ -82,11 +82,23 @@ const Project = ({match, history}) => {
             ) : (
               <>
                 <Card>
+                  
                   <H1>{project.title}</H1>
                 </Card>
                 <Card>
                   <H1>Текущий спринт</H1>
-
+                  {sprints.length == 0 ? (
+                    <p>Спринтов нет</p>
+                  ) : (
+                   <div>
+                     {sprints.filter((sprint)=> !sprint.status)
+                     .map ((sprint, i) => {
+                       return (
+                         <SprintDescription ></SprintDescription>
+                       )
+                     })}
+                   </div>
+                  )}
                   {sprints.length == 0 ? (
                     <p>Спринтов нет</p>
                   ) : (
