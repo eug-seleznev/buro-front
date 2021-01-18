@@ -32,3 +32,6 @@
 .tr {
 	width: 40vw;
 }
+.sprint__descr__cont {
+	display: flex;
+}

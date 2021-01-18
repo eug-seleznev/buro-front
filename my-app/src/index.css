@@ -8,6 +8,24 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, SuisseIntlRegular, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: SuisseIntlSemiBold;
+  src: url(./fonts/SuisseIntl/SemiBold/SuisseIntl-SemiBold.eot);
+  src: url(./fonts/SuisseIntl/SemiBold/SuisseIntl-SemiBold.woff), 
+  url(./fonts/SuisseIntl/SemiBold/SuisseIntl-SemiBold.woff2); 
+  }
+@font-face {
+    font-family: SuisseIntlRegular;
+    src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.eot);
+    src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff), 
+    url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff2); 
+    }
+@font-face {
+      font-family: SuisseIntlLight;
+      src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.eot);
+      src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff), 
+      url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff2); 
+      }
