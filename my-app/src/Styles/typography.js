@@ -1,21 +1,21 @@
 import styled from 'styled-components'
 
 
-export const B = styled.h1`
+export const Bold = styled.h1`
 margin: 0;
 padding: 0;
 font-family: SuisseIntlSemiBold;
 font-size: ${props => props.size}px;
 color: ${props => props.color};
 `
-export const L = styled.p`
+export const Light = styled.p`
 margin: 0;
 padding: 0;
 font-family: SuisseIntlLight;
 font-size: ${props => props.size}px;
 color: ${props => props.color};
 `
-export const T = styled.p`
+export const Thin = styled.p`
 margin: 0;
 padding: 0;
 font-family: SuisseIntlThin;
