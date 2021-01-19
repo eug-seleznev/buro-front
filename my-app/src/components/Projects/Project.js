@@ -90,7 +90,7 @@ const Project = ({match, history}) => {
                   {sprints.length == 0 ? (
                     <p>Спринтов нет</p>
                   ) : (
-                   <div className="sprint__descr__cont">
+                   <div className={style.sprintdescr__cont}>
                      {sprints.filter((sprint)=> !sprint.status)
                      .map ((sprint, i) => {
                        return (
