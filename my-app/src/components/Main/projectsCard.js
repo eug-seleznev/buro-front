@@ -1,7 +1,7 @@
 import styles from '../../Styles/modules/components/projectsCard.module.css'
 import { Card } from '../../Styles/common'
 import { Button } from '../../Styles/buttons'
-import { H1 } from '../../Styles/typography'
+import { H1, B,L,T } from '../../Styles/typography'
 import { useEffect, useState } from 'react'
 import  MySprint from './mySprint'
 
@@ -32,6 +32,7 @@ useEffect(()=>{
                     <div className={styles.filter}>#ЭП</div>
                     <Button className={styles.button}>Подробнее</Button>
                     <div className={styles.sprints} onClick={()=>console.log(filt)}>
+
                         {sprints!= undefined && filt !=null && filt.map((item,i)=>{
                             
                             return(
