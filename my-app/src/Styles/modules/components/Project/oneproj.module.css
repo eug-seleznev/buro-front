@@ -1,5 +1,9 @@
 .main {
-	
+
+}
+.card {
+	margin-right: 50px;
+	width: 400px;
 }
 .title {
 	text-align: left;
@@ -11,4 +15,8 @@
 .title__deadline {
 	padding-top: 10px;
 	text-align: left;
+}
+.sprintdescr__cont {
+	display: flex;
+	flex-wrap: wrap;
 }
