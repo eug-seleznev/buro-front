@@ -1,18 +1,13 @@
 .main__container{
 
-    width: 60vw;
-    margin-top: 20vh;
-    margin-left: auto;
-    margin-right: auto;
-
     display: grid;
     grid-template-areas: 
-    'profile profile'
-    'projects news'
-    'tasks news'
+    'profile news'
+    'projects projects'
+    'tasks .'
     ;
     grid-template-rows: min-content min-content min-content;
-    grid-template-columns:35vw 1fr;
+    grid-template-columns:2fr 1fr;
     column-gap: 2vw;
     row-gap: 40px;
     text-align: left;
@@ -20,6 +15,9 @@
     .main__profile{
         grid-area: profile; 
 
+    }
+    .main__projects{
+        grid-area: projects;
     }
             .main__profile__logo{
                 object-fit: cover;

@@ -1,0 +1,40 @@
+.projContainer{
+    display: grid;
+    grid-template-areas:
+    '. dates'
+    'title leftt'
+    'descr .'
+    'sprints sprints'
+    ' filter button'
+    ;
+    height: max-content;
+}
+  
+  .title{
+        grid-area: title;
+        padding-bottom: 25px;
+    }
+    .description{
+        grid-area: descr;
+        padding-bottom: 50px;
+    }
+    .dates{
+        grid-area: dates;
+        text-align: right;
+    }
+    .left{
+        grid-area: leftt;
+        text-align: right;
+    }
+    .filter{
+        grid-area: filter;
+        display: grid;
+        justify-content: left;
+        align-content: center;
+    }
+    .button{
+        grid-area: button;
+    }
+    .sprints{
+        grid-area: sprints;
+    }

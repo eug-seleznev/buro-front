@@ -3,13 +3,16 @@ import styled from 'styled-components'
 
 export const Button =  styled.button`
   display: inline-block;
-  border-radius: 30px;
+  border: 0.4px solid #B7B7B7;
+  border-radius: 13px;
   font-size:${props => props.fontSize};
   font-family: SuisseIntlRegular;
-  width: auto;
-  padding-left:15px;
-  padding-right: 15px;
-  height: 35px;
+  
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 11px;
+  padding-bottom: 9px;
+ 
   outline: none;
   text-decoration: none;
   color: white;

@@ -50,7 +50,7 @@ const Sprint = ({match, history}) => {
   
     useEffect(() => {
         
-            dispatch(getSprint(id));    
+            dispatch(getSprint(id))    
            console.log(user)
     }, [])
 
