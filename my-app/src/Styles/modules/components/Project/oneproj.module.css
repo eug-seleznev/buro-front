@@ -1,0 +1,14 @@
+.main {
+
+}
+.title {
+	text-align: left;
+	width: 100%;
+	border-bottom: 1px solid black;
+	font-size: 24px;
+	padding-bottom: 10px;
+} 
+.title__deadline {
+	padding-top: 10px;
+	text-align: left;
+}

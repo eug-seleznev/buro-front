@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./oneproject.css"
 
-
+import style from '../../Styles/modules/components/Project/oneproj.module.css'
 import { useLocation} from "react-router";
 import { addSprint, getProject, allSprints, deleteProject, joinTeam, finishProject} from "../../redux/actions/projects";
 import { getTicket } from "../../redux/actions/tikets";
@@ -76,15 +76,15 @@ const Project = ({match, history}) => {
         {!loaded ? (
           <p> loading...</p>
         ) : (
-          <div className="project__grid">
+          <div className={style.main}>
             {!sprintsLoad ? (
               <p> loading...</p>
             ) : (
               <>
-                <Card>
+           
                   
-                  <H1>{project.title}</H1>
-                </Card>
+                  <H1 className={style.title}>{project.title}</H1>
+                  <div className={style.title__deadline}>Дней до дедлайна: ?</div> 
                 <div>
                   
                   {sprints.length == 0 ? (
