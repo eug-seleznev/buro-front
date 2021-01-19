@@ -16,13 +16,14 @@ import { addTasks, finishSprint, finishTask, getSprint, } from "../../redux/acti
 
 // import { allUsers } from "../../redux/actions/user";
 import {Card, Container} from '../../Styles/common'
-import { H1, H3} from '../../Styles/typography'
+import { Bold,Light,Thin } from '../../Styles/typography'
 
 import {Table, Tr, Td} from '../../Styles/tables'
 
 import { Button } from '../../Styles/buttons'
 //////////////////////////////////////// ШО ЭТО
 import { url } from '../utils/axios';
+import styled from 'styled-components';
 ///////////////
 const Main = ({history}) => {
     const dispatch = useDispatch();
@@ -75,51 +76,53 @@ useEffect(()=>{
 },[])
 
 
+
+
     return (
         <>
         {!loadedUser ? <p> loading..</p> : (
-<Container className='main__container'>
 
-    <Profile className='main__profile' />
- 
+            <Container className={styles.mainContainer}>
 
-    <div className={styles.projects}>
-        <H1 className={styles.myProj}>Мои проекты</H1>
-        
-        {user.projects.map((el,i)=>{
+                <Profile className={styles.profile} />
             
-            return(
-                <ProjectsCard project={el}  sprints={sprintsArr} />
-            )
-        })}
-        
-    </div>
+
+                <div className={styles.projects}>
+                    <Bold color='black' size='36' className={styles.myProj}>Мои проекты</Bold>
+
+                    {user.projects.map((el,i)=>{
+                        
+                        return(
+                            <ProjectsCard project={el}  sprints={sprintsArr} />
+                        )
+                    })}
+                    
+                </div>
 
 
-    <div className={styles.news}>
-        
-        <H1>Новости бюро:</H1>
+                <div className={styles.news}>
+                    <Thin color='black' size='24'>Новости бюро:</Thin>
 
-            {!loaded? <p>loading...</p> : 
-            
-            listNews.map((el,i)=>{
-                 
-                    return(
-                       i<3 && <NewsCard el={el}/>
-                    )
-                })
-            }
-        
-        <div className={styles.allNews}>Все новости</div>
-            
-    </div>
+                    {!loaded? <p>loading...</p> : 
+                        
+                        listNews.map((el,i)=>{
+                            
+                                return(
+                                i<3 && <NewsCard el={el}/>
+                                )
+                            })
+                    }
+                    
+                    <Bold color='#3F496C' size='12' className={styles.allNews}>Все новости</Bold>       
+                </div>
 
 
-    
-            
-</Container>)}
-</>
-      )
+                
+                        
+            </Container>)
+        }
+        </>
+    )
 }
 
 

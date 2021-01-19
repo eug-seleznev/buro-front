@@ -2,7 +2,7 @@ import { url } from '../utils/axios';
 import { useSelector } from "react-redux"
 import styles from '../../Styles/modules/components/profile.module.css'
 
-import {H1} from '../../Styles/typography'
+import { Bold,Light,Thin } from '../../Styles/typography'
 
 const ProfileComponent = () => {
 

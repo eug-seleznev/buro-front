@@ -1,24 +1,40 @@
-.news{
-    grid-area: news;
+.mainContainer{
     display: grid;
-    row-gap: 20px;
-}
-    .allNews{
-        text-align: right;
-    }
-.projects{
-    grid-area: projects;
-    display: grid;
-    grid-template-areas:
-    'myProj myProj myProj'
-    '. . .'
+    grid-template-areas: 
+    'profile news'
+    'projects projects'
+    'tasks .'
     ;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 35px;
-    row-gap: 35px;
+    grid-template-rows: min-content min-content min-content;
+    grid-template-columns:2fr 1fr;
+    column-gap: 2vw;
+    row-gap: 40px;
+    text-align: left;
 }
-    .myProj{
-        grid-area: myProj;
-        padding-bottom: 18px;
-        border-bottom: 1px solid #000000;
+    .profile{
+        grid-area: profile;
     }
+    .news{
+        grid-area: news;
+        display: grid;
+        row-gap: 20px;
+    }
+        .allNews{
+            text-align: right;
+        }
+    .projects{
+        grid-area: projects;
+        display: grid;
+        grid-template-areas:
+        'myProj myProj myProj'
+        '. . .'
+        ;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 35px;
+        row-gap: 35px;
+    }
+        .myProj{
+            grid-area: myProj;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #000000;
+        }
