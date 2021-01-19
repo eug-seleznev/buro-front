@@ -11,6 +11,7 @@ grid-template-areas:
 grid-template-columns: 342px min-content 1fr;
 grid-template-rows: max-content 60px max-content max-content max-content 1fr;
 column-gap: 30px;
+row-gap: 8px;
 }
     .avatar{
         grid-area: ava;

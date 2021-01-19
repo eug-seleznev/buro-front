@@ -3,7 +3,7 @@
     grid-template-areas:
     '. dates'
     'title leftt'
-    'descr .'
+    'descr descr'
     'sprints sprints'
     ' filter button'
     ;
@@ -17,6 +17,7 @@
     .description{
         grid-area: descr;
         padding-bottom: 50px;
+        width: 75%;
     }
     .dates{
         grid-area: dates;

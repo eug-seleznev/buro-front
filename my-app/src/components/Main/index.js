@@ -93,7 +93,7 @@ useEffect(()=>{
                     {user.projects.map((el,i)=>{
                         
                         return(
-                            <ProjectsCard project={el}  sprints={sprintsArr} />
+                            <ProjectsCard project={el}  sprints={sprintsArr} history={history}/>
                         )
                     })}
                     
