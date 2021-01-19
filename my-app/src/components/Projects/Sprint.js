@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef} from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addTasks, finishSprint, finishTask, getSprint, } from "../../redux/actions/projects";
+import { addInfoSprint, addTasks, finishSprint, finishTask, getSprint, } from "../../redux/actions/projects";
 import { addToChosen } from '../../redux/actions/auth'
 import { useForm, FormProvider, useFormContext, useFieldArray, Controller } from "react-hook-form";
 import './sprint.css'
@@ -20,10 +20,18 @@ const Sprint = ({match, history}) => {
     const msg = useSelector(state => state.projects.msg)
     const user = useSelector(state => state.auth.user)
 
-
+  const [formData, setFormData] = useState(
+    {
+        description: sprint.description, 
+        date: sprint.date,  
+         
+    }
+  )
+  const {description, date} = formData;
     const { register, control, handleSubmit, reset, watch } = useForm({
         defaultValues: {
-            tasks: [{ taskTitle: "задача", workVolume: "5", taskState: false }]
+            tasks: [{ taskTitle: "задача", workVolume: "5", taskState: false }],
+            info: [{ date:`0`, description:'Без описания'}]
           }
     });
 
@@ -47,7 +55,16 @@ const Sprint = ({match, history}) => {
             
 
     }
-  
+    const onEnter = e => {
+      e.preventDefault();
+      console.log(formData)
+      dispatch(addInfoSprint(id, formData))
+    }
+    const onChange2 = e => {
+      e.preventDefault(); 
+      console.log (e.target.value)
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+   }
     useEffect(() => {
         
             dispatch(getSprint(id))    
@@ -79,7 +96,7 @@ const Sprint = ({match, history}) => {
           return history.replace(`${back.slice(0,14)}`);
   }, 200);
    }
-
+ 
 
    const handleBack = (e) => {
 
@@ -147,10 +164,29 @@ const Sprint = ({match, history}) => {
                 <Button onClick={()=>handleBack()} style={{marginTop: '20px'}}>Вернуться к проекту</Button>
                 <Button onClick={handleSprint} style={{display:`${sprint.status?'block':'none'}`,marginTop: '20px'}}> Восстановить спринт</Button>
             </Card>
+            {/* addInfoSprint */}
 
 <Card style={{opacity: `${sprint.status?0: 1}`,pointerEvents: `${sprint.status?'none': 'auto'}`,textAlign: 'right', height:'fit-content', paddingBottom:'20px'}}>
 
+<form onSubmit={(e)=>onEnter(e)}>
+    <input 
 
+      type='text'
+      name="description"
+      value={description}
+      placeholder="Описание спринта"
+      onChange={e => onChange2(e)}>
+        
+    </input>
+    <div>Предпологаемая дата завершения</div>
+    <input 
+     value={date}
+      name="date"
+       onChange={e => onChange2(e)}
+      type="date">
+    </input>
+    <Button type="submit">Сохранить</Button>
+</form>
 <H1> Добавить задачи </H1>
     <form onSubmit={handleSubmit(onSubmit)}>
       <ul style={{ listStyleType: 'none'}}>
