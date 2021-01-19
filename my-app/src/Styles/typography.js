@@ -6,28 +6,28 @@ margin: 0;
 padding: 0;
 font-family: SuisseIntlSemiBold;
 font-size: ${props => props.size}px;
-color: ${props => props.color};
+color: ${props => props.color || 'black'};
 `
 export const Light = styled.p`
 margin: 0;
 padding: 0;
 font-family: SuisseIntlLight;
 font-size: ${props => props.size}px;
-color: ${props => props.color};
+color: ${props => props.color || 'black'};
 `
 export const Thin = styled.p`
 margin: 0;
 padding: 0;
 font-family: SuisseIntlThin;
 font-size: ${props => props.size}px;
-color: ${props => props.color};
+color: ${props => props.color || 'black'};
 `
 export const Regular = styled.p`
 margin: 0;
 padding: 0;
 font-family: SuisseIntlRegular;
 font-size: ${props => props.size}px;
-color: ${props => props.color};
+color: ${props => props.color || 'black'};
 `
 
 export const Ultralight = styled.p`
@@ -35,7 +35,7 @@ margin: 0;
 padding: 0;
 font-family: SuisseIntlUltralight;
 font-size: ${props => props.size}px;
-color: ${props => props.color};
+color: ${props => props.color || 'black'};
 `
 
 // not in use///////////////////
