@@ -30,3 +30,15 @@ code {
       src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff), 
       url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff2); 
       }
+      @font-face {
+        font-family: SuisseIntlUltralight;
+        src: url(./fonts/SuisseIntl/UltraLight/SuisseIntl-Ultralight.eot);
+        src: url(./fonts/SuisseIntl/UltraLight/SuisseIntl-Ultralight.woff), 
+        url(./fonts/SuisseIntl/UltraLight/SuisseIntl-Ultralight.woff2); 
+        }
+        @font-face {
+          font-family: SuisseIntlThin;
+          src: url(./fonts/SuisseIntl/Thin/SuisseIntl-Thin.eot);
+          src: url(./fonts/SuisseIntl/Thin/SuisseIntl-Thin.woff), 
+          url(./fonts/SuisseIntl/Thin/SuisseIntl-Thin.woff2); 
+          }
