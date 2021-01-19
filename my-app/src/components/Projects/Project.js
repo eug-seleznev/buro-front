@@ -90,7 +90,7 @@ const Project = ({match, history}) => {
                   {sprints.length == 0 ? (
                     <p>Спринтов нет</p>
                   ) : (
-                   <div className="sprint__descr__cont">
+                   <div className={style.sprintdescr__cont}>
                      {sprints.filter((sprint)=> !sprint.status)
                      .map ((sprint, i) => {
                        return (
@@ -98,11 +98,8 @@ const Project = ({match, history}) => {
                          alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
                        )
                      })}
-                   </div>
-                  )}
-                  
-                  <br />
-                  <Button
+                     <button
+                     className={style.special__button}
                     onClick={createSprint}
                     style={{
                       display: `${
@@ -114,7 +111,12 @@ const Project = ({match, history}) => {
                   >
                     {" "}
                     {user.permission === "user" ? "" : "Создать спринт"}
-                  </Button>
+                  </button>
+                   </div>
+                  )}
+                  
+                  <br />
+                  
                   <br />
                 </div>
 
