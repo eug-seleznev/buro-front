@@ -26,9 +26,9 @@ code {
     }
 @font-face {
       font-family: SuisseIntlLight;
-      src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.eot);
-      src: url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff), 
-      url(./fonts/SuisseIntl/Regular/SuisseIntl-Regular.woff2); 
+      src: url(./fonts/SuisseIntl/Light/SuisseIntl-Light.eot);
+      src: url(./fonts/SuisseIntl/Light/SuisseIntl-Light.woff), 
+      url(./fonts/SuisseIntl/Light/SuisseIntl-Light.woff2); 
       }
       @font-face {
         font-family: SuisseIntlUltralight;

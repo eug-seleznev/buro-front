@@ -3,6 +3,7 @@ import { Button } from "../../../Styles/buttons"
 import { Card } from "../../../Styles/common"
 import './sprintdescr.css'
 import style from '../../../Styles/modules/components/Project/oneproj.module.css'
+import { Thin, Bold, Light,Regular } from "../../../Styles/typography"
 
 const SprintDescription = ({sprintname, index, dateOpen,taskcomplite, alltasks, history, params, id}) => {
 	const [loaded, setLoaded] = useState (0)
@@ -29,10 +30,10 @@ const SprintDescription = ({sprintname, index, dateOpen,taskcomplite, alltasks, 
 		
 			<Card>
 			
-				<div>{dateOpen.slice(5,10).replace(/-/g, ".")}-01.??</div>
-				<div>Спринт №{index}</div>
-				<div>Короткое описание</div>
-				<div>Дней до дедлайна: {diff.toString().slice(0,1)}</div>
+				<div className={style.card__date1}><Light size='20'>{dateOpen.slice(5,10).replace(/-/g, ".")}-01.??</Light></div>
+				<div className={style.card__title}><Regular size='30'>Спринт №{index}</Regular></div>
+				<div className={style.card__descr}><Light size='16'>Короткое описание</Light></div>
+				<div className={style.card__date2}>Дней до дедлайна: {diff.toString().slice(0,1)}</div>
 				<div>Задачи {taskcomplite}/{alltasks} </div>
 				<div>
 					<Button fontSize={'16px'} grey>Добавить в избранное</Button>

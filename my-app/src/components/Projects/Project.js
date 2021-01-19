@@ -98,11 +98,8 @@ const Project = ({match, history}) => {
                          alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
                        )
                      })}
-                   </div>
-                  )}
-                  
-                  <br />
-                  <Button
+                     <button
+                     className={style.special__button}
                     onClick={createSprint}
                     style={{
                       display: `${
@@ -114,7 +111,12 @@ const Project = ({match, history}) => {
                   >
                     {" "}
                     {user.permission === "user" ? "" : "Создать спринт"}
-                  </Button>
+                  </button>
+                   </div>
+                  )}
+                  
+                  <br />
+                  
                   <br />
                 </div>
 

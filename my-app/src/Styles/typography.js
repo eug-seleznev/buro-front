@@ -22,7 +22,21 @@ font-family: SuisseIntlThin;
 font-size: ${props => props.size}px;
 color: ${props => props.color};
 `
+export const Regular = styled.p`
+margin: 0;
+padding: 0;
+font-family: SuisseIntlRegular;
+font-size: ${props => props.size}px;
+color: ${props => props.color};
+`
 
+export const Ultralight = styled.p`
+margin: 0;
+padding: 0;
+font-family: SuisseIntlUltralight;
+font-size: ${props => props.size}px;
+color: ${props => props.color};
+`
 
 // not in use///////////////////
 export const H1 = styled.h1`

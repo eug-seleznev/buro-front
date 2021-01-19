@@ -4,6 +4,27 @@
 .card {
 	margin-right: 50px;
 	width: 400px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.card__date1 {
+	text-align: right;
+}
+.card__title {
+	text-align: left;
+	margin-bottom: 15px;
+}
+.card__descr {
+	text-align: left;
+}
+.card__date2 {
+	text-align: right;
+}
+.special__button {
+	border-radius: 15px;
+	width: 400px;
+	height: 217px;
+	margin-top: 25px;
 }
 .title {
 	text-align: left;
