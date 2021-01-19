@@ -1,25 +1,33 @@
 import styles from '../../Styles/modules/components/mySprint.module.css'
-import { Card } from '../../Styles/common'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { getSprint, finishTask, } from '../../redux/actions/projects'
+import { finishTask, } from '../../redux/actions/projects'
 
 const MySprint = ({content}) => {
 const dispatch = useDispatch()
-// const sprint = useSelector(state => state.projects.sprint)
 const user = useSelector(state => state.auth.user)
 const sprint = content
+const [progress, setProgress] = useState(0)
+
+
 useEffect(()=>{
-console.log(sprint,'jnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
-// dispatch(getSprint(id))
+
+    const done = sprint.tasks.reduce((sum,curr)=>{
+    return curr.taskStatus == true ? (sum = sum + 1) : sum = sum
+    }, 0)
+
+    setProgress(done)
 },[sprint])
 
 const onCheck = (e,id) => {
-       
+
     let taskid = e.target.value;
     dispatch(finishTask({taskid, id}))
-   
+
+    setProgress(e.target.checked?progress+1:progress-1)
 }
+
+
 
     return(
         <div className={styles.sprintContainer}>
@@ -27,7 +35,10 @@ const onCheck = (e,id) => {
                <div className={styles.date}>date</div> 
                <div className={styles.left}>left</div>
                <div className={styles.tasks}>Задачи</div>
-               <div className={styles.progress}>progress bar</div>
+               <div className={styles.progress}>
+                    <progress className={styles.progressBar} id="file" value={progress} max={sprint.tasks.length}>  </progress>
+                    {' ' + progress + '/' + sprint.tasks.length}
+                </div>
                <div className={styles.list}>
                             
                    {sprint.tasks.map((el,i)=>{

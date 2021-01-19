@@ -28,8 +28,16 @@
         grid-area: progr;
         text-align: right;
         border-bottom: 1px solid #9D9D9D;
+        font-size: 20px;
+        font-family: SuisseIntlSemiBold;
 
     }
+        .progressBar{
+            width: 148px;
+             height: 23px; 
+           /* border: none; */
+            /* border-radius: 15px; */
+        }
     .list{
         grid-area: list;
         padding-top: 10px;

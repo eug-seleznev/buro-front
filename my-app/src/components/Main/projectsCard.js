@@ -7,20 +7,12 @@ import  MySprint from './mySprint'
 
 const ProjectsCard = ({project, sprints}) => {
     const [filt, setFilt] = useState(null)
-// const aaa = sprints.join().split(',')
 useEffect(()=>{
-    if(sprints==undefined){
-     // window.location.reload(false);
-    } if (sprints!=undefined){
-
-             console.log(project, sprints,'hihi')
-
+    
+     if (sprints!=undefined){
 
          let filterAll = (item) => {
-             return project.sprints.some(el => { 
-                 console.log(el,item, 'function')
-             return el==item
-             })
+             return project.sprints.some(el => el==item )
              }
              
          const filtered = sprints!=undefined && sprints.filter(item => filterAll(item._id))   
