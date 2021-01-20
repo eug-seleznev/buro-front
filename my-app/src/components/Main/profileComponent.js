@@ -1,13 +1,9 @@
 import { url } from '../utils/axios';
-import { useSelector } from "react-redux"
 import styles from '../../Styles/modules/components/profile.module.css'
 
 import { Bold, Light } from '../../Styles/typography'
 
-const ProfileComponent = () => {
-
-const user = useSelector(state => state.auth.user)
-
+const ProfileComponent = ({user}) => {
 
     return(
         <div className={styles.profile}>

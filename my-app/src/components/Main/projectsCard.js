@@ -11,7 +11,7 @@ const ProjectsCard = ({project, sprints, history}) => {
 
 useEffect(()=>{
     
-     if (sprints!=undefined){
+    if (sprints!=undefined){
 
          let filterAll = (item) => {
              return project.sprints.some(el => el==item )
@@ -26,7 +26,6 @@ useEffect(()=>{
      const now = new Date()
      const finish = new Date(project.dateFinish)
      const left = (finish.getTime() - now.getTime()) / (1000*60*60*24)
-     
      const days = Math.floor(left)
    
     setDaysLeft(days)

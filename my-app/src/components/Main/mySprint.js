@@ -2,7 +2,7 @@ import styles from '../../Styles/modules/components/mySprint.module.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { finishTask, } from '../../redux/actions/projects'
-import { Bold, Light, Thin } from '../../Styles/typography'
+import { Bold, Light } from '../../Styles/typography'
 
 const MySprint = ({content}) => {
 const dispatch = useDispatch()

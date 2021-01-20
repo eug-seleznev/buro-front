@@ -39,3 +39,10 @@
     .sprints{
         grid-area: sprints;
     }
+
+@media (max-width: 800px){
+
+    .projContainer{
+        
+    }
+}
