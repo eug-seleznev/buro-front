@@ -1,24 +1,14 @@
-
-import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './sidebar.css'
-import { useEffect, useState,useRef } from "react";
-import {SidebarContainer, SidebarOpen , StyledLink, SidebarLink} from '../../Styles/layout'
-import { H1, H3} from '../../Styles/typography'
-
-
+import { useRef } from "react";
+import {SidebarContainer, SidebarLink} from '../../Styles/layout'
 
 
 const Sidebar = () => {
-    // const user = useSelector(state => state.auth.isAuthenticated)
-const [open, setOpen] = useState(false)
+
 const user = useSelector(state => state.auth.user)
 const adminka = useRef(null)
 
-
-useEffect(()=> {
-     console.log (user.permission)
-},[])
 
 
     return (
@@ -46,23 +36,11 @@ useEffect(()=> {
 
 
             {user.permission==='admin'?
-            <SidebarLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
+            <SidebarLink ref={adminka}  to='/admin' className="nav-link">
                     <img src='/sidebarIcon.png' title="Админка"></img>  
                     {user.permission==='admin'?<p>Админка</p>:''}
             </SidebarLink>: ''}
                                     
-
-                                    
-              {open && <SidebarOpen open top={adminka.current.offsetTop-40} onMouseEnter={()=>setTimeout(()=>setOpen(false),100) } onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setOpen(false)}>
-
-                    <H1> Админка </H1>
-                    <StyledLink to='/admin/permissions'  >Страница доступов</StyledLink>
-                    <StyledLink to='/admin/editproj'  >Редактировать проекты</StyledLink>
-                    <StyledLink to='/admin/news'  >Редактировать новости</StyledLink>
-
-
-              </SidebarOpen>
-                }
 
          </SidebarContainer>
          )
