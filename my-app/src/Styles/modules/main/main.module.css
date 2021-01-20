@@ -20,6 +20,7 @@
     }
         .allNews{
             text-align: right;
+            color: #3F496C;
         }
     .projects{
         grid-area: projects;

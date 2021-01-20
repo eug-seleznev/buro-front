@@ -21,7 +21,7 @@ const ProjectsEdit = ({history}) => {
     }, [])
     
     return (
-        <Container> 
+        <div> 
             <Card>
             <H1> Все проекты</H1>
             {!loaded ? <p>loading...</p> : (
@@ -56,7 +56,7 @@ const ProjectsEdit = ({history}) => {
                 </div>
             )}
             </Card>
-        </Container>
+        </div>
     )
 }
 

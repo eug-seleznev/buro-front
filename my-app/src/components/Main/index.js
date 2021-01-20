@@ -7,29 +7,34 @@ import ProjectsCard from './projectsCard'
 
 //профиль пользователя по ID
 import './main.css'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { allNews } from '../../redux/actions/news';
 
 // import { allUsers } from "../../redux/actions/user";
 import { Container} from '../../Styles/common'
 import { Bold, Thin } from '../../Styles/typography'
+import { useEffect } from 'react'
 
 ///////////////
 const Main = ({history}) => {
 
+    const dispatch = useDispatch()
     const loadedNews = useSelector(state => state.news.loaded)
     const listNews = useSelector(state => state.news.news)
     const loadedUser = useSelector(state => state.auth.loaded)
     const user = useSelector(state => state.auth.user)
 
-
+useEffect(()=>{
+    dispatch(allNews())
+},[])
 
     return (
         <>
         {!loadedUser ? <p> loading..</p> : (
 
-            <Container className={styles.mainContainer}>
+            <div className={styles.mainContainer}>
 
-                <Profile className={styles.profile} user={user}/>
+                <Profile className={styles.profile} user={user} history={history}/>
             
 
                 <div className={styles.projects}>
@@ -64,7 +69,7 @@ const Main = ({history}) => {
 
                 
                         
-            </Container>)
+            </div>)
         }
         </>
     )

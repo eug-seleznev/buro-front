@@ -54,7 +54,7 @@ const ProjectNew = ({history}) => {
         }
 
     return (
-      <Container>
+      <div>
         <Card>
           <H1>
        
@@ -119,7 +119,7 @@ const ProjectNew = ({history}) => {
             <Button type="submit"> Создать новый проект</Button>
           </form>
         </Card>
-      </Container>
+      </div>
     );
 }
 

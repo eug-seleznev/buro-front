@@ -72,7 +72,7 @@ const Project = ({match, history}) => {
     }
 
     return (
-      <Container>
+      <div>
         {!loaded ? (
           <p> loading...</p>
         ) : (
@@ -277,7 +277,7 @@ const Project = ({match, history}) => {
             )}
           </div>
         )}
-      </Container>
+      </div>
     );
 }
 

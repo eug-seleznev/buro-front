@@ -37,9 +37,9 @@ useEffect(()=>{
 
                 
                     <Bold size='24' className={styles.title} >{project.title}</Bold>
-                    <Light size='16' className={styles.description}>Короткое описание проекта вот тут. Кто о чем куда где</Light>
+                    <Light size='16' className={styles.description}>{project.about!=null? project.about: 'Короткое описание проекта'}</Light>
                     <Light size='18' className={styles.dates} >{project.dateStart.slice(5,10).split('-').reverse().join('.') +' \u2014 '+ project.dateFinish.slice(5,10).split('-').reverse().join('.')} </Light>
-                    <Light size='18' className={styles.left}>Осталось {daysLeft} {daysLeft<1?'день': daysLeft<5? 'дня': 'дней'}</Light>
+                    <Light size='18' className={styles.left}>Осталось: {daysLeft} {daysLeft<1?'день': daysLeft<5? 'дня': 'дней'}</Light>
                     <Light size='16' className={styles.filter}>#ЭП</Light>
                     <Button className={styles.button} onClick={() => history.replace(`/projects/${project.crypt}`)}>Подробнее</Button>
                     <div className={styles.sprints}>

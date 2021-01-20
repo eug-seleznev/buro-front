@@ -117,7 +117,7 @@ useEffect(()=>{
 
     return (
 
-<Container className='news__container'>
+<div className='news__container'>
 				
 
 
@@ -235,7 +235,7 @@ useEffect(()=>{
                 </div>
             </Card>
             }
-			</Container>
+			</div>
 
 )
 }

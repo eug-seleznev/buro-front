@@ -24,7 +24,7 @@ const Employe = ({match, history}) => {
     },[])
     
     return (
-        <Container>
+        <div>
         {!loaded? (<div>loading...</div>):
           ( <Card className='emp__grid'>
               
@@ -65,7 +65,7 @@ const Employe = ({match, history}) => {
                 </Table>
         </Card> )
         }
-        </Container>
+        </div>
     )
 }
 

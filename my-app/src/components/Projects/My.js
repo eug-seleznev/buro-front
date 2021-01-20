@@ -12,7 +12,7 @@ const { Table, Tr, Td } = require("../../Styles/tables")
 const MyProjects = ({history}) => {
     const projects = useSelector(state => state.auth.user.projects)
     return (
-        <Container>
+        <div>
             <Card>
              <H1>Мои проекты</H1>
             {!projects ? <p> проектов нет  </p>: (
@@ -43,7 +43,7 @@ const MyProjects = ({history}) => {
             </Table>
                         )}
             </Card>
-        </Container> 
+        </div> 
     )
 }
 

@@ -2,7 +2,7 @@
 display: grid;
 grid-template-areas: 
 'ava  name  change'
-'ava  pos      pos'
+'ava  pos    pos'
 'ava  contacts contacts'
 'ava  mail     mail'
 'ava  rocket   rocket'

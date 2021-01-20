@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './sidebar.css'
 import { useEffect, useState,useRef } from "react";
-import {SidebarOpen , StyledLink} from '../../Styles/layout'
+import {SidebarContainer, SidebarOpen , StyledLink, SidebarLink} from '../../Styles/layout'
 import { H1, H3} from '../../Styles/typography'
 
 
@@ -22,53 +22,37 @@ useEffect(()=> {
 
 
     return (
-         <div >
-          
-          <div className="main">
-         <NavLink
-              to='/'
-              className="nav-link" ><img src='/health-data.png' title="Главная"></img> </NavLink>
-              <p> главная</p>
+         <SidebarContainer>
 
+            <SidebarLink to='/' className="nav-link" >
+                    <img src='sidebarIcon.png' title="Главная" />
+                    <p>Главная</p>
+            </SidebarLink>
         
 
-              {/* <NavLink
-              to='/tickets'
-              className="nav-link" ><img src='/invite.png' title="Запрос сисадмину"></img> </NavLink>
-                                          <p> перенести в сисадмина</p> */}
-
-
-
-         {/* <NavLink
-              to='/db'
-              className="nav-link" ><img src='/questions.png' title="База знаний"></img></NavLink> */}
+            
         
-        <NavLink
-              to='/projects'
-              className="nav-link" ><img src='/folder-invoices--v2.png' title="Все проекты"></img> </NavLink>
-                                                        <p> все проекты</p>
+            <SidebarLink to='/projects' className="nav-link" >
+                    <img src='/sidebarIcon.png' title="Все проекты" />
+                    <p>Проекты</p>
+            </SidebarLink>
+       
 
-        {/* <NavLink
-              to='/new'
-              className="nav-link" ><img src='/add-folder.png' title="Создать проект"></img> </NavLink>
-               <p> перенести</p> */}
-        {/* <NavLink
-              to='/office'
-              className="nav-link" ><img src='/add-contact-to-company.png' title="Вопросы по офису"></img> </NavLink> */}
+            <SidebarLink to='/users' className="nav-link" > 
+                    <img src='/sidebarIcon.png' title="Команда"/>
+                    <p>Команда</p>
+            </SidebarLink>
+         
 
-              <NavLink
-              to='/users'
-              className="nav-link" > <img src='/conference-call.png' title="Команда"></img></NavLink>
-              <p> сотрудники</p>
-          {/* <NavLink
-              to='/users/me'
-              className="nav-link"  ><img src='/security-pass.png' title="Профиль"></img></NavLink>
-              <p> перенести проф</p> */}
-          {user.permission==='admin'?<NavLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
-                                        <img src='/customer-insight.png' title="Админка"></img>  
-                                    </NavLink>: ''}
-                                    {user.permission==='admin'?<p>админка</p>:''}
-              
+
+            {user.permission==='admin'?
+            <SidebarLink ref={adminka}  to='/admin' className="nav-link" onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setTimeout(()=>setOpen(false),100) }>
+                    <img src='/sidebarIcon.png' title="Админка"></img>  
+                    {user.permission==='admin'?<p>Админка</p>:''}
+            </SidebarLink>: ''}
+                                    
+
+                                    
               {open && <SidebarOpen open top={adminka.current.offsetTop-40} onMouseEnter={()=>setTimeout(()=>setOpen(false),100) } onMouseOver={()=>setOpen(false)} onMouseLeave={()=>setOpen(false)}>
 
                     <H1> Админка </H1>
@@ -80,8 +64,7 @@ useEffect(()=> {
               </SidebarOpen>
                 }
 
-         </div>
-         </div>
+         </SidebarContainer>
          )
 }
 

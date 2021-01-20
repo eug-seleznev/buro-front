@@ -13,8 +13,8 @@
 }
 .title{
     grid-area: title;
-    /* margin-top: 10px; */
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 30px;
 }
 .date{
     grid-area: date;

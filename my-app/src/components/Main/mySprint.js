@@ -9,6 +9,7 @@ const dispatch = useDispatch()
 const user = useSelector(state => state.auth.user)
 const sprint = content
 const [progress, setProgress] = useState(0)
+const [sprintDaysLeft, setSprintDaysLeft] = useState(null)
 
 
 useEffect(()=>{
@@ -18,6 +19,19 @@ useEffect(()=>{
     }, 0)
 
     setProgress(done)
+    
+
+    if(sprint.dateClosePlan!=null){
+        const now = new Date()
+        const finish = new Date(sprint.dateClosePlan)
+        const left = (finish.getTime() - now.getTime()) / (1000*60*60*24)
+        const days = Math.floor(left)
+      
+        setSprintDaysLeft(days)
+    } else {
+        setSprintDaysLeft('?')
+    }
+
 },[sprint])
 
 const onCheck = (e,id) => {
@@ -33,8 +47,8 @@ const onCheck = (e,id) => {
     return(
         <div className={styles.sprintContainer}>
 
-               <Light size='18' className={styles.date}>date</Light> 
-               <Light size='18' className={styles.left}>left</Light>
+               <Light size='18' className={styles.date}>{sprint.dateOpen.slice(5,10).split('-').reverse().join('.') +' \u2014 '+ (sprint.dateClosePlan!=null ? sprint.dateClosePlan.slice(5,10).split('-').reverse().join('.') : '')}</Light> 
+               <Light size='18' className={styles.left}>Осталось: {sprintDaysLeft} {sprintDaysLeft<1?'день': sprintDaysLeft<5? 'дня': 'дней'}</Light>
                <Bold size='20' className={styles.tasks}>Задачи</Bold>
                <Bold size='20' className={styles.progress}>
                     <progress className={styles.progressBar} id="file" value={progress} max={sprint.tasks.length}>  </progress>

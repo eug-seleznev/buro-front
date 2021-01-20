@@ -92,7 +92,7 @@ const Sprint = ({match, history}) => {
    }
 
     return (
-        <Container  >
+        <div>
            {!loading ? <p> loading...</p> : (
            <div className='sprint__grid'> 
           <Card style={{height:'fit-content', paddingBottom:'20px'}} >
@@ -194,7 +194,7 @@ const Sprint = ({match, history}) => {
     </Card>
             </div>
                )}
-        </Container>
+        </div>
     )
 }
 

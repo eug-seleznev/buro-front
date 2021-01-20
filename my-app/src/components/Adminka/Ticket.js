@@ -25,7 +25,7 @@ const Ticket = ({match}) => {
 
     
     return (
-        <Container>
+        <div>
             <Card>
             {!loaded ? <p> loading...</p>: (
                 <div>
@@ -41,7 +41,7 @@ const Ticket = ({match}) => {
                 </div>
             )}
             </Card>
-        </Container>
+        </div>
     )
 }
 

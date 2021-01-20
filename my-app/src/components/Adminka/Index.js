@@ -49,7 +49,7 @@ const Admin = () => {
         }
 
     return (
-        <Container>
+        <div>
             <Card>
             <H1> Если у вас есть проблема с компом - вы можете создать заявку тут //wip</H1>
             <br/>
@@ -99,7 +99,7 @@ const Admin = () => {
 
             </form>
             </Card>
-        </Container>
+        </div>
     )
 }
 
