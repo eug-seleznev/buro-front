@@ -8,8 +8,8 @@ export const Button =  styled.button`
   font-size:${props => props.fontSize};
   font-family: SuisseIntlRegular;
   
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 11px;
   padding-bottom: 9px;
  

@@ -1,5 +1,5 @@
 import { innerBackend } from "../../components/utils/axios";
-import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT,ADD_SPRINT_TO_CHOSEN, CREATE_FAIL, DELETE_PROJECT,EDIT_PROJECT, FINISH_SPRINT, FINISH_TASK, GET_PROJECT, GET_SPRINT, JOIN_TEAM, PROJECT_ID, SPRINT_ERROR, FINISH_PROJECT } from "../types";
+import { ADD_SPRINT, ADD_TASKS, ALL_PROJECTS, ALL_SPRINT,ADD_SPRINT_TO_CHOSEN, CREATE_FAIL, DELETE_PROJECT,EDIT_PROJECT, FINISH_SPRINT, FINISH_TASK, GET_PROJECT, GET_SPRINT, JOIN_TEAM, PROJECT_ID, SPRINT_ERROR, FINISH_PROJECT,ADD_INFO_SPRINT } from "../types";
 
 
 
@@ -236,6 +236,31 @@ export const finishSprint = (id) => async dispatch  => {
         const res = await innerBackend.put(`projects/sprints/${id}`)
         dispatch({
             type: FINISH_SPRINT,
+            payload: res.data
+        })
+        }
+      catch (err) {
+        const errors = err.response.data.errors;
+        errors.map(error => {
+           return dispatch({
+            type: SPRINT_ERROR,
+            payload: error.msg
+        })
+        })            
+      
+    }
+
+}
+export const addInfoSprint = (id, form) => async dispatch  => {
+    console.log (form.description, form.date)
+    let body = {
+        description: form.description,
+        date: form.date,
+    }
+    try {
+        const res = await innerBackend.put(`projects/sprints/d+d/${id}`, body)
+        dispatch({
+            type: ADD_INFO_SPRINT,
             payload: res.data
         })
         }

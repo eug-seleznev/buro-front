@@ -1,5 +1,5 @@
 
-import { ADD_SPRINT, ALL_PROJECTS,EDIT_PROJECT, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT, ADD_TASKS, FINISH_TASK, DELETE_PROJECT, FINISH_SPRINT, JOIN_TEAM,ADD_SPRINT_TO_CHOSEN,FINISH_PROJECT } from '../types'
+import { ADD_SPRINT, ALL_PROJECTS,EDIT_PROJECT, CREATE_FAIL, GET_PROJECT, SPRINT_ERROR, ALL_SPRINT, UPDATE_PROJECT, GET_SPRINT, ADD_TASKS, FINISH_TASK, DELETE_PROJECT, FINISH_SPRINT, JOIN_TEAM,ADD_SPRINT_TO_CHOSEN,FINISH_PROJECT, ADD_INFO_SPRINT } from '../types'
 
 
 
@@ -64,7 +64,12 @@ export default function(state = initialState, action) {
                     reload: true,
                     error: ''
                 }
-
+            case ADD_INFO_SPRINT: 
+                return {
+                    ...state,
+                    sprint: payload,
+                    sprintLoad: false,
+                }
                 case ADD_TASKS:
                 return {
                     ...state,

@@ -29,7 +29,6 @@ font-family: SuisseIntlRegular;
 font-size: ${props => props.size}px;
 color: ${props => props.color || 'black'};
 `
-
 export const Ultralight = styled.p`
 margin: 0;
 padding: 0;
