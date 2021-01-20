@@ -5,11 +5,11 @@ import './sprintdescr.css'
 import style from '../../../Styles/modules/components/Project/oneproj.module.css'
 import { Thin, Bold, Light,Regular } from "../../../Styles/typography"
 
-const SprintDescription = ({sprintname, index, dateOpen,taskcomplite, alltasks, history, id, params,descr}) => {
+const SprintDescription = ({sprintname, index, dateOpen,taskcomplite, alltasks, history, id, params,descr, dateClosePlan}) => {
 	const [loaded, setLoaded] = useState (0)
 	const [diff, setDiff] = useState (0)
 	useEffect (()=> {
-		console.log (
+			console.log (
 			params.id,
 			taskcomplite/alltasks,
 			Math.trunc(taskcomplite/alltasks*100)
@@ -36,7 +36,7 @@ const SprintDescription = ({sprintname, index, dateOpen,taskcomplite, alltasks, 
 		
 			<Card className={style.card}>
 				<div>
-					<div className={style.card__date1}><Light size='20'>{dateOpen.slice(5,10).replace(/-/g, ".")}-01.??</Light></div>
+					<div className={style.card__date1}><Light size='20'>{dateOpen.slice(5,10).replace(/-/g, ".")}-{dateClosePlan === null?'??': dateClosePlan.slice(5,10).replace(/-/g, ".")}</Light></div>
 					<div className={style.card__title}><Regular size='30'>Спринт {dateOpen.slice(5,10).replace(/-/g, ".")}</Regular></div>
 					<div className={style.card__descr}><Light size='16'>{descr}</Light></div>
 				</div>
