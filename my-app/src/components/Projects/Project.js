@@ -14,6 +14,11 @@ import { Container, Card,} from "../../Styles/common";
 import { Bold, H1, H3, Light} from '../../Styles/typography'
 import SprintDescription from './components/SprintDescrForOneProj'
 
+
+
+
+
+
 const Project = ({match, history}) => {
     let {id} = match.params;
     const dispatch = useDispatch();
@@ -30,70 +35,119 @@ const Project = ({match, history}) => {
     const sprints = useSelector(state => state.projects.sprints)
     const descr = useSelector(state => state.projects.sprints.description)
     const [calendLoader, setCalendLoader] = useState (false)
+    
     // const project = useSelector(state => state.projects.project.team)
+
+    
+    // эт массивы для календаря
     let months = ['янв','фев',"март","апр","май","июнь","июль","авг","сен","окт","ноя","дек"]
-    let conditionalWeeks = []
-    let sprintMonths = []
-    let sprintDays = []
-    let sprintStatuses = []
+    const[conditionalWeeks] =useState([]) 
+    const[sprintDays] = useState ([])
+    const[sprintPaint] = useState ([])
     let count = [1,2,3,4]
-  //   for (var i = 1; i <= 48; i++) {
-  //     let index = project.dateOpen.slice
-  //     conditionalWeeks.push(i, i<=4?1:
-  //       i>4&&i<=8?2:3);
-  //  } 
-  
+
+
     useEffect(() => {
         dispatch(getProject(id));
        
     }, [])
     useEffect(() => {
-      let calendCheck = new Promise(function(resolve) {
-         if (sprintsLoad===true) {
-          
-          sprints.filter((sprint)=>sprint.dateClosePlan!=null).map ((body, i) => {
+    if (sprintsLoad){
+      let calendCheck = () => new Promise(function(resolve) {
+        
+        //  Вот это все короче собирает инфу с бекенда, 
+        // режет в нужный мне формат и пушит в массив
+        // с отрисовкой пока беда работает ток на f5
+         resolve(sprints.filter((sprint)=>sprint.dateClosePlan!=null).map ((body, i) => {
           let month = body.dateClosePlan.slice(5,7)
           let day = body.dateClosePlan.slice(8,10)
-          let sprintStatus = body.tasks.length - body.tasks.filter((task) => task.taskStatus).length 
-          let sprintStatusCheck = body.tasks.length
+          let sprintStatusDone = body.tasks.length - body.tasks.filter((task) => !task.taskStatus).length
+          let sprintStatusFull = body.tasks.length
           let monthInt = Number(month)
           let dayInt = Number(day)
-          sprintMonths.push (monthInt)
-          sprintStatuses.push([sprintStatus, sprintStatusCheck])
-          sprintDays.push(dayInt)
-          
-            resolve(console.log (sprintMonths,'eboboy'))
-       
-      })
-
-      } setTimeout (()=>{
-        setCalendLoader(true)
-      },1000)
-      })
-     
+          sprintDays.push([dayInt,monthInt,sprintStatusDone,sprintStatusFull])  
+         }))
          
-  
-    
       
-  }, [sprintsLoad])
-        for (var i = 1; i <= 48; i++) {
-          if (project != null){
-            let index = project.dateStart.slice(5,7)
-          let res = Number(index)
-          console.log (descr)
-          
-          conditionalWeeks.push([i, 
-            i<=4?res:
-            i>4&&i<=8?res+1:i>8&&i<=12?res+2:i>12&&i<=16?res+3:i>16&&i<=20?res+4:
-            i>20&&i<=24?res+5:i>24&&i<=28?res+6:i>36&&i<=40?res+9:i>40&&i<=44?res+10:i>44&&i<=48?res+11:0,
-            
+      } )
 
-          ])
-          } else {
-            conditionalWeeks.push(i)
-          }
-          
-      }
+      calendCheck().then(() => 
+      setCalendLoader(true),
+      )
+
+}}, [sprintsLoad])
+        
+         useEffect (()=>{
+            if(calendLoader==true){
+              let mapheck = new Promise(function(resolve) {
+        
+         // вот это цикл для подсчета нужного количества квадратов в календаре и пуша в каждый
+         // инфы о месяцах
+                for (let i = 0; i <= 47; i++) {
+                  if (project != null){
+                    let yu = project.dateStart.slice(5,7)
+                    let index = Number(yu)
+                    if ((index+i/4) <13){
+                      conditionalWeeks.push([i, Math.trunc((i/4)+index),
+                        i%4==1?2:
+                        i%4==2?3:
+                        i%4==3?4:
+                        i%4==4?0:1])
+                     
+                    }
+              // елс иф для адекватной отрисовки первого месяца как стартового для проекта  
+                    else if (index+i/4>=13){
+                      conditionalWeeks.push([i, Math.trunc((i/4)+index-12),
+                        i%4==1?2:
+                        i%4==2?3:
+                        i%4==3?4:
+                        i%4==4?0:1])}}
+              }
+                resolve()
+                
+             
+             } )
+              mapheck.then(
+
+                conditionalWeeks.map ((body, i) => {
+                  let int = 0
+                     //фильтры мапы для показа понедельно квадратиков в нужных местах
+                     // инт отвечает за статус/цвет по умолчанию 0=серый
+                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                      .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]<sprintday[3]/ 100 * 50)
+                      .map (() => {
+                        int = 1
+                          })
+                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                      .filter((sprintday)=>sprintday[1]===body[1])
+                      .filter((sprintday)=>sprintday[2]>=sprintday[3]/ 100 * 50).map (() => { 
+                          int = 2
+                          })
+                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                        .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]===sprintday[3])
+                        .map (() => {
+                          int = 3
+                            })
+                        setTimeout(()=>{
+                          sprintPaint.push ([body[0],body[1],body[2],int])  
+                        },500)
+                        
+                        
+                    
+                        setTimeout(()=>{
+                        // console.log(sprintPaint)
+                          
+                      // console.log(sprintPaint)
+                        },500)
+                      
+               }) 
+              )
+            }
+         },[calendLoader])
+       
+    
+ 
+       
 
     // useEffect (()=>{
       
@@ -115,9 +169,9 @@ const Project = ({match, history}) => {
         if(loaded){
             dispatch(allSprints(project.crypt))
         }
-        console.log (project)
-        console.log (conditionalWeeks)
-        console.log (sprint)
+        // console.log (project)
+        // console.log (conditionalWeeks)
+        // console.log (sprint)
     }, [loaded])
     
     useEffect(() => {
@@ -144,22 +198,24 @@ const Project = ({match, history}) => {
 
     }
     const hadleTeam = () => {
-        console.log (project.team)
-        console.log  (project.msg)
+        // console.log (project.team)
+        // console.log  (project.msg)
         dispatch(joinTeam(id))
-
+        
     }
-
+   
     return (
+      
       <div className={style.grid__container}>
         <div className={style.main}>
 
         
-        {!loaded && !calendLoader ? (
+        {!loaded ? (
           <p> loading...</p>
         ) : (
           <div >
-            {!sprintsLoad ? (
+            { !calendLoader? (
+              
               <p> loading...</p>
             ) : (
               <>
@@ -209,38 +265,35 @@ const Project = ({match, history}) => {
                   
                   <br />
                 </div>
-                {!calendLoader?<div>loading...</div>:(
+                {!calendLoader?<div>loading...</div>:( //календарь со спринтами
                   <div className={style.calend} >
                   <div className={style.weeks}>
                     {count.map ((body, i) => {
+                      
                        return <div key={i} className={style.count}>{i+1}</div>
                      })}
+                     {sprintPaint.map ((body, i) => {
+                       
+                      return <div 
+        
+        style = {{
+          
+          backgroundColor:`${
+          body[3]===1?'red':body[3]===2?'rgba(0,255,0,0.5)':body[3]===3 ?'green':'gray'
+          }`
+        }}
+         key={i} className={style.one__week}>
+           
+           <div className={style.months}> 
+           
+             {
+          body[0]%4===0&&body[1]<=12?months[body[1]-1]: //это отрисовка месяцев
+          body[0]==0?months[1]:
+          ''}</div></div>
+                    
                      
-                    {conditionalWeeks.map ((body, i) => {
-                        
-                        const equal = (element)=> 
-                        
-                              element === body[1]
-                           
-                        console.log(sprintMonths.some(equal),sprintMonths,'he equall')
-                       return <div 
-                          style = {{
-                            
-                            backgroundColor:`${
-                              sprintMonths?'green':'gray'
-                            }`
-                          }}
-                           key={i} className={style.one__week}>
-                             
-                             <div className={style.months}> 
-                             
-                               {
-                            body[0]%4===1&&body[1]<12?months[body[1]]: //это отрисовка месяцев
-                            body[0]===1?months[1]:
-                            body[0]%4===1&&
-                            body[1]>=12?months[body[1]-12]:
-                            ''}</div></div>
-                     })}
+                    })}
+                    { }
                   </div>
                   </div>
                 )}
@@ -337,9 +390,9 @@ const Project = ({match, history}) => {
                     </Button>
                   )}
                   {project.team.map((empl, ind) => {
-                    console.log(user, "emp id");
+                    // console.log(user, "emp id");
                     if (empl._id === user.id) {
-                      console.log(ind, "INDEX USER");
+                      // console.log(ind, "INDEX USER");
                       return (
                         <Button
                           onClick={hadleTeam}
