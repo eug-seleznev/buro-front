@@ -41,31 +41,53 @@ export const ItemHead = styled.div`
 export const MenuHead = styled.div`
     position: absolute;
     display:flex;
-    width: auto;
-    padding: 10px;
+    width: 100vw;
     heigth: auto;
     background: none;
-    top: 50px;
+    top: 0px;
     
 
     div{
         background-color: white;
         height: max-content;
-        width: max-content;
+        width: 238px;
         position: absolute;
-        top:4vh;
+        top:81px;
         padding:10px;
+        border-radius: 15px;
+        // display: grid;
+        row-gap: 14px;
+    }
+    div.my__name{
+        position: static;
+        margin:0;
+        padding:0;
+        padding-bottom: 15px;
+        padding-top: 5px;
+        min-height: 1em;
+        text-align: left;
+        font-family: SuisseIntlSemiBold;
+        font-size: 16px;
+        border-bottom: 0.5px solid #BABABA;
+        background-color: transparent;
+        border-radius: 0px;
+
     }
        
     .open__menu{
-        display: ${props => props.open.menu==true? 'block' : 'none'};
-        left: 72vw;
+        display: ${props => props.open.menu==true? 'grid' : 'none'};
+        right: 110px;
     }
     .open__menuProfile{
-        display: ${props => props.open.menuProfile==true? 'block' : 'none'};
-        left: 79vw;
+        display: ${props => props.open.menuProfile==true? 'grid' : 'none'};
+        right: 30px;
+       
+
     }
 
+    button{
+        margin-top: 20px;
+    }
 
 `
 
@@ -78,12 +100,13 @@ export const StyledLink = styled(NavLink)`
 display:block;
 font-size: 25px;
 text-decoration:none;
-margin-top:0;
-margin-bottom:10px;
+margin: 0;
 cursor: pointer;
 color: black;
 text-align:left;
 z-index:999;
+font-family: SuisseIntlLight;
+font-size: 16px;
 
 &:hover{
     text-decoration:underline;
@@ -97,7 +120,7 @@ export const SidebarContainer = styled.div`
 position: fixed;
 width: 67px;
 min-height: 100vw;
-padding-top: 125px;
+padding-top: 18px;
 z-index: 9999;
 background-color: #3F496C;
 
@@ -105,7 +128,7 @@ background-color: #3F496C;
 
 export const SidebarLink = styled(NavLink)`
 // display:block;
-font-family: SuisseIntlSemiBold;
+font-family: SuisseIntlRegular;
 font-size: 12px;
 text-decoration:none;
 width: max-content;
@@ -119,10 +142,15 @@ img{
     margin:0;
    
 }
+    img.sidebar__logo{
+        margin-bottom: 120px;
+
+    }
 p{
     margin:0;
     margin-bottom: 30px;
 }
+
 &:hover{
     text-decoration:underline;
    

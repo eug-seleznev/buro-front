@@ -2,7 +2,8 @@ import { NavLink } from "react-router-dom"
 import {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {MenuHead, StyledLink} from '../../Styles/layout'
-import {Button} from '../../Styles/buttons'
+import {ButtonText} from '../../Styles/buttons'
+import { Light, Bold } from '../../Styles/typography'
 
 
 
@@ -41,34 +42,55 @@ const exit = () => {
             
             <div className='open__menu' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
                    
+                    <div className='my__name'>
+                         
+                   </div>
 
+                    <StyledLink className='menu__nav' to='/help'>
+                        Проблемы с компом
+                    </StyledLink>
 
-                    <StyledLink className='menu__nav'
-                    to='/help'
-                    >Проблемы с компом </StyledLink>
-                
-                    <StyledLink className='menu__nav'
-                    to='/new'
-                    >Создать проект </StyledLink>       
+                    <StyledLink className='menu__nav' to='/news'>
+                        Добавить новость
+                    </StyledLink>
+
+                    <StyledLink className='menu__nav' to='/new'>
+                        Создать проект
+                    </StyledLink>
+
             </div>
 
 
             <div className='open__menuProfile' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
-                    <StyledLink
-                    to='/users/me'
-                    >Мой профиль</StyledLink>
+                   
+                    <div className='my__name'>
+                        {user.name}
+                   </div>
+                   
+                    <StyledLink to='/users/me'>
+                        Мой профиль
+                    </StyledLink>
 
-                    <StyledLink
-                    to='/projects/my'
-                    >Мои проекты</StyledLink>
+                    <StyledLink to='/projects/my'>
+                        Мои проекты
+                    </StyledLink>
 
-                    {user.permission==='admin'?(<StyledLink
-                    to='/tickets'
-                    >Панель сисадмина</StyledLink>):<></>}
+                    <StyledLink to='/projects/my'>
+                        Отдел
+                    </StyledLink>
+
+                    <StyledLink to='/projects/my'>
+                        Новости
+                    </StyledLink>
+
+                    {user.permission==='admin'?(
+                    <StyledLink to='/tickets'>
+                        Панель сисадмина
+                    </StyledLink>):<></>}
                     
 
-                    <Button onClick={()=>exit()}
-                    >Выход</Button>
+                    <ButtonText fontSize='16px' onClick={()=>exit()}
+                    >Выйти</ButtonText>
             </div>
 
         </MenuHead>
