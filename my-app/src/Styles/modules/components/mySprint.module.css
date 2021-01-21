@@ -1,0 +1,60 @@
+ .sprintContainer{
+    display: grid;
+    grid-template-areas:
+    'date leftt'
+    'tasks progr'
+    'list list'
+    ;
+    grid-template-columns: 1fr 1fr;
+ }
+ 
+    .date{
+        grid-area: date;
+        border-bottom: 1px solid #9D9D9D;
+        padding-bottom: 8px;
+    }
+    .left{
+        grid-area: leftt;
+        text-align: right;
+        border-bottom: 1px solid #9D9D9D;
+        padding-bottom: 8px;
+
+    }
+    .tasks{
+        grid-area: tasks;
+        border-bottom: 1px solid #9D9D9D;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+     
+    .progress{
+        grid-area: progr;
+        text-align: right;
+        border-bottom: 1px solid #9D9D9D;
+        font-size: 20px;
+        font-family: SuisseIntlSemiBold;
+        padding-top: 15px;
+    }
+        .progressBar{
+            width: 148px;
+             height: 23px; 
+           /* border: none; */
+            /* border-radius: 15px; */
+        }
+    .list{
+        grid-area: list;
+        padding-top: 10px;
+        margin-bottom: 30px;
+    }   
+        .parag{
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            grid-template-rows: min-content;
+            column-gap: 15px;
+            margin-bottom: 5px;
+            text-align: left center;
+        }
+            .input{
+                margin:'0';
+                
+            }

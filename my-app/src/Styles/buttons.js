@@ -3,18 +3,25 @@ import styled from 'styled-components'
 
 export const Button =  styled.button`
   display: inline-block;
-  border-radius: 3px;
-  padding: 0.5rem 0;
-
-  width: 11rem;
-
-  color: black;
-  border: 2px solid black;
-  background-color: white;
+  border: 0.4px solid #B7B7B7;
+  border-radius: 13px;
+  font-size:${props => props.fontSize};
+  font-family: SuisseIntlRegular;
+  
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 11px;
+  padding-bottom: 9px;
+ 
+  outline: none;
+  text-decoration: none;
+  color: white;
+  background-color: ${props => props.grey ? "grey" : "#3F496C"};
+  ;
 
   &:hover{
   // text-decoration: underline;
-  background-color: rgb(240, 239, 239);
+  background-color: black;
 
 }
 

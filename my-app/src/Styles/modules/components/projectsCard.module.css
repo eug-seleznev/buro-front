@@ -1,0 +1,48 @@
+.projContainer{
+    display: grid;
+    grid-template-areas:
+    '. dates'
+    'title leftt'
+    'descr descr'
+    'sprints sprints'
+    ' filter button'
+    ;
+    height: max-content;
+}
+  
+  .title{
+        grid-area: title;
+        padding-bottom: 10px;
+    }
+    .description{
+        grid-area: descr;
+        padding-bottom: 50px;
+        width: 75%;
+    }
+    .dates{
+        grid-area: dates;
+        text-align: right;
+    }
+    .left{
+        grid-area: leftt;
+        text-align: right;
+    }
+    .filter{
+        grid-area: filter;
+        display: grid;
+        justify-content: left;
+        align-content: center;
+    }
+    .button{
+        grid-area: button;
+    }
+    .sprints{
+        grid-area: sprints;
+    }
+
+@media (max-width: 800px){
+
+    .projContainer{
+        
+    }
+}

@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./oneproject.css"
 
-
+import style from '../../Styles/modules/components/Project/oneproj.module.css'
 import { useLocation} from "react-router";
 import { addSprint, getProject, allSprints, deleteProject, joinTeam, finishProject} from "../../redux/actions/projects";
 import { getTicket } from "../../redux/actions/tikets";
@@ -12,7 +12,7 @@ import { Table, Td, Tr } from "../../Styles/tables";
 import { Status } from "../../Styles/project";
 import { Container, Card,} from "../../Styles/common";
 import { H1, H3} from '../../Styles/typography'
-
+import SprintDescription from './components/SprintDescrForOneProj'
 
 const Project = ({match, history}) => {
     let {id} = match.params;
@@ -72,67 +72,34 @@ const Project = ({match, history}) => {
     }
 
     return (
-      <Container>
+      <div>
         {!loaded ? (
           <p> loading...</p>
         ) : (
-          <div className="project__grid">
+          <div className={style.main}>
             {!sprintsLoad ? (
               <p> loading...</p>
             ) : (
               <>
-                <Card>
-                  <H1>{project.title}</H1>
-                </Card>
-                <Card>
-                  <H1>Текущий спринт</H1>
-
+           
+                  
+                  <H1 className={style.title}>{project.title}</H1>
+                  <div className={style.title__deadline}>Дней до дедлайна: ?</div> 
+                <div>
+                  
                   {sprints.length == 0 ? (
                     <p>Спринтов нет</p>
                   ) : (
-                    <Table>
-                      <Tr columns="1fr 1fr 1fr" top>
-                        <Td> Дата </Td>
-                        <Td> Название</Td>
-                        <Td> Задачи</Td>
-                      </Tr>
-
-                      {sprints
-                        .filter((sprint) => !sprint.status)
-                        .map((sprint, i) => {
-                          return (
-                            <Tr
-                              columns="1fr 1fr 1fr"
-                              key={i}
-                              style={{ cursor: "pointer" }}
-                              title="Открыть спринт"
-                              onClick={() =>
-                                history.push(`/projects/${id}/${sprint._id}`)
-                              }
-                            >
-                              <Td>
-                                {" "}
-                                {sprint.dateOpen
-                                  .slice(0, 16)
-                                  .replace(/T/g, "  ")}
-                              </Td>
-                              <Td>спринт {i}</Td>
-                              <Td>
-                                {" "}
-                                {
-                                  sprint.tasks.filter((task) => task.taskStatus)
-                                    .length
-                                }
-                                /{sprint.tasks.length}
-                              </Td>{" "}
-                                
-                            </Tr>
-                          );
-                        })}
-                    </Table>
-                  )}
-                  <br />
-                  <Button
+                   <div className={style.sprintdescr__cont}>
+                     {sprints.filter((sprint)=> !sprint.status)
+                     .map ((sprint, i) => {
+                       return (
+                         <SprintDescription history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
+                         alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
+                       )
+                     })}
+                     <button
+                     className={style.special__button}
                     onClick={createSprint}
                     style={{
                       display: `${
@@ -144,9 +111,14 @@ const Project = ({match, history}) => {
                   >
                     {" "}
                     {user.permission === "user" ? "" : "Создать спринт"}
-                  </Button>
+                  </button>
+                   </div>
+                  )}
+                  
                   <br />
-                </Card>
+                  
+                  <br />
+                </div>
 
                 <Card>
                   <H1>Завершенные спринты</H1>
@@ -305,7 +277,7 @@ const Project = ({match, history}) => {
             )}
           </div>
         )}
-      </Container>
+      </div>
     );
 }
 

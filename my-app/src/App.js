@@ -36,7 +36,7 @@ import { createBrowserHistory } from "history";
 import MyProjects from './components/Projects/My';
 import News from './components/Superadmin/newsAdm';
 import { innerBackend, setAuthToken } from './components/utils/axios';
-
+import { Container } from '../src/Styles/common'
 
 
 
@@ -47,6 +47,10 @@ const App = () => {
   const [load, setLoad] = useState(false)
   const auth = useSelector(state => state.auth.isAuthenticated)
   const loaded = useSelector(state => state.auth.loaded)
+  const [dimensions, setDimensions] = useState({
+    height: 0,
+    width: 0,
+  })
 
   //chek auth token on render
   useEffect(() => {
@@ -76,14 +80,31 @@ const App = () => {
 
 
 
+
+  useEffect(() => {
+    const handleResize = () => {
+    setDimensions ({width: window.innerWidth, height: window.innerHeight})  
+    console.log (dimensions, 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
+  }
+  
+    window.addEventListener('resize', handleResize)
+  
+    return _ => {
+      window.removeEventListener('resize', handleResize)
+    
+  }
+  })
+
+
+
   return (
     <div className="App">
       {!auth ? <Auth /> : (
-      <Router history={history}> 
+      <Router history={history} dimensions={dimensions}> 
         
         <Layout /> 
         <Switch>
-
+        <Container dimensions={dimensions}>
           {/* main */}
           <Route exact path="/" component={ Main } />
           
@@ -119,12 +140,12 @@ const App = () => {
           <Route exact path="/admin/news" component={ News } />
           
 
-
+        </Container>
         </Switch>
      
 
 
-
+        
         </Router> )
     }
       

@@ -24,7 +24,7 @@ const Users = ({history}) => {
         dispatch(allUsers())
     }, [])
     return (
-        <Container> 
+        <div> 
             <Card>
                 <H1 > Все сотрудники</H1>
                     {!users ? <p>loading...</p> : (
@@ -51,7 +51,7 @@ const Users = ({history}) => {
                         </Table>
                     )}
             </Card>
-        </Container>
+        </div>
     )
 }
 

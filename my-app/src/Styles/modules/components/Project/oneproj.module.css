@@ -1,0 +1,43 @@
+.main {
+
+}
+.card {
+	margin-right: 50px;
+	width: 400px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.card__date1 {
+	text-align: right;
+}
+.card__title {
+	text-align: left;
+	margin-bottom: 15px;
+}
+.card__descr {
+	text-align: left;
+}
+.card__date2 {
+	text-align: right;
+}
+.special__button {
+	border-radius: 15px;
+	width: 400px;
+	height: 217px;
+	margin-top: 25px;
+}
+.title {
+	text-align: left;
+	width: 100%;
+	border-bottom: 1px solid black;
+	font-size: 24px;
+	padding-bottom: 10px;
+} 
+.title__deadline {
+	padding-top: 10px;
+	text-align: left;
+}
+.sprintdescr__cont {
+	display: flex;
+	flex-wrap: wrap;
+}

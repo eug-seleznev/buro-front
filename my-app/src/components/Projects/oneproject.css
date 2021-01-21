@@ -2,7 +2,7 @@
 	display: grid;
 	grid-template-columns: 1fr;
 	row-gap: 100px;
-	margin-left: 100px;
+	margin-left: 0px;
 }
 
 .one__proj__main {
@@ -31,4 +31,7 @@
 }
 .tr {
 	width: 40vw;
+}
+.sprint__descr__cont {
+	display: flex;
 }

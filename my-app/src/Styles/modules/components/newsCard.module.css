@@ -1,0 +1,25 @@
+.newsContainer{
+    display: grid;
+    grid-template-areas:
+    '.      date'
+    'name   . '
+    'title  title'
+    'filter . '
+    ;
+    grid-template-columns: 1fr max-content;
+}
+.name{
+    grid-area: name;
+}
+.title{
+    grid-area: title;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+.date{
+    grid-area: date;
+
+}
+.filter{
+    grid-area: filter;
+}

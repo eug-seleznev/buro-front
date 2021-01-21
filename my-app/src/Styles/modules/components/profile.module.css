@@ -1,0 +1,80 @@
+.profile{
+display: grid;
+grid-template-areas: 
+'ava  name  change'
+'ava  pos    pos'
+'ava  contacts contacts'
+'ava  mail     mail'
+'ava  rocket   rocket'
+'ava   .       .'
+;
+grid-template-columns: 342px min-content 1fr;
+grid-template-rows: max-content 60px max-content max-content max-content 1fr;
+column-gap: 30px;
+row-gap: 8px;
+}
+    .avatar{
+        grid-area: ava;
+        height: 342px;
+        width: 342px;
+    }
+    .name{
+        grid-area: name;
+    }
+        .change{
+            grid-area: change;
+            display: grid;
+            place-content: center left;
+            transform: translate3d(-18px,2px,0);
+        }
+
+    .pos{
+        grid-area: pos;
+    }
+    .contacts{
+        grid-area: contacts;
+    }
+    .mail{
+        grid-area: mail;
+    }
+    .rocket{
+        grid-area: rocket;
+    }
+
+@media (max-width: 1500px){
+        .profile{
+            display: grid;
+            grid-template-areas: 
+            'ava  name '
+            'ava  pos  '
+            ; 
+            grid-template-columns: 59px 1fr;
+            grid-template-rows: auto auto ;
+            height: 59px;
+    }
+
+    .avatar{
+        grid-area: ava;
+        height: 100%;
+        width: 100%;
+    }
+    .name{
+        grid-area: name;
+    }
+        .change{
+            display: none;
+        }
+
+    .pos{
+        grid-area: pos;
+    }
+    .contacts{
+        display: none;    
+    }
+    .mail{
+        display: none;
+    }
+    .rocket{
+        display: none;
+    }
+}

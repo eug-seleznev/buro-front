@@ -7,7 +7,7 @@ import {Button} from '../../Styles/buttons'
 
 
 
-const Menu = ({menu}) => {
+const Menu = ({menu, menuProfile}) => {
 //menu = state({menu: boolean, menuProfile: boolean})
 const [open, setOpen] = useState({
     menu:false,
@@ -16,13 +16,14 @@ const [open, setOpen] = useState({
 
 useEffect(()=>{
     open.menu==false ? setOpen({menuProfile:false, menu:true}) : setOpen({menuProfile:false, menu:false})
-
-},[menu.menu])
+console.log('menu works')
+},[menu])
 
 useEffect(()=>{
     open.menuProfile==false ? setOpen({menuProfile:true, menu:false}) : setOpen({menuProfile:false, menu:false})
+console.log('menuProfile works')
 
-},[menu.menuProfile])
+},[menuProfile])
 
 
 
