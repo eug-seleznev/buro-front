@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./oneproject.css"
 
@@ -11,7 +11,7 @@ import {  Redirect } from 'react-router-dom';
 import { Table, Td, Tr } from "../../Styles/tables";
 import { Status } from "../../Styles/project";
 import { Container, Card,} from "../../Styles/common";
-import { H1, H3} from '../../Styles/typography'
+import { Bold, H1, H3, Light} from '../../Styles/typography'
 import SprintDescription from './components/SprintDescrForOneProj'
 
 const Project = ({match, history}) => {
@@ -28,27 +28,106 @@ const Project = ({match, history}) => {
     const users = useSelector(state => state.users.users)
     const project = useSelector(state => state.projects.project)
     const sprints = useSelector(state => state.projects.sprints)
+    const descr = useSelector(state => state.projects.sprints.description)
+    const [calendLoader, setCalendLoader] = useState (false)
     // const project = useSelector(state => state.projects.project.team)
-
+    let months = ['янв','фев',"март","апр","май","июнь","июль","авг","сен","окт","ноя","дек"]
+    let conditionalWeeks = []
+    let sprintMonths = []
+    let sprintDays = []
+    let sprintStatuses = []
+    let count = [1,2,3,4]
+  //   for (var i = 1; i <= 48; i++) {
+  //     let index = project.dateOpen.slice
+  //     conditionalWeeks.push(i, i<=4?1:
+  //       i>4&&i<=8?2:3);
+  //  } 
+  
     useEffect(() => {
         dispatch(getProject(id));
        
     }, [])
+    useEffect(() => {
+      let calendCheck = new Promise(function(resolve) {
+         if (sprintsLoad===true) {
+          
+          sprints.filter((sprint)=>sprint.dateClosePlan!=null).map ((body, i) => {
+          let month = body.dateClosePlan.slice(5,7)
+          let day = body.dateClosePlan.slice(8,10)
+          let sprintStatus = body.tasks.length - body.tasks.filter((task) => task.taskStatus).length 
+          let sprintStatusCheck = body.tasks.length
+          let monthInt = Number(month)
+          let dayInt = Number(day)
+          sprintMonths.push (monthInt)
+          sprintStatuses.push([sprintStatus, sprintStatusCheck])
+          sprintDays.push(dayInt)
+          
+            resolve(console.log (sprintMonths,'eboboy'))
+       
+      })
 
+      } setTimeout (()=>{
+        setCalendLoader(true)
+      },1000)
+      })
+     
+         
+  
+    
+      
+  }, [sprintsLoad])
+        for (var i = 1; i <= 48; i++) {
+          if (project != null){
+            let index = project.dateStart.slice(5,7)
+          let res = Number(index)
+          console.log (descr)
+          
+          conditionalWeeks.push([i, 
+            i<=4?res:
+            i>4&&i<=8?res+1:i>8&&i<=12?res+2:i>12&&i<=16?res+3:i>16&&i<=20?res+4:
+            i>20&&i<=24?res+5:i>24&&i<=28?res+6:i>36&&i<=40?res+9:i>40&&i<=44?res+10:i>44&&i<=48?res+11:0,
+            
 
+          ])
+          } else {
+            conditionalWeeks.push(i)
+          }
+          
+      }
+
+    // useEffect (()=>{
+      
+    //   if(sprintsLoad) {
+    //     console.log ('hi', sprints)
+    //     setTimeout (()=> {
+    //       sprints.map ((body, index)=> {
+    //                  return ( 
+    //                    setDateStore ({ ...dateStore, [dateStore.month+index]: sprints.dateClosePlan }),
+    //                    console.log (dateStore)
+    //                  )
+                      
+    //         })
+    //     },4500)
+         
+    //   }
+    // },[sprintsLoad])
     useEffect(() => {
         if(loaded){
             dispatch(allSprints(project.crypt))
         }
+        console.log (project)
+        console.log (conditionalWeeks)
+        console.log (sprint)
     }, [loaded])
-
+    
     useEffect(() => {
+      
         if(reload){
             return history.push(`${id}/${sprint.id}`)
         }
     }, [reload])
 
-    const createSprint = () => {
+     const createSprint = () => {
         
         dispatch(addSprint(project.crypt))
 
@@ -72,36 +151,52 @@ const Project = ({match, history}) => {
     }
 
     return (
+<<<<<<< HEAD
       <div>
         {!loaded ? (
+=======
+      <div className={style.grid__container}>
+        <div className={style.main}>
+
+        
+        {!loaded && !calendLoader ? (
+>>>>>>> 9b1c9ad900142ba4ad206e6113de61e6edff306a
           <p> loading...</p>
         ) : (
-          <div className={style.main}>
+          <div >
             {!sprintsLoad ? (
               <p> loading...</p>
             ) : (
               <>
            
+                  <div className={style.title}>
+                    <H1 size='24' >{project.title}</H1>
+                    <Bold size='16'>
+                      <div className={style.title__small}>
+                      
+                        <div className={style.title__options} onClick={() => history.replace(`/admin/editproj/${project.crypt}`)}>Настройки</div>
+                        <img src='/image 1.png'></img>
+                      </div>
+                      </Bold>
+                  </div>
                   
-                  <H1 className={style.title}>{project.title}</H1>
-                  <div className={style.title__deadline}>Дней до дедлайна: ?</div> 
+                  <Light className={style.title__small} size='16'><div className={style.title__deadline}>Дней до дедлайна: ?</div> <div className={style.title__deadline}>Стадия: {project.stage}</div></Light>
                 <div>
                   
                   {sprints.length == 0 ? (
                     <p>Спринтов нет</p>
                   ) : (
                    <div className={style.sprintdescr__cont}>
-                     {sprints.filter((sprint)=> !sprint.status)
-                     .map ((sprint, i) => {
+                     {sprints.filter((sprint)=> !sprint.status).map ((sprint, i) => {
                        return (
-                         <SprintDescription history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
+                         <SprintDescription dateClosePlan={sprint.dateClosePlan} descr={sprint.description} history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
                          alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
                        )
                      })}
                      <button
                      className={style.special__button}
-                    onClick={createSprint}
-                    style={{
+                      onClick={createSprint}
+                      style={{
                       display: `${
                         user.permission === "user" || project.status
                           ? "none"
@@ -119,11 +214,43 @@ const Project = ({match, history}) => {
                   
                   <br />
                 </div>
-
-                <Card>
-                  <H1>Завершенные спринты</H1>
-
-                  {sprints.length == 0 ? (
+                {!calendLoader?<div>loading...</div>:(
+                  <div className={style.calend} >
+                  <div className={style.weeks}>
+                    {count.map ((body, i) => {
+                       return <div key={i} className={style.count}>{i+1}</div>
+                     })}
+                     
+                    {conditionalWeeks.map ((body, i) => {
+                        
+                        const equal = (element)=> 
+                        
+                              element === body[1]
+                           
+                        console.log(sprintMonths.some(equal),sprintMonths,'he equall')
+                       return <div 
+                          style = {{
+                            
+                            backgroundColor:`${
+                              sprintMonths?'green':'gray'
+                            }`
+                          }}
+                           key={i} className={style.one__week}>
+                             
+                             <div className={style.months}> 
+                             
+                               {
+                            body[0]%4===1&&body[1]<12?months[body[1]]: //это отрисовка месяцев
+                            body[0]===1?months[1]:
+                            body[0]%4===1&&
+                            body[1]>=12?months[body[1]-12]:
+                            ''}</div></div>
+                     })}
+                  </div>
+                  </div>
+                )}
+                  
+                  {/* {sprints.length == 0 ? (
                     <p>Завершенных спринтов нет</p>
                   ) : (
                     <Table>
@@ -175,8 +302,8 @@ const Project = ({match, history}) => {
                           );
                         })}
                     </Table>
-                  )}
-                </Card>
+                  )} */}
+            
 
                 <Card>
                   <H1> Команда</H1>
@@ -277,6 +404,10 @@ const Project = ({match, history}) => {
             )}
           </div>
         )}
+<<<<<<< HEAD
+=======
+        </div>
+>>>>>>> 9b1c9ad900142ba4ad206e6113de61e6edff306a
       </div>
     );
 }
