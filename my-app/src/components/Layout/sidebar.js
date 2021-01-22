@@ -39,6 +39,10 @@ const adminka = useRef(null)
                     <p>Команда</p>
             </SidebarLink>
          
+            <SidebarLink to='/office' className="nav-link" > 
+                    <img src='/sidebarIcon.png' title="Офис"/>
+                    <p>Офис</p>
+            </SidebarLink>
 
 
             {user.permission==='admin'?
