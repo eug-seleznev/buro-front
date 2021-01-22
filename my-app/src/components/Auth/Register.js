@@ -9,16 +9,14 @@ const dispatch = useDispatch();
 
     const [formData, setFormData ] = useState({
         
-        email: '',
-        password: '',
-        name: '',
-        position: '',
-        permCode: ''
+        
+        rocketname: '',
+        email: ''
       
       });
       
 
-      const { name, email, password, position, permCode } = formData;
+      const { rocketname, email} = formData;
 
   
     const onChange = e => {
@@ -29,7 +27,6 @@ const dispatch = useDispatch();
 
      const onSubmit = async e => {
         e.preventDefault();
-        let file = null;
         dispatch(register({formData}))
            
         }
@@ -45,34 +42,14 @@ const dispatch = useDispatch();
                 onChange={e => onChange(e)}/>
 
            <Input 
-                type='password'
-                placeholder='password'
-                name='password'
-                value={password}
-                onChange={e => onChange(e)}/>
-
-
-            <Input 
-                type='name'
-                placeholder='Имя'
-                name='name'
-                value={name}
-                onChange={e => onChange(e)}/>
-
-
-
-            <Input 
-                type='position'
-                placeholder='Должность'
-                name='position'
-                value={position}
-                onChange={e => onChange(e)}/>
-            <Input 
                 type='text'
-                placeholder='Код организации'
-                name='permCode'
-                value={permCode}
+                placeholder='username for Rocket.Chat'
+                name='rocketname'
+                value={rocketname}
                 onChange={e => onChange(e)}/>
+
+
+           
 
             <Button style={{width:'20vw'}} type="submit"> Зарегистрироваться</Button>
 

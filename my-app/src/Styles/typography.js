@@ -26,6 +26,7 @@ font-size: ${props => props.size}px;
 color: ${props => props.color || 'black'};
 `
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 export const Ultralight = styled.div`
 
@@ -34,6 +35,11 @@ export const Ultralight = styled.p`
 margin: 0;
 padding: 0;
 >>>>>>> 9b1c9ad900142ba4ad206e6113de61e6edff306a
+=======
+export const Ultralight = styled.p`
+margin: 0;
+padding: 0;
+>>>>>>> 0fce72f6d935dd361e7a3f7196516ee202db8e78
 font-family: SuisseIntlUltralight;
 font-size: ${props => props.size}px;
 color: ${props => props.color || 'black'};
