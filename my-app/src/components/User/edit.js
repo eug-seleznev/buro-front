@@ -17,8 +17,10 @@ const Edit = ({match, history}) => {
     const dispatch = useDispatch();
     const [formData, setFormData ] = useState({
         
-        name: user.name, 
-        position: user.position,  
+		name: user.name ? user.name : '',
+		lastname: user.lastname ? user.lastname : '',
+		division: user.division ? user.division : '',
+		position: user.position ? user.position : '',
         email: user.email, 
 
       
