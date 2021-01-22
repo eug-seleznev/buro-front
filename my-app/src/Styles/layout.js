@@ -8,9 +8,10 @@ import { NavLink } from "react-router-dom"
 
 export const Header =  styled.div`
     position: absolute;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 1fr max-content max-content;
+    // flex-direction: row;
+    // justify-content: flex-end;
     align-items: center;
     left:0;
     right:0;
@@ -18,7 +19,7 @@ export const Header =  styled.div`
     width: auto;
     height: 67px;
 
-    background-color: white;
+    background-color: ${props => props.mobile? '#3F496C' : 'white'};
     z-index:999;
     
 `
@@ -28,10 +29,23 @@ export const ItemHead = styled.div`
     display: grid;
     grid-template-columns: max-content max-content;
     column-gap:5px;
-    
+    cursor: pointer;
+
+    &.mobile__menu{
+       opacity: ${props => props.mobile? '1':'0'};
+       width:  ${props => props.mobile? 'max-content' : '0px'};
+       margin-left: ${props => props.mobile? '20px' : '0px'};
+
+    }
+
+        .invert{
+            filter: invert(${props => props.mobile? '1': '0'}) ;
+        }
 
         .arrow{
            align-self:center;
+    filter: invert(${props => props.mobile? '1': '0'}) ;
+
         }
     
 `
@@ -39,25 +53,21 @@ export const ItemHead = styled.div`
 
 
 export const MenuHead = styled.div`
-    position: absolute;
-    display:flex;
-    width: 100vw;
-    heigth: auto;
-    background: none;
-    top: 0px;
-    
 
-    div{
-        background-color: white;
-        height: max-content;
-        width: 238px;
-        position: absolute;
-        top:81px;
-        padding:10px;
-        border-radius: 15px;
-        // display: grid;
-        row-gap: 14px;
-    }
+    z-index: 99999;
+    right: ${props => props.right};
+
+    background-color: white;
+    height: max-content;
+    width: 238px;
+    position: absolute;
+    top:81px;
+    padding:10px;
+    border-radius: 15px;
+    // display: grid;
+    row-gap: 14px;
+
+    
     div.my__name{
         position: static;
         margin:0;
@@ -74,24 +84,22 @@ export const MenuHead = styled.div`
 
     }
        
-    .open__menu{
-        display: ${props => props.open.menu==true? 'grid' : 'none'};
-        right: 110px;
-    }
-    .open__menuProfile{
-        display: ${props => props.open.menuProfile==true? 'grid' : 'none'};
-        right: 30px;
-       
-
-    }
-
+  
     button{
-        margin-top: 20px;
+        margin-top: 40px;
+        width: 100%;
+        text-align: left;
     }
 
 `
 
+export const MobMenuLink = styled(NavLink)`
+font-family: SuisseIntlSemiBold;
+font-size: 22px;
+color: white;
+text-decoration: none;
 
+`
 
 
 
@@ -101,6 +109,7 @@ display:block;
 font-size: 25px;
 text-decoration:none;
 margin: 0;
+margin-top: 10px;
 cursor: pointer;
 color: black;
 text-align:left;
@@ -119,7 +128,7 @@ font-size: 16px;
 export const SidebarContainer = styled.div`
 position: fixed;
 width: 67px;
-min-height: 100vw;
+min-height: 100vh;
 padding-top: 18px;
 z-index: 9999;
 background-color: #3F496C;

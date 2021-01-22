@@ -41,7 +41,7 @@ export const ButtonText =  styled.button`
  
   outline: none;
   text-decoration: none;
-  color: #3F496C;
+  color:  ${props => props.color || '#3F496C'};
   ;
 
   &:hover{

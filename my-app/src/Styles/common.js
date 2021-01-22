@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 
 export const Container =  styled.div`
-padding-left: ${props => props.dimensions.width<1700? '135': '250'}px;
-padding-right:${props => props.dimensions.width<1700? '70': '70'}px;
+padding-left: ${props => props.dimensions.width<600? '30' : props.dimensions.width<1700? '135': '250'}px;
+padding-right:${props => props.dimensions.width<600? '30' : props.dimensions.width<1700? '70': '70'}px;
 width: 100%;
 height: 100%;
 padding-top: 200px;

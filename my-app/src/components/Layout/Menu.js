@@ -1,32 +1,12 @@
-import { NavLink } from "react-router-dom"
-import {useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 import {MenuHead, StyledLink} from '../../Styles/layout'
 import {ButtonText} from '../../Styles/buttons'
-import { Light, Bold } from '../../Styles/typography'
+import {CSSTransition} from 'react-transition-group'
+import styles from '../../Styles/modules/components/headerMenu.module.css'
 
 
 
-
-const Menu = ({menu, menuProfile}) => {
-//menu = state({menu: boolean, menuProfile: boolean})
-const [open, setOpen] = useState({
-    menu:false,
-    menuProfile:false
-})
-
-useEffect(()=>{
-    open.menu==false ? setOpen({menuProfile:false, menu:true}) : setOpen({menuProfile:false, menu:false})
-console.log('menu works')
-},[menu])
-
-useEffect(()=>{
-    open.menuProfile==false ? setOpen({menuProfile:true, menu:false}) : setOpen({menuProfile:false, menu:false})
-console.log('menuProfile works')
-
-},[menuProfile])
-
-
+const Menu = ({closeAll, state}) => {
 
 
 const exit = () => {
@@ -38,10 +18,21 @@ const exit = () => {
 
     const user = useSelector(state => state.auth.user)
     return (
-        <MenuHead open={open}>
+        <>
+        <CSSTransition
+        in={state.menu}
+        timeout={300}
+        classNames={{
+            enter:          styles.transitionsEnter,
+            enterActive:    styles.transitionsEnterActive,
+            exit:           styles.transitionsExit,
+            exitActive:     styles.transitionsExitActive,
+        }}
+        unmountOnExit
+        >
+        <MenuHead right={state.mobile?'30px':'110px'} onMouseLeave={closeAll}>
             
-            <div className='open__menu' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
-                   
+
                     <div className='my__name'>
                          
                    </div>
@@ -50,7 +41,7 @@ const exit = () => {
                         Проблемы с компом
                     </StyledLink>
 
-                    <StyledLink className='menu__nav' to='/news'>
+                    <StyledLink className='menu__nav' to='/admin/news'>
                         Добавить новость
                     </StyledLink>
 
@@ -58,10 +49,26 @@ const exit = () => {
                         Создать проект
                     </StyledLink>
 
-            </div>
+            
+        </MenuHead>
+
+        </CSSTransition>
 
 
-            <div className='open__menuProfile' onMouseLeave={()=>setOpen({menu:false, menuProfile:false})}>
+
+        <CSSTransition
+            in={state.menuProfile}
+            timeout={300}
+            classNames={{
+                enter:   styles.transitionsEnter,
+                enterActive:   styles.transitionsEnterActive,
+                exit:  styles.transitionsExit,
+                exitActive:   styles.transitionsExitActive,
+            }}
+            unmountOnExit
+            >
+            <MenuHead right={state.mobile?'30px':'30px'} onMouseLeave={closeAll}>
+        
                    
                     <div className='my__name'>
                         {user.name}
@@ -91,9 +98,11 @@ const exit = () => {
 
                     <ButtonText fontSize='16px' onClick={()=>exit()}
                     >Выйти</ButtonText>
-            </div>
+            
+            </MenuHead>
 
-        </MenuHead>
+        </CSSTransition>
+        </>
     )
 }
 
