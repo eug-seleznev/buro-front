@@ -67,6 +67,19 @@
 	height: 290px;
 	margin-top: 25px;
 }
+.border__calend{
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin-bottom: 65px;
+}
+.border__team
+{
+	text-align: left;
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin-top: 65px;
+	margin-bottom: 35px;
+}
 .title {
 	display: flex;
 	justify-content: space-between;
@@ -103,11 +116,18 @@
 }
 .calend {
 	padding-top:10px;
-	
+	font-size: 16px;
+	font-family: SuisseIntlLight;
 	background-color: white;
 	border-radius: 15px;
 	height: 180px;
 	width: 560px;
+}
+.calend__title {
+	position: absolute;
+	margin-left: 380px;
+	margin-right: 10px;
+	margin-top: -40px;
 }
 .months {
 	transform: translateY(-35px)

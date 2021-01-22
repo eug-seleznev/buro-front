@@ -13,7 +13,7 @@ import { Status } from "../../Styles/project";
 import { Container, Card,} from "../../Styles/common";
 import { Bold, H1, H3, Light} from '../../Styles/typography'
 import SprintDescription from './components/SprintDescrForOneProj'
-
+import ProjTeam from './components/ProjTeam'
 
 
 
@@ -270,7 +270,10 @@ const Project = ({match, history}) => {
                      className={style.special__button}
                       onClick={createSprint}
                       style={{
+                        fontSize:'20px',
+                        fontFamily:'SuisseIntlSemibold',
                       display: `${
+                        
                         user.permission === "user" || project.status
                           ? "none"
                           : "block"
@@ -287,10 +290,14 @@ const Project = ({match, history}) => {
                   
                   <br />
                 </div>
+                <div className={style.border__calend}></div>
+                
                 {!calendLoader?<div>loading...</div>:(
                   //календарь со спринтами
                   <> 
+
                   <div className={style.calend} >
+                  <div className={style.calend__title}>Статистика проекта</div>
                   <div className={style.weeks}>
                     {count.map ((body, i) => {
                       
@@ -373,32 +380,20 @@ const Project = ({match, history}) => {
                     </Table>
                   )} */}
             
+            <div className={style.border__team}><H1 style={{marginBottom:'10px'}}>Команда</H1></div>
+               
+                 
 
-                <Card>
-                  <H1> Команда</H1>
-
-                  <Table>
-                    <Tr columns="1fr 1fr 1fr" top>
-                      <Td>Имя</Td>
-                      <Td>email</Td>
-                      <Td>Дожность</Td>
-                    </Tr>
-
+                
+            <div className={style.sprintdescr__cont}>
                     {project.team.map((user, i) => {
+                      console.log(user)
                       return (
-                        <Tr
-                          columns="1fr 1fr 1fr"
-                          key={i}
-                          title="Профиль сотрудника"
-                          onClick={() => history.push(`/users/${user._id}`)}
-                        >
-                          <Td> {user.name}</Td>
-                          <Td>{user.email}</Td>
-                          <Td>{user.position}</Td>
-                        </Tr>
+                        <ProjTeam userName={user.name} userAvatar={user.avatar} userPos={user.position}></ProjTeam>
                       );
                     })}
-                  </Table>
+                   
+                 
                   <br />
                   {project.team.length == 0 && (
                     <Button
@@ -415,20 +410,30 @@ const Project = ({match, history}) => {
                     if (empl._id === user.id) {
                       // console.log(ind, "INDEX USER");
                       return (
-                        <Button
+                        <Bold
                           onClick={hadleTeam}
                           style={{
+                            fontSize: '16px',
+                            left:'auto',
+                            right:'60px',
+                            color:'black',
+                            transform:'translateY(-70px)',
+                            position:'absolute',
                             display: `${project.status ? "none" : "block"}`,
                           }}
                         >
                           Выйти из команды проекта
-                        </Button>
+                        </Bold>
                       );
                     } else if (project.team.length - 1 == ind) {
                       return (
                         <Button
+                        
+                          fontSize={'20px'}
                           onClick={hadleTeam}
                           style={{
+                            backgroundColor:'white',
+                            color:'black',
                             display: `${project.status ? "none" : "block"}`,
                           }}
                         >
@@ -437,9 +442,9 @@ const Project = ({match, history}) => {
                       );
                     }
                   })}
-                </Card>
+              </div>
 
-                <Card>
+                <div style={{marginTop:'30px'}}>
                   <Button
                     onClick={handleEnd}
                     style={{
@@ -468,7 +473,7 @@ const Project = ({match, history}) => {
                     {" "}
                     {user.permission === "user" ? "" : "Удалить проект"}
                   </Button>
-                </Card>
+                </div>
               </>
             )}
           </div>

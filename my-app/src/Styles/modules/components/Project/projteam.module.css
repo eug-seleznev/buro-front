@@ -1,0 +1,40 @@
+.card {
+	width: 400px;
+	height: 170px;
+	margin-right: 50px;
+}
+.image_info{
+	display: flex;
+
+}
+.image {
+	border-radius: 100%;
+	object-fit: cover;
+	width: 90px;
+	height: 90px;
+}
+.info {
+	margin-left: 20px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.name {
+	font-size: 24px;
+
+}
+.position {
+	font-size: 20px;
+
+}
+.button_cont {
+	width: 100%;
+	text-align: right;
+	margin-top: 45px
+}
+.button {
+	
+	padding-left: 20px;
+	padding-right: 20px;
+}
