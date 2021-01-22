@@ -37,7 +37,7 @@ const Permission = ({history}) => {
 			dispatch(userPermissions(e.target.value, id))
 	}
     return (
-		<Container>
+		<div>
 			<Card>
 		{!loaded? (<div></div>):
         (<div> 
@@ -79,7 +79,7 @@ const Permission = ({history}) => {
 		</div>
 		)}
 		</Card>
-		</Container>
+		</div>
     )
 }
 

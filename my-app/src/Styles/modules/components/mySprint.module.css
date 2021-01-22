@@ -11,17 +11,20 @@
     .date{
         grid-area: date;
         border-bottom: 1px solid #9D9D9D;
+        padding-bottom: 8px;
     }
     .left{
         grid-area: leftt;
         text-align: right;
         border-bottom: 1px solid #9D9D9D;
+        padding-bottom: 8px;
 
     }
     .tasks{
         grid-area: tasks;
         border-bottom: 1px solid #9D9D9D;
-
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
      
     .progress{
@@ -30,7 +33,7 @@
         border-bottom: 1px solid #9D9D9D;
         font-size: 20px;
         font-family: SuisseIntlSemiBold;
-
+        padding-top: 15px;
     }
         .progressBar{
             width: 148px;
@@ -53,5 +56,5 @@
         }
             .input{
                 margin:'0';
-                margin-top: 0.43em;
+                
             }

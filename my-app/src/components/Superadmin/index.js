@@ -27,7 +27,7 @@ const Superadmin = () => {
 	},[])
     return (
 		
-        <Container> 
+        <div> 
 			<Card>
 			<H1> Админка </H1>
 		
@@ -45,7 +45,7 @@ const Superadmin = () => {
 
 		</Card>
 
-		</Container>
+		</div>
     )
 }
 

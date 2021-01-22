@@ -3,7 +3,7 @@
     grid-template-areas:
     '. dates'
     'title leftt'
-    'descr .'
+    'descr descr'
     'sprints sprints'
     ' filter button'
     ;
@@ -12,11 +12,12 @@
   
   .title{
         grid-area: title;
-        padding-bottom: 25px;
+        padding-bottom: 10px;
     }
     .description{
         grid-area: descr;
         padding-bottom: 50px;
+        width: 75%;
     }
     .dates{
         grid-area: dates;
@@ -38,3 +39,10 @@
     .sprints{
         grid-area: sprints;
     }
+
+@media (max-width: 800px){
+
+    .projContainer{
+        
+    }
+}

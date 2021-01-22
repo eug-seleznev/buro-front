@@ -24,7 +24,7 @@ const Dashboard = ({history}) => {
 
     
     return (
-        <Container> 
+        <div> 
             <Card>
             <H1> Входящие тикеты</H1>
                 <p> количество проблем: {tickets.length} </p>
@@ -54,7 +54,7 @@ const Dashboard = ({history}) => {
                 
             )}
             </Card>
-        </Container>
+        </div>
     )
 }
 

@@ -40,7 +40,7 @@ const Projects = ({history}) => {
         
     },[loaded])
     return (
-    <Container>
+    <div>
 
        
             {!loaded ? <p>loading...</p> : (
@@ -114,7 +114,7 @@ const Projects = ({history}) => {
 </Card>
                 </div>
             )}
-        </Container>
+        </div>
     )
 }
 

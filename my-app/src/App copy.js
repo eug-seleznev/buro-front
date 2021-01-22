@@ -36,7 +36,7 @@ import { createBrowserHistory } from "history";
 import MyProjects from './components/Projects/My';
 import News from './components/Superadmin/newsAdm';
 import { innerBackend, setAuthToken } from './components/utils/axios';
-import { Container } from '../src/Styles/common'
+
 
 
 
@@ -104,7 +104,7 @@ const App = () => {
         
         <Layout /> 
         <Switch>
-        <Container dimensions={dimensions}>
+
           {/* main */}
           <Route exact path="/" component={ Main } />
           
@@ -140,12 +140,12 @@ const App = () => {
           <Route exact path="/admin/news" component={ News } />
           
 
-        </Container>
+
         </Switch>
      
 
 
-        
+
         </Router> )
     }
       
