@@ -132,7 +132,7 @@ min-height: 100vh;
 padding-top: 18px;
 z-index: 9999;
 background-color: #3F496C;
-
+text-align: center;
 `
 
 export const SidebarLink = styled(NavLink)`

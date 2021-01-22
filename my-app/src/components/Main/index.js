@@ -34,7 +34,7 @@ useEffect(()=>{
 
             <div className={styles.mainContainer}>
 
-                <Profile className={styles.profile} user={user} history={history}/>
+                <Profile className={styles.profile} user={user} history={history} change/>
             
 
                 <div className={styles.projects}>
@@ -43,7 +43,7 @@ useEffect(()=>{
                     {user.projects.map((el,i)=>{
                         
                         return(
-                            <ProjectsCard project={el}  sprints={user.sprints} history={history}/>
+                            <ProjectsCard project={el}  sprints={user.sprints} history={history} />
                         )
                     })}
                     
