@@ -252,13 +252,13 @@ export const finishSprint = (id) => async dispatch  => {
 
 }
 export const addInfoSprint = (id, form) => async dispatch  => {
-    console.log (form.description, form.date)
+    console.log (form.description, form.date, id)
     let body = {
         description: form.description,
         date: form.date,
     }
     try {
-        const res = await innerBackend.put(`projects/sprints/d+d/${id}`, body)
+        const res = await innerBackend.put(`projects/sprints/dd/${id}`, body)
         dispatch({
             type: ADD_INFO_SPRINT,
             payload: res.data

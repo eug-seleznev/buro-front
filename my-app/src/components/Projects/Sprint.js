@@ -22,8 +22,8 @@ const Sprint = ({match, history}) => {
 
   const [formData, setFormData] = useState(
     {
-        description: sprint.description, 
-        date: sprint.date,  
+        description: ``, 
+        date: 0,  
          
     }
   )
@@ -59,6 +59,11 @@ const Sprint = ({match, history}) => {
       e.preventDefault();
       console.log(formData)
       dispatch(addInfoSprint(id, formData))
+
+      console.log (sprint)
+      setTimeout(() => {
+        return history.replace(`${back.slice(0,14)}`);
+}, 200);
     }
     const onChange2 = e => {
       e.preventDefault(); 

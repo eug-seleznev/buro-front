@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./oneproject.css"
 
@@ -14,6 +14,11 @@ import { Container, Card,} from "../../Styles/common";
 import { Bold, H1, H3, Light} from '../../Styles/typography'
 import SprintDescription from './components/SprintDescrForOneProj'
 
+
+
+
+
+
 const Project = ({match, history}) => {
     let {id} = match.params;
     const dispatch = useDispatch();
@@ -28,27 +33,147 @@ const Project = ({match, history}) => {
     const users = useSelector(state => state.users.users)
     const project = useSelector(state => state.projects.project)
     const sprints = useSelector(state => state.projects.sprints)
+    const descr = useSelector(state => state.projects.sprints.description)
+    const [calendLoader, setCalendLoader] = useState (false)
+    
     // const project = useSelector(state => state.projects.project.team)
+
+    
+    // эт массивы для календаря
     let months = ['янв','фев',"март","апр","май","июнь","июль","авг","сен","окт","ноя","дек"]
-    let conditionalWeeks = []
+    const[conditionalWeeks] =useState([]) 
+    const[sprintDays] = useState ([])
+    const[sprintPaint] = useState ([])
     let count = [1,2,3,4]
-    for (var i = 1; i <= 48; i++) {
-      conditionalWeeks.push(i);
-   } 
+
+
     useEffect(() => {
         dispatch(getProject(id));
        
     }, [])
-   
+    useEffect(() => {
+    if (sprintsLoad){
+      let calendCheck = () => new Promise(function(resolve) {
+        
+        //  Вот это все короче собирает инфу с бекенда, 
+        // режет в нужный мне формат и пушит в массив
+        // с отрисовкой пока беда работает ток на f5
+         resolve(sprints.filter((sprint)=>sprint.dateClosePlan!=null).map ((body, i) => {
+          let month = body.dateClosePlan.slice(5,7)
+          let day = body.dateClosePlan.slice(8,10)
+          let sprintStatusDone = body.tasks.length - body.tasks.filter((task) => !task.taskStatus).length
+          let sprintStatusFull = body.tasks.length
+          let monthInt = Number(month)
+          let dayInt = Number(day)
+          sprintDays.push([dayInt,monthInt,sprintStatusDone,sprintStatusFull])  
+         }))
+         
+      
+      } )
+
+      calendCheck().then(() => 
+      setCalendLoader(true),
+      )
+
+}}, [sprintsLoad])
+        
+         useEffect (()=>{
+            if(calendLoader==true){
+              let mapheck = new Promise(function(resolve) {
+        
+         // вот это цикл для подсчета нужного количества квадратов в календаре и пуша в каждый
+         // инфы о месяцах
+                for (let i = 0; i <= 47; i++) {
+                  if (project != null){
+                    let yu = project.dateStart.slice(5,7)
+                    let index = Number(yu)
+                    if ((index+i/4) <13){
+                      conditionalWeeks.push([i, Math.trunc((i/4)+index),
+                        i%4==1?2:
+                        i%4==2?3:
+                        i%4==3?4:
+                        i%4==4?0:1])
+                     
+                    }
+              // елс иф для адекватной отрисовки первого месяца как стартового для проекта  
+                    else if (index+i/4>=13){
+                      conditionalWeeks.push([i, Math.trunc((i/4)+index-12),
+                        i%4==1?2:
+                        i%4==2?3:
+                        i%4==3?4:
+                        i%4==4?0:1])}}
+              }
+                resolve()
+                
+             
+             } )
+              mapheck.then(
+
+                conditionalWeeks.map ((body, i) => {
+                  let int = 0
+                     //фильтры мапы для показа понедельно квадратиков в нужных местах
+                     // инт отвечает за статус/цвет по умолчанию 0=серый
+                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                      .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]<sprintday[3]/ 100 * 50)
+                      .map (() => {
+                        int = 1
+                          })
+                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                      .filter((sprintday)=>sprintday[1]===body[1])
+                      .filter((sprintday)=>sprintday[2]>=sprintday[3]/ 100 * 50).map (() => { 
+                          int = 2
+                          })
+                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                        .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]===sprintday[3])
+                        .map (() => {
+                          int = 3
+                            })
+                        setTimeout(()=>{
+                          sprintPaint.push ([body[0],body[1],body[2],int])  
+                        },500)
+                        
+                        
+                    
+                        setTimeout(()=>{
+                        // console.log(sprintPaint)
+                          
+                      // console.log(sprintPaint)
+                        },500)
+                      
+               }) 
+              )
+            }
+         },[calendLoader])
+       
     
+ 
+       
+
+    // useEffect (()=>{
+      
+    //   if(sprintsLoad) {
+    //     console.log ('hi', sprints)
+    //     setTimeout (()=> {
+    //       sprints.map ((body, index)=> {
+    //                  return ( 
+    //                    setDateStore ({ ...dateStore, [dateStore.month+index]: sprints.dateClosePlan }),
+    //                    console.log (dateStore)
+    //                  )
+                      
+    //         })
+    //     },4500)
+         
+    //   }
+    // },[sprintsLoad])
     useEffect(() => {
         if(loaded){
             dispatch(allSprints(project.crypt))
         }
-        console.log (project)
-        console.log (sprint)
+        // console.log (project)
+        // console.log (conditionalWeeks)
+        // console.log (sprint)
     }, [loaded])
-
+    
     useEffect(() => {
       
         if(reload){
@@ -56,7 +181,7 @@ const Project = ({match, history}) => {
         }
     }, [reload])
 
-    const createSprint = () => {
+     const createSprint = () => {
         
         dispatch(addSprint(project.crypt))
 
@@ -73,13 +198,14 @@ const Project = ({match, history}) => {
 
     }
     const hadleTeam = () => {
-        console.log (project.team)
-        console.log  (project.msg)
+        // console.log (project.team)
+        // console.log  (project.msg)
         dispatch(joinTeam(id))
-
+        
     }
-
+   
     return (
+      
       <div className={style.grid__container}>
         <div className={style.main}>
 
@@ -88,7 +214,8 @@ const Project = ({match, history}) => {
           <p> loading...</p>
         ) : (
           <div >
-            {!sprintsLoad ? (
+            { !calendLoader? (
+              
               <p> loading...</p>
             ) : (
               <>
@@ -113,7 +240,7 @@ const Project = ({match, history}) => {
                    <div className={style.sprintdescr__cont}>
                      {sprints.filter((sprint)=> !sprint.status).map ((sprint, i) => {
                        return (
-                         <SprintDescription descr={sprint.description} history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
+                         <SprintDescription dateClosePlan={sprint.dateClosePlan} descr={sprint.description} history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
                          alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
                        )
                      })}
@@ -138,22 +265,39 @@ const Project = ({match, history}) => {
                   
                   <br />
                 </div>
-
+                {!calendLoader?<div>loading...</div>:( //календарь со спринтами
                   <div className={style.calend} >
-                    <div className={style.months}>
-                      {months.map ((body, i) => {
-                       return <div className={style.one__month}>{body}</div>
-                     })}
-                    </div>
                   <div className={style.weeks}>
                     {count.map ((body, i) => {
-                       return <div className={style.count}>{i+1}</div>
+                      
+                       return <div key={i} className={style.count}>{i+1}</div>
                      })}
-                    {conditionalWeeks.map ((body, i) => {
-                       return <div className={style.one__week}></div>
-                     })}
+                     {sprintPaint.map ((body, i) => {
+                       
+                      return <div 
+        
+        style = {{
+          
+          backgroundColor:`${
+          body[3]===1?'red':body[3]===2?'rgba(0,255,0,0.5)':body[3]===3 ?'green':'gray'
+          }`
+        }}
+         key={i} className={style.one__week}>
+           
+           <div className={style.months}> 
+           
+             {
+          body[0]%4===0&&body[1]<=12?months[body[1]-1]: //это отрисовка месяцев
+          body[0]==0?months[1]:
+          ''}</div></div>
+                    
+                     
+                    })}
+                    { }
                   </div>
                   </div>
+                )}
+                  
                   {/* {sprints.length == 0 ? (
                     <p>Завершенных спринтов нет</p>
                   ) : (
@@ -246,9 +390,9 @@ const Project = ({match, history}) => {
                     </Button>
                   )}
                   {project.team.map((empl, ind) => {
-                    console.log(user, "emp id");
+                    // console.log(user, "emp id");
                     if (empl._id === user.id) {
-                      console.log(ind, "INDEX USER");
+                      // console.log(ind, "INDEX USER");
                       return (
                         <Button
                           onClick={hadleTeam}
