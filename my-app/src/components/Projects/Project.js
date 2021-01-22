@@ -35,7 +35,7 @@ const Project = ({match, history}) => {
     const sprints = useSelector(state => state.projects.sprints)
     const descr = useSelector(state => state.projects.sprints.description)
     const [calendLoader, setCalendLoader] = useState (false)
-    
+    const [pr, setpr] = useState (false)
     // const project = useSelector(state => state.projects.project.team)
 
     
@@ -48,16 +48,25 @@ const Project = ({match, history}) => {
 
 
     useEffect(() => {
+
         dispatch(getProject(id));
-       
+
+
     }, [])
+   
     useEffect(() => {
+    
     if (sprintsLoad){
+      if(project.crypt!=id) {
+        dispatch(getProject(id));
+      }
+      console.log('stage2')
       let calendCheck = () => new Promise(function(resolve) {
         
         //  Вот это все короче собирает инфу с бекенда, 
         // режет в нужный мне формат и пушит в массив
         // с отрисовкой пока беда работает ток на f5
+
          resolve(sprints.filter((sprint)=>sprint.dateClosePlan!=null).map ((body, i) => {
           let month = body.dateClosePlan.slice(5,7)
           let day = body.dateClosePlan.slice(8,10)
@@ -72,19 +81,26 @@ const Project = ({match, history}) => {
       } )
 
       calendCheck().then(() => 
-      setCalendLoader(true),
+      console.log('stage3'),
+      setTimeout(()=>{
+          setCalendLoader(true)
+      },300)
+      
       )
 
 }}, [sprintsLoad])
         
          useEffect (()=>{
-            if(calendLoader==true){
+         
+            if(calendLoader===true){
+              console.log('stage4')
+              setpr(false)
               let mapheck = new Promise(function(resolve) {
-        
+                console.log('stage5')
          // вот это цикл для подсчета нужного количества квадратов в календаре и пуша в каждый
          // инфы о месяцах
                 for (let i = 0; i <= 47; i++) {
-                  if (project != null){
+                  if (project.crypt === id){
                     let yu = project.dateStart.slice(5,7)
                     let index = Number(yu)
                     if ((index+i/4) <13){
@@ -108,38 +124,44 @@ const Project = ({match, history}) => {
              
              } )
               mapheck.then(
-
+                console.log('stage6'),
                 conditionalWeeks.map ((body, i) => {
-                  let int = 0
-                     //фильтры мапы для показа понедельно квадратиков в нужных местах
-                     // инт отвечает за статус/цвет по умолчанию 0=серый
-                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
-                      .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]<sprintday[3]/ 100 * 50)
-                      .map (() => {
-                        int = 1
-                          })
-                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
-                      .filter((sprintday)=>sprintday[1]===body[1])
-                      .filter((sprintday)=>sprintday[2]>=sprintday[3]/ 100 * 50).map (() => { 
-                          int = 2
-                          })
-                      sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
-                        .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]===sprintday[3])
-                        .map (() => {
-                          int = 3
-                            })
-                        setTimeout(()=>{
-                          sprintPaint.push ([body[0],body[1],body[2],int])  
-                        },500)
+                  console.log('stage7')
+                  setTimeout(()=>{
+                    let int = 0
+                    //фильтры мапы для показа понедельно квадратиков в нужных местах
+                    // инт отвечает за статус/цвет по умолчанию 0=серый
+                     sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                     .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]<sprintday[3]/ 100 * 50)
+                     .map (() => {
+                       console.log(body)
+                       int = 1
+                         })
+                     sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                     .filter((sprintday)=>sprintday[1]===body[1])
+                     .filter((sprintday)=>sprintday[2]>=sprintday[3]/ 100 * 50).map (() => { 
+                         int = 2
+                         console.log(body)
+                         })
+                     sprintDays.filter((sprintday)=>Math.trunc(sprintday[0]/7.75)+1===body[2])
+                       .filter((sprintday)=>sprintday[1]===body[1]).filter((sprintday)=>sprintday[2]===sprintday[3])
+                       .map (() => {
+                         int = 3
+                         console.log(body)
+                           })
+                       setTimeout(()=>{
+                         sprintPaint.push ([body[0],body[1],body[2],int])  
+                         setTimeout(()=>{
+                           console.log('stage8')
+                           setpr(true)
+                           
+                         },300)
+                       },500)                                                          
+                },300)
+                 
                         
                         
-                    
-                        setTimeout(()=>{
-                        // console.log(sprintPaint)
-                          
-                      // console.log(sprintPaint)
-                        },500)
-                      
+                        
                }) 
               )
             }
@@ -265,38 +287,37 @@ const Project = ({match, history}) => {
                   
                   <br />
                 </div>
-                {!calendLoader?<div>loading...</div>:( //календарь со спринтами
+                {!calendLoader?<div>loading...</div>:(
+                  //календарь со спринтами
+                  <> 
                   <div className={style.calend} >
                   <div className={style.weeks}>
                     {count.map ((body, i) => {
                       
                        return <div key={i} className={style.count}>{i+1}</div>
                      })}
-                     {sprintPaint.map ((body, i) => {
+                     {!pr?<div>loading..</div>:(<>
+                      {sprintPaint.map ((body, i) => {
                        
-                      return <div 
-        
-        style = {{
-          
-          backgroundColor:`${
-          body[3]===1?'red':body[3]===2?'rgba(0,255,0,0.5)':body[3]===3 ?'green':'gray'
-          }`
-        }}
-         key={i} className={style.one__week}>
-           
-           <div className={style.months}> 
-           
-             {
-          body[0]%4===0&&body[1]<=12?months[body[1]-1]: //это отрисовка месяцев
-          body[0]==0?months[1]:
-          ''}</div></div>
-                    
+                       return <div 
+                           style = {{
+                             backgroundColor:`${
+                             body[3]===1?'red':body[3]===2?'rgba(0,255,0,0.5)':body[3]===3 ?'green':'gray'
+                             }`
+                           }}
+                           key={i} className={style.one__week}>
+                             <div className={style.months}> 
+                               {body[0]%4===0&&body[1]<=12?months[body[1]-1]: //это отрисовка месяцев
+                               body[0]==0?months[1]:
+                             ''}</div></div>
                      
-                    })}
-                    { }
+                     })}
+                     </>)}
+                     
+                  
                   </div>
                   </div>
-                )}
+                </>)}
                   
                   {/* {sprints.length == 0 ? (
                     <p>Завершенных спринтов нет</p>
