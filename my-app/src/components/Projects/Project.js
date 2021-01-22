@@ -205,15 +205,11 @@ const Project = ({match, history}) => {
     }
    
     return (
-<<<<<<< HEAD
       
       <div className={style.grid__container}>
         <div className={style.main}>
 
         
-=======
-      <div>
->>>>>>> 544baea46a55276bbb1669debbbc683380843fe5
         {!loaded ? (
           <p> loading...</p>
         ) : (
@@ -456,10 +452,7 @@ const Project = ({match, history}) => {
             )}
           </div>
         )}
-<<<<<<< HEAD
         </div>
-=======
->>>>>>> 544baea46a55276bbb1669debbbc683380843fe5
       </div>
     );
 }
