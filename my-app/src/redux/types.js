@@ -30,6 +30,7 @@ export const DELETE_PROJECT = 'delete_project'
 export const FINISH_PROJECT = 'finish_project'
     //sprints
 export const ADD_SPRINT = 'crate_new_sprint';
+export const ADD_INFO_SPRINT = 'add_info_sprint'
 export const GET_SPRINT = 'get_sprint';
 export const ADD_TASKS = 'add_tasks_to_sprint';
 export const FINISH_TASK = 'finish_task'
