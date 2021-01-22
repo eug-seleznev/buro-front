@@ -227,111 +227,137 @@ const Project = ({match, history}) => {
     }
    
     return (
-<<<<<<< HEAD
-<<<<<<< HEAD
       <div>
-        {!loaded ? (
-=======
-=======
-      
->>>>>>> 0fce72f6d935dd361e7a3f7196516ee202db8e78
-      <div className={style.grid__container}>
-        <div className={style.main}>
-
-        
-<<<<<<< HEAD
         {!loaded && !calendLoader ? (
->>>>>>> 9b1c9ad900142ba4ad206e6113de61e6edff306a
-=======
-        {!loaded ? (
->>>>>>> 0fce72f6d935dd361e7a3f7196516ee202db8e78
           <p> loading...</p>
         ) : (
-          <div >
-            { !calendLoader? (
-              
-              <p> loading...</p>
-            ) : (
-              <>
-           
-                  <div className={style.title}>
-                    <H1 size='24' >{project.title}</H1>
-                    <Bold size='16'>
-                      <div className={style.title__small}>
-                      
-                        <div className={style.title__options} onClick={() => history.replace(`/admin/editproj/${project.crypt}`)}>Настройки</div>
-                        <img src='/image 1.png'></img>
-                      </div>
-                      </Bold>
+          <div className={style.grid__container}>
+            <div className={style.main}></div>
+            <>
+              <div className={style.title}>
+                <H1 size="24">{project.title}</H1>
+                <Bold size="16">
+                  <div className={style.title__small}>
+                    <div
+                      className={style.title__options}
+                      onClick={() =>
+                        history.replace(`/admin/editproj/${project.crypt}`)
+                      }
+                    >
+                      Настройки
+                    </div>
+                    <img src="/image 1.png"></img>
                   </div>
-                  
-                  <Light className={style.title__small} size='16'><div className={style.title__deadline}>Дней до дедлайна: ?</div> <div className={style.title__deadline}>Стадия: {project.stage}</div></Light>
-                <div>
-                  
-                  {sprints.length == 0 ? (
-                    <p>Спринтов нет</p>
-                  ) : (
-                   <div className={style.sprintdescr__cont}>
-                     {sprints.filter((sprint)=> !sprint.status).map ((sprint, i) => {
-                       return (
-                         <SprintDescription dateClosePlan={sprint.dateClosePlan} descr={sprint.description} history={history} params={match.params} id={sprint._id} key={i} taskcomplite={sprint.tasks.filter((task) => task.taskStatus).length} 
-                         alltasks={sprint.tasks.length} index={i+1}sprintname={sprint.name} dateOpen={sprint.dateOpen}></SprintDescription>
-                       )
-                     })}
-                     <button
-                     className={style.special__button}
+                </Bold>
+              </div>
+
+              <Light className={style.title__small} size="16">
+                <div className={style.title__deadline}>Дней до дедлайна: ?</div>{" "}
+                <div className={style.title__deadline}>
+                  Стадия: {project.stage}
+                </div>
+              </Light>
+              <div>
+                {sprints.length == 0 ? (
+                  <p>Спринтов нет</p>
+                ) : (
+                  <div className={style.sprintdescr__cont}>
+                    {sprints
+                      .filter((sprint) => !sprint.status)
+                      .map((sprint, i) => {
+                        return (
+                          <SprintDescription
+                            dateClosePlan={sprint.dateClosePlan}
+                            descr={sprint.description}
+                            history={history}
+                            params={match.params}
+                            id={sprint._id}
+                            key={i}
+                            taskcomplite={
+                              sprint.tasks.filter((task) => task.taskStatus)
+                                .length
+                            }
+                            alltasks={sprint.tasks.length}
+                            index={i + 1}
+                            sprintname={sprint.name}
+                            dateOpen={sprint.dateOpen}
+                          ></SprintDescription>
+                        );
+                      })}
+                    <button
+                      className={style.special__button}
                       onClick={createSprint}
                       style={{
-                      display: `${
-                        user.permission === "user" || project.status
-                          ? "none"
-                          : "block"
-                      }`,
-                    }}
-                  >
-                    {" "}
-                    {user.permission === "user" ? "" : "Создать спринт"}
-                  </button>
-                   </div>
-                  )}
-                  
-                  <br />
-                  
-                  <br />
-                </div>
-                {!calendLoader?<div>loading...</div>:(
-                  //календарь со спринтами
-                  <> 
-                  <div className={style.calend} >
-                  <div className={style.weeks}>
-                    {count.map ((body, i) => {
-                      
-                       return <div key={i} className={style.count}>{i+1}</div>
-                     })}
-                     {!pr?<div>loading..</div>:(<>
-                      {sprintPaint.map ((body, i) => {
-                       
-                       return <div 
-                           style = {{
-                             backgroundColor:`${
-                             body[3]===1?'red':body[3]===2?'rgba(0,255,0,0.5)':body[3]===3 ?'green':'gray'
-                             }`
-                           }}
-                           key={i} className={style.one__week}>
-                             <div className={style.months}> 
-                               {body[0]%4===0&&body[1]<=12?months[body[1]-1]: //это отрисовка месяцев
-                               body[0]==0?months[1]:
-                             ''}</div></div>
-                     
-                     })}
-                     </>)}
-                     
-                  
+                        display: `${
+                          user.permission === "user" || project.status
+                            ? "none"
+                            : "block"
+                        }`,
+                      }}
+                    >
+                      {" "}
+                      {user.permission === "user" ? "" : "Создать спринт"}
+                    </button>
                   </div>
+                )}
+
+                <br />
+
+                <br />
+              </div>
+              {!calendLoader ? (
+                <div>loading...</div>
+              ) : (
+                //календарь со спринтами
+                <>
+                  <div className={style.calend}>
+                    <div className={style.weeks}>
+                      {count.map((body, i) => {
+                        return (
+                          <div key={i} className={style.count}>
+                            {i + 1}
+                          </div>
+                        );
+                      })}
+                      {!pr ? (
+                        <div>loading..</div>
+                      ) : (
+                        <>
+                          {sprintPaint.map((body, i) => {
+                            return (
+                              <div
+                                style={{
+                                  backgroundColor: `${
+                                    body[3] === 1
+                                      ? "red"
+                                      : body[3] === 2
+                                      ? "rgba(0,255,0,0.5)"
+                                      : body[3] === 3
+                                      ? "green"
+                                      : "gray"
+                                  }`,
+                                }}
+                                key={i}
+                                className={style.one__week}
+                              >
+                                <div className={style.months}>
+                                  {body[0] % 4 === 0 && body[1] <= 12
+                                    ? months[body[1] - 1] //это отрисовка месяцев
+                                    : body[0] == 0
+                                    ? months[1]
+                                    : ""}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </>
+                      )}
+                    </div>
                   </div>
-                </>)}
-                  
-                  {/* {sprints.length == 0 ? (
+                </>
+              )}
+
+              {/* {sprints.length == 0 ? (
                     <p>Завершенных спринтов нет</p>
                   ) : (
                     <Table>
@@ -384,115 +410,101 @@ const Project = ({match, history}) => {
                         })}
                     </Table>
                   )} */}
-            
 
-                <Card>
-                  <H1> Команда</H1>
+              <Card>
+                <H1> Команда</H1>
 
-                  <Table>
-                    <Tr columns="1fr 1fr 1fr" top>
-                      <Td>Имя</Td>
-                      <Td>email</Td>
-                      <Td>Дожность</Td>
-                    </Tr>
+                <Table>
+                  <Tr columns="1fr 1fr 1fr" top>
+                    <Td>Имя</Td>
+                    <Td>email</Td>
+                    <Td>Дожность</Td>
+                  </Tr>
 
-                    {project.team.map((user, i) => {
-                      return (
-                        <Tr
-                          columns="1fr 1fr 1fr"
-                          key={i}
-                          title="Профиль сотрудника"
-                          onClick={() => history.push(`/users/${user._id}`)}
-                        >
-                          <Td> {user.name}</Td>
-                          <Td>{user.email}</Td>
-                          <Td>{user.position}</Td>
-                        </Tr>
-                      );
-                    })}
-                  </Table>
-                  <br />
-                  {project.team.length == 0 && (
-                    <Button
-                      onClick={hadleTeam}
-                      style={{
-                        display: `${project.status ? "none" : "block"}`,
-                      }}
-                    >
-                      Вступить в команду проекта
-                    </Button>
-                  )}
-                  {project.team.map((empl, ind) => {
-                    // console.log(user, "emp id");
-                    if (empl._id === user.id) {
-                      // console.log(ind, "INDEX USER");
-                      return (
-                        <Button
-                          onClick={hadleTeam}
-                          style={{
-                            display: `${project.status ? "none" : "block"}`,
-                          }}
-                        >
-                          Выйти из команды проекта
-                        </Button>
-                      );
-                    } else if (project.team.length - 1 == ind) {
-                      return (
-                        <Button
-                          onClick={hadleTeam}
-                          style={{
-                            display: `${project.status ? "none" : "block"}`,
-                          }}
-                        >
-                          Вступить в команду проекта
-                        </Button>
-                      );
-                    }
+                  {project.team.map((user, i) => {
+                    return (
+                      <Tr
+                        columns="1fr 1fr 1fr"
+                        key={i}
+                        title="Профиль сотрудника"
+                        onClick={() => history.push(`/users/${user._id}`)}
+                      >
+                        <Td> {user.name}</Td>
+                        <Td>{user.email}</Td>
+                        <Td>{user.position}</Td>
+                      </Tr>
+                    );
                   })}
-                </Card>
+                </Table>
+                <br />
+                {project.team.length == 0 && (
+                  <Button
+                    onClick={hadleTeam}
+                    style={{
+                      display: `${project.status ? "none" : "block"}`,
+                    }}
+                  >
+                    Вступить в команду проекта
+                  </Button>
+                )}
+                {project.team.map((empl, ind) => {
+                  // console.log(user, "emp id");
+                  if (empl._id === user.id) {
+                    // console.log(ind, "INDEX USER");
+                    return (
+                      <Button
+                        onClick={hadleTeam}
+                        style={{
+                          display: `${project.status ? "none" : "block"}`,
+                        }}
+                      >
+                        Выйти из команды проекта
+                      </Button>
+                    );
+                  } else if (project.team.length - 1 == ind) {
+                    return (
+                      <Button
+                        onClick={hadleTeam}
+                        style={{
+                          display: `${project.status ? "none" : "block"}`,
+                        }}
+                      >
+                        Вступить в команду проекта
+                      </Button>
+                    );
+                  }
+                })}
+              </Card>
 
-                <Card>
-                  <Button
-                    onClick={handleEnd}
-                    style={{
-                      display: `${
-                        user.permission === "user" ? "none" : "block"
-                      }`,
-                      marginBottom: "30px",
-                    }}
-                  >
-                    {" "}
-                    {user.permission === "user"
-                      ? ""
-                      : project.status
-                      ? "Восстановить проект"
-                      : "Завершить проект"}
-                  </Button>
-                  <Button
-                    onClick={handleDelete}
-                    style={{
-                      display: `${
-                        user.permission === "user" ? "none" : "block"
-                      }`,
-                      marginBottom: "30px",
-                    }}
-                  >
-                    {" "}
-                    {user.permission === "user" ? "" : "Удалить проект"}
-                  </Button>
-                </Card>
-              </>
-            )}
+              <Card>
+                <Button
+                  onClick={handleEnd}
+                  style={{
+                    display: `${user.permission === "user" ? "none" : "block"}`,
+                    marginBottom: "30px",
+                  }}
+                >
+                  {" "}
+                  {user.permission === "user"
+                    ? ""
+                    : project.status
+                    ? "Восстановить проект"
+                    : "Завершить проект"}
+                </Button>
+                <Button
+                  onClick={handleDelete}
+                  style={{
+                    display: `${user.permission === "user" ? "none" : "block"}`,
+                    marginBottom: "30px",
+                  }}
+                >
+                  {" "}
+                  {user.permission === "user" ? "" : "Удалить проект"}
+                </Button>
+              </Card>
+            </>
           </div>
         )}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        </div>
->>>>>>> 9b1c9ad900142ba4ad206e6113de61e6edff306a
-=======
-        </div>
->>>>>>> 0fce72f6d935dd361e7a3f7196516ee202db8e78
       </div>
     );
 }
