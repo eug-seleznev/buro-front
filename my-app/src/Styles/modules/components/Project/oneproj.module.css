@@ -1,9 +1,24 @@
-.main {
+.grid__container {
+	display: grid;
+	
 
+	grid-template-columns: 260px 1fr 75px;
+	grid-template-areas: 
+
+	'. main .';
+	
+}
+.main {
+	padding-top: 100px;
+	grid-area: main;
 }
 .card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	margin-right: 50px;
 	width: 400px;
+	height: 260px;
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
@@ -12,32 +27,139 @@
 }
 .card__title {
 	text-align: left;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 }
 .card__descr {
 	text-align: left;
 }
 .card__date2 {
 	text-align: right;
+	border-bottom: 1px solid black;
+	padding-bottom: 5px;
+}
+.card__tasks {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+.card__thing {
+	width: 150px;
+	height: 20px;
+	border-radius: 15px;
+	background-color: #C4C4C4;
+	overflow-x: hidden;
+	margin-right: 10px;
+}
+.card__thing__full {
+
+	height: 20px;
+	
+	background-color: #5286D4;
+}
+.card__buttons {
+	display: flex;
+	justify-content: space-between;
 }
 .special__button {
 	border-radius: 15px;
-	width: 400px;
-	height: 217px;
+	width: 450px;
+	height: 290px;
 	margin-top: 25px;
 }
+.border__calend{
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin-bottom: 65px;
+}
+.border__team
+{
+	text-align: left;
+	width: 100%;
+	border-bottom: 1px solid black;
+	margin-top: 65px;
+	margin-bottom: 35px;
+}
 .title {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
 	text-align: left;
 	width: 100%;
 	border-bottom: 1px solid black;
 	font-size: 24px;
 	padding-bottom: 10px;
+	margin-bottom: 10px;
 } 
+.title__options {
+	margin-right: 10px;
+	transition: 200ms ease all;
+	border-bottom: 1px transparent;
+	cursor: pointer;
+}
+.title__options:hover {
+	transition: 200ms ease all;
+	border-bottom: 1px solid black;
+}
+.title__small {
+	align-items: center;
+	display: flex;
+}
 .title__deadline {
-	padding-top: 10px;
+	margin-top: 10px;
+	margin-right: 20px;
 	text-align: left;
 }
 .sprintdescr__cont {
 	display: flex;
 	flex-wrap: wrap;
+}
+.calend {
+	padding-top:10px;
+	font-size: 16px;
+	font-family: SuisseIntlLight;
+	background-color: white;
+	border-radius: 15px;
+	height: 180px;
+	width: 560px;
+}
+.calend__title {
+	position: absolute;
+	margin-left: 380px;
+	margin-right: 10px;
+	margin-top: -40px;
+}
+.months {
+	transform: translateY(-35px)
+	
+}
+
+.one__month {
+	font-family: SuisseIntlLight;
+	font-size: 12px;
+	width: 43px;
+	padding-bottom: 10px;
+}
+.weeks {
+	margin-top:25px;
+	border-top: 1px solid #929292;
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	/* border-bottom: 1px solid #929292; */
+}
+.count {
+	margin-top:15px;
+	width: 20px;
+	height: 20px;
+}
+.one__week {
+	font-family: SuisseIntlLight;
+	font-size: 12px;
+	padding-top:-20px;
+	margin-top:15px;
+	width: 20px;
+	height: 20px;
+	background-color: grey;
 }

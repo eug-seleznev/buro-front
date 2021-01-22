@@ -6,10 +6,10 @@ export const Button =  styled.button`
   border: 0.4px solid #B7B7B7;
   border-radius: 13px;
   font-size:${props => props.fontSize};
-  font-family: SuisseIntlRegular;
+  font-family: SuisseIntlSemibold;
   
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: ${props => props.padd};
+  padding-right: ${props => props.padd};
   padding-top: 11px;
   padding-bottom: 9px;
  
