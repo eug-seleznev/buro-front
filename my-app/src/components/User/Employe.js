@@ -2,11 +2,15 @@ import { useEffect, useState } from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import { getUser } from "../../redux/actions/user";
 import { url } from '../utils/axios';
+import styles from '../../Styles/modules/main/main.module.css'
 
 import { Table, Td, Tr } from "../../Styles/tables";
 import { Status } from "../../Styles/project";
 import { Container, Card, } from "../../Styles/common";
-import { H1, H3} from '../../Styles/typography'
+import { Bold } from '../../Styles/typography'
+
+import  ProfileComponent  from '../Main/profileComponent'
+import ProjectsCard from '../Main/projectsCard'
 
 import './user.css'
 
@@ -20,50 +24,30 @@ const Employe = ({match, history}) => {
     useEffect(()=>{
         
         dispatch(getUser(id))
-        
+        console.log(history, 'aaaaaaaaaaaaaaaaaaaaaaaaaa')
     },[])
     
     return (
-        <div>
+        <div style={{display: history.location.pathname === '/users/me'? 'none' : 'block'}}>
         {!loaded? (<div>loading...</div>):
-          ( <Card className='emp__grid'>
-              
-              <img  className='emp__logo' src={`${url}/${user.avatar}`}/>
-              <H1   className='grid-p  emp__name'>Имя: {user.name}</H1>
+          ( 
+            <div className={styles.mainContainer}>
 
-            <div    className='grid-p  emp__position'>Должность: {user.position}</div>
-            
-              
-                
-             
-              <Table className='emp__table'>
-                   <H1>Проекты сотрудника</H1>
-                   <br/>
-                  
-                    <Tr columns='1fr 1fr 1fr 1fr' top>
-                      <Td>Название</Td>
-                      <Td>Дата начала</Td>
-                      <Td>Дедлайн</Td>
-                      <Td>Статус</Td>
-                  
-                    </Tr>
-                 
-                      {user.projects.map((project,index) => {
-                          return(  
-                        <Tr  columns='1fr 1fr 1fr 1fr' key={index} onClick={() => history.replace(`/projects/${project.crypt}`)} title="Открыть проект">
-                          
-                            <Td>{project.title}</Td>
-                            <Td>{project.dateStart.slice(0, 10)}</Td>
-                            <Td>{project.dateFinish!==undefined?project.dateFinish.slice(0, 10):'нет'}</Td>
-                            <Td>{project.status ? <p>Завершен</p>:<p>В работе</p>}</Td>
-                            
-                        </Tr>
+            <ProfileComponent user={user} history={history}/>
+
+            <div className={styles.projects}>
+                    <Bold color='black' size='36' className={styles.myProj}>Проекты сотрудника</Bold>
+
+                    {user.projects.map((el,i)=>{
+                        
+                        return(
+                            <ProjectsCard project={el}  sprints={user.sprints} history={history}/>
                         )
-                      })} 
+                    })}
                     
-                  
-                </Table>
-        </Card> )
+            </div>
+          </div>
+            )
         }
         </div>
     )

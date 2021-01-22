@@ -27,6 +27,35 @@ export const Button =  styled.button`
 
 
 `
+
+export const ButtonText =  styled.button`
+  display: inline-block;
+  border: none;
+  background: none;
+  width: max-content;
+  padding: 0;
+
+  font-size:${props => props.fontSize};
+  font-family: SuisseIntlRegular;
+  
+ 
+  outline: none;
+  text-decoration: none;
+  color:  ${props => props.color || '#3F496C'};
+  ;
+
+  &:hover{
+  text-decoration: underline;
+
+
+}
+
+
+`
+
+
+
+
 export const LoginButton =  styled.button` 
   outline: none;
   display: inline-block;

@@ -48,8 +48,8 @@ const App = () => {
   const auth = useSelector(state => state.auth.isAuthenticated)
   const loaded = useSelector(state => state.auth.loaded)
   const [dimensions, setDimensions] = useState({
-    height: 0,
-    width: 0,
+    height: window.innerHeight,
+    width: window.innerWidth,
   })
 
   //chek auth token on render
@@ -84,7 +84,6 @@ const App = () => {
   useEffect(() => {
     const handleResize = () => {
     setDimensions ({width: window.innerWidth, height: window.innerHeight})  
-    console.log (dimensions, 'uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
   }
   
     window.addEventListener('resize', handleResize)
@@ -100,9 +99,9 @@ const App = () => {
   return (
     <div className="App">
       {!auth ? <Auth /> : (
-      <Router history={history} dimensions={dimensions}> 
+      <Router history={history}> 
         
-        <Layout /> 
+        <Layout dimensions={dimensions}/> 
         <Switch>
         <Container dimensions={dimensions}>
           {/* main */}

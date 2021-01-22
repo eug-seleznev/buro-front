@@ -1,0 +1,18 @@
+.transitionsEnter{
+    opacity: 0;
+    height: 0px;
+}
+.transitionsEnterActive{
+    opacity: 1;
+    /* height: max-content; */
+    transition: all .3s;
+}
+.transitionsExit{
+    opacity: 1;
+    /* height: max-content; */
+}
+.transitionsExitActive{
+    opacity: 0;
+    height: 0px;
+    transition: all .3s;
+}

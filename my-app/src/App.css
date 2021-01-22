@@ -1,11 +1,12 @@
 .App {
-  text-align: center;
+  text-align: left;
   display: flex;
   justify-content: flex-start;
-  width: 100vw;
+  width: 100%;
   height: max-content;
   min-height: 100vh;
   background-color: rgb(240, 239, 239);
+  
 }
 
 .App-logo {

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import {SidebarContainer, SidebarLink} from '../../Styles/layout'
 
 
-const Sidebar = () => {
+const Sidebar = ({dimensions}) => {
 
 const user = useSelector(state => state.auth.user)
 const adminka = useRef(null)
@@ -12,7 +12,13 @@ const adminka = useRef(null)
 
 
     return (
-         <SidebarContainer>
+         <SidebarContainer style={{display: dimensions.width<600? 'none' : 'block'}}>
+
+            <SidebarLink to='/' className="nav-link" >
+                    <img className='sidebar__logo' src='sidebarIcon.png' title="Главная" />
+                    <p></p>
+            </SidebarLink>
+
 
             <SidebarLink to='/' className="nav-link" >
                     <img src='sidebarIcon.png' title="Главная" />

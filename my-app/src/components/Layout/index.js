@@ -3,10 +3,10 @@ import Header from './header'
 import Sidebar from './sidebar'
 
 
-const Layout = () => {
+const Layout = ({dimensions}) => {
     return <div style={{zIndex: '9999'}}>
-        <Header />
-        <Sidebar />
+        <Header dimensions={dimensions} />
+        <Sidebar dimensions={dimensions} />
         </div>
 }
 
